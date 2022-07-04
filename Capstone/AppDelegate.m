@@ -6,6 +6,11 @@
 //
 
 #import "AppDelegate.h"
+#import "LoginViewController.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import "AccountViewController.h"
+#import <Parse/Parse.h>
+
 
 @interface AppDelegate ()
 
@@ -15,8 +20,41 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    ParseClientConfiguration *config = [ParseClientConfiguration  configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
+
+        configuration.applicationId = @"yNV6eCpUSvO10cLResalKCkP3CzxFFITH4738ogN";
+        configuration.clientKey = @"txAhsUcgAxF6UqkOnhhHM5x8MAooRxEzxGh5k858";
+        configuration.server = @"https://parseapi.back4app.com";
+    }];
+    
+    [Parse initializeWithConfiguration:config];
+    
+    //self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
+    
+    if ([FBSDKAccessToken currentAccessToken]) {
+        AccountViewController *accountViewController = [[AccountViewController alloc]initWithNibName:@"AccountViewController" bundle:nil];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:accountViewController];
+       // self.window.rootViewController = navController;
+    } else {
+        LoginViewController *loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+        self.window.rootViewController = loginViewController;
+    }
+
+    //[self.window makeKeyAndVisible];
     return YES;
+}
+
+-(BOOL)applicaiton:(UIApplication *)application
+           openURL:(NSURL *)url
+ sourceApplication:(NSString *)sourceApplication
+        annotation:(id)annotation {
+    BOOL handled = [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                                  openURL:url
+                    sourceApplication:sourceApplication annotation:annotation
+    ];
+    return handled;
 }
 
 

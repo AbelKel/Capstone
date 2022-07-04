@@ -6,10 +6,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LoginViewController : UIViewController
+@interface LoginViewController : UIViewController<FBSDKLoginButtonDelegate>
+
+@property (weak, nonatomic) IBOutlet UIView *fbLogin;
 
 @end
 
