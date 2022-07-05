@@ -5,6 +5,7 @@
 //  Created by Abel Kelbessa on 7/3/22.
 //
 #import <Parse/Parse.h>
+#import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "RegistrationViewController.h"
 #import "AccountViewController.h"
@@ -29,12 +30,12 @@
     loginButton.permissions = @[@"public_profile", @"email"];
     loginButton.center = fbLogin.center;
     [self.view addSubview:loginButton];
-    [self performSegueWithIdentifier:@"accountSegue" sender:nil];
+    [self performSegueWithIdentifier:@"homeSegue" sender:nil];
 }
 
 - (IBAction)didTapLogin:(id)sender {
     [self loginUser];
-    [self performSegueWithIdentifier:@"accountSegue" sender:self];
+    [self performSegueWithIdentifier:@"homeSegue" sender:self];
 }
 
 - (void)loginUser {
@@ -59,12 +60,10 @@
     if(error) {
         NSLog(@"error, something went wrong");
     } else {
-        Acc
-        //[self performSegueWithIdentifier:@"accountSegue" sender:nil];
+        [self performSegueWithIdentifier:@"homeSegue" sender:nil];
     }
     
 }
-
 
 -(void)loginButtonDidLogOut:(FBSDKLoginButton *)loginButton {
     NSLog(@"User logged out");

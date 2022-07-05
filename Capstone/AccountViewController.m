@@ -6,10 +6,13 @@
 //
 
 #import "AccountViewController.h"
+#import "AFNetworking/AFNetworking.h"
 #import <FBSDKCoreKit/FBSDKProfile.h>
 
 
 @interface AccountViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *profileImage;
+@property (weak, nonatomic) IBOutlet UILabel *profileName;
 
 @end
 
@@ -20,23 +23,13 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [FBSDKProfile loadCurrentProfileWithCompletion:^(FBSDKProfile * _Nullable profile, NSError * _Nullable error) {
             if(profile) {
-                self.navigationItem.title = [NSString stringWithFormat:@"Hello %@ %@", profile.firstName, profile.lastName];
+                NSString *lastnameWithSpace = [@" " stringByAppendingString:profile.lastName];
+                NSString *fullName = [profile.firstName stringByAppendingString:lastnameWithSpace];
+                self.profileName.text = fullName;
                 NSURL *url = [profile imageURLForPictureMode:FBSDKProfilePictureModeSquare size:CGSizeMake(0, 0)];
-                
                 UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
+                [self.profileImage setImage:image];
                 
-                UIView *profileView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 35, 35)];
-                profileView.layer.cornerRadius = profileView.frame.size.width/2;
-                profileView.clipsToBounds = YES;
-                profileView.userInteractionEnabled = YES;
-                UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doSomething)];
-                [profileView addGestureRecognizer:gestureRecognizer];
-                
-                UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-                [profileView addSubview:imageView];
-                
-                UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc]initWithCustomView:profileView];
-                self.navigationItem.rightBarButtonItem = buttonItem;
                 
             }
         }];
@@ -44,11 +37,8 @@
 }
 
 
-#pragma mark - Helper Methods
+#pragma mark
 
--(void) doSomething {
-    
-}
 
 /*
 #pragma mark - Navigation
