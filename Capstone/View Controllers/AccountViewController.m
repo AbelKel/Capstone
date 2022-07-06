@@ -6,20 +6,26 @@
 //
 
 #import "AccountViewController.h"
+#import "LoginViewController.h"
+#import <Parse/Parse.h>
 #import "AFNetworking/AFNetworking.h"
 #import <FBSDKCoreKit/FBSDKProfile.h>
 
 
-@interface AccountViewController ()
+@interface AccountViewController () 
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 @property (weak, nonatomic) IBOutlet UILabel *profileName;
+@property(strong, nonatomic) NSDictionary *collegeInfo;
+
 
 @end
 
 @implementation AccountViewController
+@synthesize fbLogoutView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         [FBSDKProfile loadCurrentProfileWithCompletion:^(FBSDKProfile * _Nullable profile, NSError * _Nullable error) {
             if(profile) {
@@ -29,14 +35,20 @@
                 NSURL *url = [profile imageURLForPictureMode:FBSDKProfilePictureModeSquare size:CGSizeMake(0, 0)];
                 UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
                 [self.profileImage setImage:image];
-                
-                
             }
         }];
     });
 }
 
 
+
+- (IBAction)didTapLogout:(id)sender {
+    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginView"];
+        self.view.window.rootViewController = loginViewController;
+    }];
+}
 #pragma mark
 
 
