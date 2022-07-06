@@ -28,20 +28,11 @@
     newUser.email = self.emailRegistration.text;
     newUser.password = self.passwordRegistration.text;
     
-    // call sign up function on the object
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
         if (error != nil) {
             NSLog(@"Error: %@", error.localizedDescription);
         } else {
             NSLog(@"User registered successfully");
-            UITextField *username = self.usernameRegistrationField;
-            UITextField *password = self.passwordRegistration;
-            
-            [self.delegate didSaveUsername:username];
-            [self.delegate didSavePassword:password];
-            
-            NSLog(@"Going to login page");
-            
             [self performSegueToLogin];
         }
     }];
@@ -54,7 +45,6 @@
 
 - (void)performSegueToLogin {
     [self performSegueWithIdentifier:@"loginSegue" sender:self];
-
 }
 
 
