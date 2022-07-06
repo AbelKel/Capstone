@@ -22,14 +22,14 @@
         self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"TabBar"];
     }
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [FBSDKProfile loadCurrentProfileWithCompletion:^(FBSDKProfile * _Nullable profile, NSError * _Nullable error) {
-            if(profile) {
-                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"TabBar"];
-            }
-        }];
-    });
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        [FBSDKProfile loadCurrentProfileWithCompletion:^(FBSDKProfile * _Nullable profile, NSError * _Nullable error) {
+//            if(profile) {
+//                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//                self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"TabBar"];
+//            }
+//        }];
+//    });
 }
 
 
