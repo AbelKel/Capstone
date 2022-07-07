@@ -117,7 +117,6 @@ In the first week of the start of the project, I plan on implementing the sign u
 * Accessing the ranks of colleges in top 10, top 20
 * Find links to different colleges’ websites
 * Seeing photos of college campuses through details page
-* Submitting a review for a professor/class
 ## Week 4: 
 * Adding a college (if it does not exist)
 * User follow a specific college for news or any updates
