@@ -10,7 +10,10 @@
 		1FC3C022174D43E2CA53B594 /* Pods_Capstone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F7413D8AFD3D6D22A971FA /* Pods_Capstone.framework */; };
 		281C5E823F6D5C2D3C6B0C8A /* Pods_CapstoneTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC90A25362ACDC45A2D613D /* Pods_CapstoneTests.framework */; };
 		7BC22ADB76F500494C3E16C6 /* Pods_Capstone_CapstoneUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 511C5CEE66DA1C120E7C5E58 /* Pods_Capstone_CapstoneUITests.framework */; };
-		D90B41822875EFC400066528 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D90B41812875EFC400066528 /* ViewController.m */; };
+		D91B18552877944500FA423B /* College.m in Sources */ = {isa = PBXBuildFile; fileRef = D91B18542877944500FA423B /* College.m */; };
+		D91B185928779A6800FA423B /* MatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D91B185828779A6800FA423B /* MatchViewController.m */; };
+		D91B185C28779E2E00FA423B /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D91B185B28779E2E00FA423B /* NewsViewController.m */; };
+		D91B185F2877B02B00FA423B /* NewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D91B185E2877B02B00FA423B /* NewsCell.m */; };
 		D945E1D328718497005FFE04 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D945E1D228718497005FFE04 /* AppDelegate.m */; };
 		D945E1D628718497005FFE04 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D945E1D528718497005FFE04 /* SceneDelegate.m */; };
 		D945E1DC28718497005FFE04 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D945E1DA28718497005FFE04 /* Main.storyboard */; };
@@ -25,7 +28,7 @@
 		D94C5B872872B2E800BE7FDD /* RegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D94C5B862872B2E800BE7FDD /* RegistrationViewController.m */; };
 		D9784FA3287404C90056DD78 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9784FA2287404C90056DD78 /* HomeViewController.m */; };
 		D9784FAA2874B1190056DD78 /* HomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9784FA92874B1190056DD78 /* HomeCell.m */; };
-		D9784FAD2874B5F90056DD78 /* APImanager.m in Sources */ = {isa = PBXBuildFile; fileRef = D9784FAC2874B5F90056DD78 /* APImanager.m */; };
+		D9784FAD2874B5F90056DD78 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D9784FAC2874B5F90056DD78 /* APIManager.m */; };
 		D9784FB0287507150056DD78 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9784FAF287507150056DD78 /* DetailsViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -53,8 +56,14 @@
 		752E8D0A5BA7DA688A2A342D /* Pods-Capstone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Capstone.debug.xcconfig"; path = "Target Support Files/Pods-Capstone/Pods-Capstone.debug.xcconfig"; sourceTree = "<group>"; };
 		9786EA9C0FA224742E8EDC36 /* Pods-Capstone-CapstoneUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Capstone-CapstoneUITests.debug.xcconfig"; path = "Target Support Files/Pods-Capstone-CapstoneUITests/Pods-Capstone-CapstoneUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B06969A7ABDB31DB5CD1D963 /* Pods-CapstoneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CapstoneTests.release.xcconfig"; path = "Target Support Files/Pods-CapstoneTests/Pods-CapstoneTests.release.xcconfig"; sourceTree = "<group>"; };
-		D90B41812875EFC400066528 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		D90B41832875EFCB00066528 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		D91B18532877944500FA423B /* College.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = College.h; sourceTree = "<group>"; };
+		D91B18542877944500FA423B /* College.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = College.m; sourceTree = "<group>"; };
+		D91B185728779A6800FA423B /* MatchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchViewController.h; sourceTree = "<group>"; };
+		D91B185828779A6800FA423B /* MatchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchViewController.m; sourceTree = "<group>"; };
+		D91B185A28779E2E00FA423B /* NewsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsViewController.h; sourceTree = "<group>"; };
+		D91B185B28779E2E00FA423B /* NewsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
+		D91B185D2877B02B00FA423B /* NewsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsCell.h; sourceTree = "<group>"; };
+		D91B185E2877B02B00FA423B /* NewsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsCell.m; sourceTree = "<group>"; };
 		D945E1CE28718497005FFE04 /* Capstone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Capstone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D945E1D128718497005FFE04 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D945E1D228718497005FFE04 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -80,8 +89,8 @@
 		D9784FA2287404C90056DD78 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		D9784FA82874B1190056DD78 /* HomeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeCell.h; sourceTree = "<group>"; };
 		D9784FA92874B1190056DD78 /* HomeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeCell.m; sourceTree = "<group>"; };
-		D9784FAB2874B5F90056DD78 /* APImanager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APImanager.h; sourceTree = "<group>"; };
-		D9784FAC2874B5F90056DD78 /* APImanager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APImanager.m; sourceTree = "<group>"; };
+		D9784FAB2874B5F90056DD78 /* APIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
+		D9784FAC2874B5F90056DD78 /* APIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
 		D9784FAE287507150056DD78 /* DetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
 		D9784FAF287507150056DD78 /* DetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 		E7F7413D8AFD3D6D22A971FA /* Pods_Capstone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Capstone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,6 +139,46 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		D91B18562877944C00FA423B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D91B18532877944500FA423B /* College.h */,
+				D91B18542877944500FA423B /* College.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D91B18602877BAB100FA423B /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				D945E208287188C7005FFE04 /* LoginViewController.h */,
+				D945E209287188C7005FFE04 /* LoginViewController.m */,
+				D94C5B852872B2E800BE7FDD /* RegistrationViewController.h */,
+				D94C5B862872B2E800BE7FDD /* RegistrationViewController.m */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		D91B18612877BB0700FA423B /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				D9784FA82874B1190056DD78 /* HomeCell.h */,
+				D9784FA92874B1190056DD78 /* HomeCell.m */,
+				D9784FA1287404C90056DD78 /* HomeViewController.h */,
+				D9784FA2287404C90056DD78 /* HomeViewController.m */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		D91B18622877BCBB00FA423B /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				D945E20B287188F6005FFE04 /* AccountViewController.h */,
+				D945E20C287188F6005FFE04 /* AccountViewController.m */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		D945E1C528718497005FFE04 = {
 			isa = PBXGroup;
 			children = (
@@ -155,15 +204,17 @@
 		D945E1D028718497005FFE04 /* Capstone */ = {
 			isa = PBXGroup;
 			children = (
+				D91B18622877BCBB00FA423B /* Profile */,
+				D91B18612877BB0700FA423B /* Feed */,
+				D91B18602877BAB100FA423B /* Authentication */,
+				D91B18562877944C00FA423B /* Models */,
 				D9784FB12875EE7E0056DD78 /* API */,
-				D9784FA72874B0F20056DD78 /* Home Cells */,
+				D9784FA72874B0F20056DD78 /* News */,
 				D9784FA62874B0D90056DD78 /* View Controllers */,
 				D945E1D128718497005FFE04 /* AppDelegate.h */,
 				D945E1D228718497005FFE04 /* AppDelegate.m */,
 				D945E1D428718497005FFE04 /* SceneDelegate.h */,
 				D945E1D528718497005FFE04 /* SceneDelegate.m */,
-				D90B41812875EFC400066528 /* ViewController.m */,
-				D90B41832875EFCB00066528 /* ViewController.h */,
 				D945E1DA28718497005FFE04 /* Main.storyboard */,
 				D945E1DD28718497005FFE04 /* Assets.xcassets */,
 				D945E1DF28718497005FFE04 /* LaunchScreen.storyboard */,
@@ -193,34 +244,30 @@
 		D9784FA62874B0D90056DD78 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D945E208287188C7005FFE04 /* LoginViewController.h */,
-				D945E209287188C7005FFE04 /* LoginViewController.m */,
-				D945E20B287188F6005FFE04 /* AccountViewController.h */,
-				D945E20C287188F6005FFE04 /* AccountViewController.m */,
-				D94C5B852872B2E800BE7FDD /* RegistrationViewController.h */,
-				D94C5B862872B2E800BE7FDD /* RegistrationViewController.m */,
-				D9784FA1287404C90056DD78 /* HomeViewController.h */,
-				D9784FA2287404C90056DD78 /* HomeViewController.m */,
 				D9784FAE287507150056DD78 /* DetailsViewController.h */,
 				D9784FAF287507150056DD78 /* DetailsViewController.m */,
+				D91B185728779A6800FA423B /* MatchViewController.h */,
+				D91B185828779A6800FA423B /* MatchViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
-		D9784FA72874B0F20056DD78 /* Home Cells */ = {
+		D9784FA72874B0F20056DD78 /* News */ = {
 			isa = PBXGroup;
 			children = (
-				D9784FA82874B1190056DD78 /* HomeCell.h */,
-				D9784FA92874B1190056DD78 /* HomeCell.m */,
+				D91B185D2877B02B00FA423B /* NewsCell.h */,
+				D91B185E2877B02B00FA423B /* NewsCell.m */,
+				D91B185A28779E2E00FA423B /* NewsViewController.h */,
+				D91B185B28779E2E00FA423B /* NewsViewController.m */,
 			);
-			path = "Home Cells";
+			path = News;
 			sourceTree = "<group>";
 		};
 		D9784FB12875EE7E0056DD78 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				D9784FAB2874B5F90056DD78 /* APImanager.h */,
-				D9784FAC2874B5F90056DD78 /* APImanager.m */,
+				D9784FAB2874B5F90056DD78 /* APIManager.h */,
+				D9784FAC2874B5F90056DD78 /* APIManager.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -475,12 +522,15 @@
 			files = (
 				D945E1D328718497005FFE04 /* AppDelegate.m in Sources */,
 				D9784FB0287507150056DD78 /* DetailsViewController.m in Sources */,
+				D91B18552877944500FA423B /* College.m in Sources */,
 				D945E1E428718497005FFE04 /* main.m in Sources */,
 				D9784FAA2874B1190056DD78 /* HomeCell.m in Sources */,
 				D945E1D628718497005FFE04 /* SceneDelegate.m in Sources */,
-				D90B41822875EFC400066528 /* ViewController.m in Sources */,
+				D91B185C28779E2E00FA423B /* NewsViewController.m in Sources */,
 				D945E20D287188F6005FFE04 /* AccountViewController.m in Sources */,
-				D9784FAD2874B5F90056DD78 /* APImanager.m in Sources */,
+				D9784FAD2874B5F90056DD78 /* APIManager.m in Sources */,
+				D91B185928779A6800FA423B /* MatchViewController.m in Sources */,
+				D91B185F2877B02B00FA423B /* NewsCell.m in Sources */,
 				D945E20A287188C7005FFE04 /* LoginViewController.m in Sources */,
 				D94C5B872872B2E800BE7FDD /* RegistrationViewController.m in Sources */,
 				D9784FA3287404C90056DD78 /* HomeViewController.m in Sources */,

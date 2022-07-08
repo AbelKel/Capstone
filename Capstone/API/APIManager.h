@@ -9,7 +9,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface APImanager : NSObject
+@interface APIManager : NSObject
+
++ (instancetype)shared;
+
+- (void)getHomeTimelineWithCompletion:(void(^)(NSArray *tweets, NSError *error))completion;
 
 @end
 
