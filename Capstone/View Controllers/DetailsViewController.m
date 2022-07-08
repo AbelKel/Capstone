@@ -6,6 +6,7 @@
 //
 
 #import "DetailsViewController.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface DetailsViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *detailsCollegeImage;
@@ -20,6 +21,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.detailsCollegeName.text = self.detailName;
+    self.detailsCollegeDetails.text = self.detailDetail;
+    self.detailsCollegeLocation.text = self.detailLocation;
+    NSURL *url = [NSURL URLWithString:self.detailImage];
+    [self.detailsCollegeImage setImageWithURL:url];
 }
 
 /*

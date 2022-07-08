@@ -5,11 +5,11 @@
 //  Created by Abel Kelbessa on 7/5/22.
 //
 
-#import "ViewController.h"
+#import "UIKit/UIKit.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DetailsViewController : ViewController
+@interface DetailsViewController : UIViewController
 
 @property (strong, nonatomic) NSString *detailName;
 @property (strong, nonatomic) NSString *detailImage;
