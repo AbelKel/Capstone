@@ -9,7 +9,7 @@
 #import "LoginViewController.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import "AccountViewController.h"
-#import <Parse/Parse.h>
+#import "Parse/Parse.h"
 
 
 @interface AppDelegate ()
@@ -29,6 +29,18 @@
     }];
     
     [Parse initializeWithConfiguration:config];
+    
+    PFObject *gameScore = [PFObject objectWithClassName:@"GameScore"];
+    gameScore[@"score"] = @1337;
+    gameScore[@"playerName"] = @"Sean Plott";
+    gameScore[@"cheatMode"] = @NO;
+    [gameScore saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            NSLog(@"Object saved!");
+        } else {
+            NSLog(@"Error: %@", error.description);
+        }
+    }];
     
     //self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
