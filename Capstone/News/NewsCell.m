@@ -6,8 +6,15 @@
 //
 
 #import "NewsCell.h"
-
+#import "UIImageView+AFNetworking.h"
 @implementation NewsCell
+
+- (void)buildNewsCell {
+    self.NewsTitle.text = self.collegeNews.title;
+    self.NewsDescription.text = self.collegeNews.newsDescription;
+    NSURL *url = [NSURL URLWithString:self.collegeNews.imageUrl];
+    [self.NewsImage setImageWithURL:url];
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];

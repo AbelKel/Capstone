@@ -6,16 +6,12 @@
 //
 
 #import "UIKit/UIKit.h"
+#import "College.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DetailsViewController : UIViewController
-
-@property (strong, nonatomic) NSString *detailName;
-@property (strong, nonatomic) NSString *detailImage;
-@property (strong, nonatomic) NSString *detailLocation;
-@property (strong, nonatomic) NSString *detailDetail;
-
+@property (strong, nonatomic) College *college;
 @end
 
 NS_ASSUME_NONNULL_END
