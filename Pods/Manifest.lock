@@ -27,11 +27,13 @@ PODS:
     - Parse/Core (= 1.19.3)
   - Parse/Core (1.19.3):
     - Bolts/Tasks (= 1.9.1)
+  - TTTAttributedLabel (2.0.0)
 
 DEPENDENCIES:
   - AFNetworking
   - FBSDKLoginKit
   - Parse
+  - TTTAttributedLabel
 
 SPEC REPOS:
   trunk:
@@ -42,6 +44,7 @@ SPEC REPOS:
     - FBSDKCoreKit_Basics
     - FBSDKLoginKit
     - Parse
+    - TTTAttributedLabel
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
@@ -51,7 +54,8 @@ SPEC CHECKSUMS:
   FBSDKCoreKit_Basics: 6e578c9bdc7aa1365dbbbde633c9ebb536bcaa98
   FBSDKLoginKit: 787de205d524c3a4b17d527916f1d066e4361660
   Parse: 0abb63a0ff6fa34a3f64b81d595a294e2ece143a
+  TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: d3a79010ccbdd02b3ab9d4a2d3dd2c7eb2762641
+PODFILE CHECKSUM: 351102db1be61d3d4438d16309076c12a07b8749
 
 COCOAPODS: 1.11.3

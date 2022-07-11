@@ -16,8 +16,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *usernameLogin;
 @property (weak, nonatomic) IBOutlet UITextField *passwordLogin;
 @property (weak, nonatomic) IBOutlet UIView *fbLogin;
-
-
 @end
 
 @implementation LoginViewController
@@ -69,7 +67,6 @@
 - (IBAction)didRegisterButton:(id)sender {
     [self performSegueWithIdentifier:@"regSegue" sender:self];
 }
-
 
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

@@ -8,18 +8,13 @@
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
 @interface College : NSObject
-
-@property (strong, nonatomic) NSString *detailName;
-@property (strong, nonatomic) NSString *detailImage;
-@property (strong, nonatomic) NSString *detailLocation;
-@property (strong, nonatomic) NSString *detailDetail;
-
-
-- (instancetype)initWithDictionary:(NSArray *)dictionary;
-
-
+@property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *image;
+@property (strong, nonatomic) NSString *location;
+@property (strong, nonatomic) NSString *details;
+@property (strong, nonatomic) NSString *website;
++ (NSMutableArray *)collegesWithArray:(NSArray *)dictionaries;
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 @end
-
 NS_ASSUME_NONNULL_END
