@@ -9,8 +9,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface APImanager : NSObject
+@interface APIManager : NSObject
 
+@property (strong, nonatomic) NSMutableArray *collegeDictionaryArrays;
++ (instancetype)shared;
+- (void)fetchColleges: (void(^)(NSArray *colleges, NSError *error))completion;
+- (void) fetchCollegeNews: (void(^)(NSArray *collegeNews, NSError *error))completion;
 @end
 
 NS_ASSUME_NONNULL_END
