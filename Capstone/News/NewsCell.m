@@ -8,7 +8,6 @@
 #import "NewsCell.h"
 #import "UIImageView+AFNetworking.h"
 @implementation NewsCell
-
 - (void)buildNewsCell {
     self.NewsTitle.text = self.collegeNews.title;
     self.NewsDescription.text = self.collegeNews.newsDescription;
@@ -23,5 +22,4 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 }
-
 @end

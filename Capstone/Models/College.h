@@ -6,14 +6,22 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@interface College : NSObject
+@interface College : NSObject <CLLocationManagerDelegate> {
+    CLLocationManager *locationManager;
+}
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *image;
 @property (strong, nonatomic) NSString *location;
 @property (strong, nonatomic) NSString *details;
 @property (strong, nonatomic) NSString *website;
+@property (strong, nonatomic) NSString *longtuide;
+@property (strong, nonatomic) NSString *lat;
+@property (nonatomic, assign) double rigorScore;
+@property (nonatomic, assign) double distance;
 + (NSMutableArray *)collegesWithArray:(NSArray *)dictionaries;
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 @end

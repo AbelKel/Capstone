@@ -10,16 +10,21 @@
 #import <Parse/Parse.h>
 #import "AFNetworking/AFNetworking.h"
 #import <FBSDKCoreKit/FBSDKProfile.h>
+#import "MatchCell.h"
+#import "MatchViewController.h"
 
-@interface AccountViewController () 
+@interface AccountViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 @property (weak, nonatomic) IBOutlet UILabel *profileName;
-@property(strong, nonatomic) NSDictionary *collegeInfo;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
 
 @implementation AccountViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.tableView reloadData];
     [self setUser];
         dispatch_async(dispatch_get_main_queue(), ^{
             [FBSDKProfile loadCurrentProfileWithCompletion:^(FBSDKProfile * _Nullable profile, NSError * _Nullable error) {
@@ -46,5 +51,16 @@
 -(void)setUser {
     PFUser *username = [PFUser currentUser];
     self.profileName.text = username.username;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.matchedColleges.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    MatchCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MatchCell"];
+    College *college = self.matchedColleges[indexPath.row];
+    cell.college = college;
+    [cell buildMatchCell];
+    return cell;
 }
 @end

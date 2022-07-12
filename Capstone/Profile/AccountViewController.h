@@ -10,5 +10,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @interface AccountViewController : UIViewController<FBSDKLoginButtonDelegate>
+@property (strong, nonatomic) NSMutableArray *matchedColleges;
 @end
 NS_ASSUME_NONNULL_END
