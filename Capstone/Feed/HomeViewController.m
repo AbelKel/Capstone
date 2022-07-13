@@ -90,5 +90,4 @@
     DetailsViewController *detailVC = [segue destinationViewController];
     detailVC.college = collegeToPass;
 }
-
 @end

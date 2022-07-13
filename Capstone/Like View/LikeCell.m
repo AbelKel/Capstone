@@ -6,18 +6,23 @@
 //
 
 #import "LikeCell.h"
+#import "UIImageView+AFNetworking.h"
 
 @implementation LikeCell
-
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
+}
 
-    // Configure the view for the selected state
+- (void)buildLikeCell {
+    self.likedCollegeName.text = self.college.name;
+    self.likedCollegeLocation.text = self.college.location;
+    self.likedCollegeDescription.text = self.college.details;
+    NSURL *url = [NSURL URLWithString:self.college.image];
+    [self.likedCollegeImage setImageWithURL:url];
 }
 
 @end
