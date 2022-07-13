@@ -218,6 +218,7 @@
 		D945E1D028718497005FFE04 /* Capstone */ = {
 			isa = PBXGroup;
 			children = (
+				D9539290287E56EB00207CC6 /* Settings View */,
 				D9539280287C986E00207CC6 /* Match View */,
 				D91B18622877BCBB00FA423B /* Profile */,
 				D91B18612877BB0700FA423B /* Feed */,
@@ -235,8 +236,6 @@
 				D945E1DF28718497005FFE04 /* LaunchScreen.storyboard */,
 				D945E1E228718497005FFE04 /* Info.plist */,
 				D945E1E328718497005FFE04 /* main.m */,
-				D9539287287E181A00207CC6 /* SettingsTableViewController.h */,
-				D9539288287E181A00207CC6 /* SettingsTableViewController.m */,
 			);
 			path = Capstone;
 			sourceTree = "<group>";
@@ -267,6 +266,15 @@
 				D9539282287CC1E800207CC6 /* MatchCell.m */,
 			);
 			path = "Match View";
+			sourceTree = "<group>";
+		};
+		D9539290287E56EB00207CC6 /* Settings View */ = {
+			isa = PBXGroup;
+			children = (
+				D9539287287E181A00207CC6 /* SettingsTableViewController.h */,
+				D9539288287E181A00207CC6 /* SettingsTableViewController.m */,
+			);
+			path = "Settings View";
 			sourceTree = "<group>";
 		};
 		D9784FA62874B0D90056DD78 /* Detail View */ = {

@@ -13,7 +13,6 @@
 @end
 
 @implementation SettingsTableViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
@@ -29,7 +28,6 @@
     }
     [self presentViewController:imagePickerVC animated:YES completion:nil];
 }
-
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
@@ -49,6 +47,4 @@
     }
     return [PFFileObject fileObjectWithName:@"image.png" data:imageData];
 }
-
-
 @end
