@@ -22,6 +22,7 @@
         self.longtuide = dictionary[@"locationLong"];
         self.lat = dictionary[@"locationLat"];
         self.rigorScore = [dictionary[@"score"] doubleValue];
+        self.likeCount = 0;
         CLLocation *startLocation = [[CLLocation alloc] initWithLatitude:[dictionary[@"locationLong"] doubleValue] longitude:[dictionary[@"locationLat"] doubleValue]];
         CLLocationCoordinate2D coordinate = [self getLocation];
         NSString *latitude = [NSString stringWithFormat:@"%f", coordinate.latitude];

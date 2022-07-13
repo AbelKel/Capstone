@@ -40,10 +40,10 @@
             NSLog(@"%@", error);
         } else {
             self.initailCollegeList = (NSMutableArray *)colleges;
-            NSLog(@"%@", self.initailCollegeList);
-            for (College *college in self.initailCollegeList) {
-                NSLog(@"%@", college.name);
-            }
+//            NSLog(@"%@", self.initailCollegeList);
+//            for (College *college in self.initailCollegeList) {
+////                NSLog(@"%@", college.name);
+//            }
         }
     }];
 }
