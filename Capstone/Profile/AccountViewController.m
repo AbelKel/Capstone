@@ -30,18 +30,6 @@
         self.profileImage.file = current[@"image"];
         [self.profileImage loadInBackground];
     }
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [FBSDKProfile loadCurrentProfileWithCompletion:^(FBSDKProfile * _Nullable profile, NSError * _Nullable error) {
-//                if(profile) {
-//                    NSString *lastnameWithSpace = [@" " stringByAppendingString:profile.lastName];
-//                    NSString *fullName = [profile.firstName stringByAppendingString:lastnameWithSpace];
-//                    self.profileName.text = fullName;
-//                    NSURL *url = [profile imageURLForPictureMode:FBSDKProfilePictureModeSquare size:CGSizeMake(0, 0)];
-//                    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
-//                    [self.profileImage setImage:image];
-//                }
-//            }];
-//        });
 }
 
 - (IBAction)didTapLogout:(id)sender {
