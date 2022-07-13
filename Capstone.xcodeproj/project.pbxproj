@@ -28,6 +28,8 @@
 		D9539283287CC1E800207CC6 /* MatchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9539282287CC1E800207CC6 /* MatchCell.m */; };
 		D9539289287E181A00207CC6 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9539288287E181A00207CC6 /* SettingsTableViewController.m */; };
 		D953928F287E327D00207CC6 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D953928E287E327D00207CC6 /* CommentCell.m */; };
+		D97795B4287E9340003F9A45 /* LikeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D97795B3287E9340003F9A45 /* LikeViewController.m */; };
+		D97795B8287E936F003F9A45 /* LikeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D97795B7287E936F003F9A45 /* LikeCell.m */; };
 		D9784FA3287404C90056DD78 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9784FA2287404C90056DD78 /* HomeViewController.m */; };
 		D9784FAA2874B1190056DD78 /* HomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9784FA92874B1190056DD78 /* HomeCell.m */; };
 		D9784FAD2874B5F90056DD78 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D9784FAC2874B5F90056DD78 /* APIManager.m */; };
@@ -93,6 +95,10 @@
 		D9539288287E181A00207CC6 /* SettingsTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
 		D953928D287E327D00207CC6 /* CommentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
 		D953928E287E327D00207CC6 /* CommentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
+		D97795B2287E9340003F9A45 /* LikeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LikeViewController.h; sourceTree = "<group>"; };
+		D97795B3287E9340003F9A45 /* LikeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LikeViewController.m; sourceTree = "<group>"; };
+		D97795B6287E936F003F9A45 /* LikeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LikeCell.h; sourceTree = "<group>"; };
+		D97795B7287E936F003F9A45 /* LikeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LikeCell.m; sourceTree = "<group>"; };
 		D9784FA1287404C90056DD78 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		D9784FA2287404C90056DD78 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		D9784FA82874B1190056DD78 /* HomeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeCell.h; sourceTree = "<group>"; };
@@ -218,6 +224,7 @@
 		D945E1D028718497005FFE04 /* Capstone */ = {
 			isa = PBXGroup;
 			children = (
+				D97795B5287E9347003F9A45 /* Like View */,
 				D9539290287E56EB00207CC6 /* Settings View */,
 				D9539280287C986E00207CC6 /* Match View */,
 				D91B18622877BCBB00FA423B /* Profile */,
@@ -275,6 +282,17 @@
 				D9539288287E181A00207CC6 /* SettingsTableViewController.m */,
 			);
 			path = "Settings View";
+			sourceTree = "<group>";
+		};
+		D97795B5287E9347003F9A45 /* Like View */ = {
+			isa = PBXGroup;
+			children = (
+				D97795B2287E9340003F9A45 /* LikeViewController.h */,
+				D97795B3287E9340003F9A45 /* LikeViewController.m */,
+				D97795B6287E936F003F9A45 /* LikeCell.h */,
+				D97795B7287E936F003F9A45 /* LikeCell.m */,
+			);
+			path = "Like View";
 			sourceTree = "<group>";
 		};
 		D9784FA62874B0D90056DD78 /* Detail View */ = {
@@ -558,6 +576,7 @@
 			files = (
 				D97A1FAC287B8609004B8893 /* CollegeNews.m in Sources */,
 				D953928F287E327D00207CC6 /* CommentCell.m in Sources */,
+				D97795B4287E9340003F9A45 /* LikeViewController.m in Sources */,
 				D945E1D328718497005FFE04 /* AppDelegate.m in Sources */,
 				D9784FB0287507150056DD78 /* DetailsViewController.m in Sources */,
 				D9539283287CC1E800207CC6 /* MatchCell.m in Sources */,
@@ -569,6 +588,7 @@
 				D97A1FAF287BC277004B8893 /* MatchViewController.m in Sources */,
 				D945E20D287188F6005FFE04 /* AccountViewController.m in Sources */,
 				D9784FAD2874B5F90056DD78 /* APIManager.m in Sources */,
+				D97795B8287E936F003F9A45 /* LikeCell.m in Sources */,
 				D91B185F2877B02B00FA423B /* NewsCell.m in Sources */,
 				D9539289287E181A00207CC6 /* SettingsTableViewController.m in Sources */,
 				D945E20A287188C7005FFE04 /* LoginViewController.m in Sources */,
