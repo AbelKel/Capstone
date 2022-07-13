@@ -29,12 +29,13 @@
         NSString *longitude = [NSString stringWithFormat:@"%f", coordinate.longitude];
         CLLocation *endLocation = [[CLLocation alloc] initWithLatitude:[latitude doubleValue] longitude:[longitude doubleValue]];
         CLLocationDistance distance = [startLocation distanceFromLocation:endLocation];
-        self.distance = (distance/1609.34);
+        int const convertingMetersToMiles = 1609.34;
+        self.distance = (distance/convertingMetersToMiles);
     }
     return self;
 }
 
--(CLLocationCoordinate2D) getLocation{
+-(CLLocationCoordinate2D)getLocation {
     CLLocationManager *locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = self;
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
