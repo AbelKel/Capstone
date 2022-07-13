@@ -15,21 +15,22 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *collegeSize;
 @property (weak, nonatomic) IBOutlet UILabel *satLabel;
 @property (weak, nonatomic) IBOutlet UITextField *zipcodeField;
-@property (weak, nonatomic) NSString *collegePropertyString;
 @property (weak, nonatomic) IBOutlet UITextField *cityField;
-@property (weak, nonatomic) NSString *collegeSizeString;
-@property (weak, nonatomic) NSString *zipcode;
-@property (weak, nonatomic) NSString *city;
-@property (weak, nonatomic) NSString *satScore;
-@property (strong, nonatomic) NSMutableArray *filteredList;
-@property (strong, nonatomic) NSMutableArray *initailCollegeList;
 @end
 
-@implementation MatchViewController
+@implementation MatchViewController {
+    NSMutableArray *initailCollegeList;
+    NSString *satScore;
+    NSMutableArray *filteredList;
+    NSString *city;
+    NSString *zipcode;
+    NSString *collegeSizeString;
+    NSString *collegePropertyString;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.filteredList = [[NSMutableArray alloc] init];
-    self.initailCollegeList = [[NSMutableArray alloc] init];
+    self->filteredList = [[NSMutableArray alloc] init];
+    self->initailCollegeList = [[NSMutableArray alloc] init];
 }
 
 - (void)fetchData {
@@ -37,14 +38,14 @@
         if (error != nil) {
             NSLog(@"%@", error);
         } else {
-            self.initailCollegeList = (NSMutableArray *)colleges;
+            self->initailCollegeList = (NSMutableArray *)colleges;
         }
     }];
 }
 
 - (IBAction)didSlideScore:(id)sender {
     self.satLabel.text = [NSString stringWithFormat:@"%0.0f", self.satSlider.value];
-    self.satScore = self.satLabel.text;
+    self->satScore = self.satLabel.text;
 }
 
 - (IBAction)segmentCollegeProperty:(id)sender { 
@@ -70,17 +71,16 @@
 }
 
 - (IBAction)didTapAddZipcode:(id)sender {
-    self.zipcode = self.zipcodeField.text;
+    self->zipcode = self.zipcodeField.text;
 }
 
 - (IBAction)didTapAddCity:(id)sender {
-    self.city = self.cityField.text;
+    self->city = self.cityField.text;
 }
 
 - (IBAction)filterButton:(id)sender {
     [self fetchData];
 }
-
 /**
  The lowest rigor score for a college can go as high as upto 50.
  The highest rigor score is 0.1
@@ -88,12 +88,11 @@
  - parameters to consider (college.location == self.city) &&
  - college.distance < 1000
 */
-
 - (void)filter {
-    double convertedScore = 50*(1-(([self.satScore doubleValue])/1600))+0.1;
-    for (College *college in self.initailCollegeList) {
+    double convertedScore = 50*(1-(([self->satScore doubleValue])/1600))+0.1;
+    for (College *college in self->initailCollegeList) {
         if ((college.rigorScore) >= convertedScore) {
-            [self.filteredList addObject:college];
+            [self->filteredList addObject:college];
         }
     }
 }
@@ -101,6 +100,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     [self filter];
     AccountViewController *accountVC = [segue destinationViewController];
-    accountVC.matchedColleges = self.filteredList;
+    accountVC.matchedColleges = self->filteredList;
 }
 @end
