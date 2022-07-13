@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSString *lat;
 @property (nonatomic, assign) double rigorScore;
 @property (nonatomic, assign) double distance;
+@property (nonatomic) int likeCount;
 + (NSMutableArray *)collegesWithArray:(NSArray *)dictionaries;
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 @end

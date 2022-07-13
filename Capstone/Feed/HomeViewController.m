@@ -54,6 +54,8 @@
             NSRange collegeName = [college.name rangeOfString:searchText options:NSCaseInsensitiveSearch];
             if (collegeName.location != NSNotFound) {
                 [self->filteredColleges addObject:college];
+            } else if ([college.details rangeOfString:searchText].location != NSNotFound) {
+                [self->filteredColleges addObject:college];
             }
         }
     }

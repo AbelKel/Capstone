@@ -10,6 +10,7 @@ target 'Capstone' do
   pod 'FBSDKLoginKit'
   pod 'AFNetworking'
   pod 'TTTAttributedLabel'
+  pod 'Parse/UI'
 
   target 'CapstoneTests' do
     inherit! :search_paths
