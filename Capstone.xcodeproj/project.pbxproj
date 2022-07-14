@@ -36,6 +36,7 @@
 		D9784FB0287507150056DD78 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9784FAF287507150056DD78 /* DetailsViewController.m */; };
 		D97A1FAC287B8609004B8893 /* CollegeNews.m in Sources */ = {isa = PBXBuildFile; fileRef = D97A1FAB287B8609004B8893 /* CollegeNews.m */; };
 		D97A1FAF287BC277004B8893 /* MatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D97A1FAE287BC277004B8893 /* MatchViewController.m */; };
+		D97BE1F6287FEAD700CBC1C7 /* words.txt in Resources */ = {isa = PBXBuildFile; fileRef = D97BE1F5287FEAD700CBC1C7 /* words.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,7 @@
 		D97A1FAB287B8609004B8893 /* CollegeNews.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollegeNews.m; sourceTree = "<group>"; };
 		D97A1FAD287BC277004B8893 /* MatchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchViewController.h; sourceTree = "<group>"; };
 		D97A1FAE287BC277004B8893 /* MatchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchViewController.m; sourceTree = "<group>"; };
+		D97BE1F5287FEAD700CBC1C7 /* words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = words.txt; sourceTree = "<group>"; };
 		E7F7413D8AFD3D6D22A971FA /* Pods_Capstone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Capstone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECC90A25362ACDC45A2D613D /* Pods_CapstoneTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CapstoneTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F72102A915011E4B317643EB /* Pods-Capstone-CapstoneUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Capstone-CapstoneUITests.release.xcconfig"; path = "Target Support Files/Pods-Capstone-CapstoneUITests/Pods-Capstone-CapstoneUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 		D945E1C528718497005FFE04 = {
 			isa = PBXGroup;
 			children = (
+				D97BE1F5287FEAD700CBC1C7 /* words.txt */,
 				D945E1D028718497005FFE04 /* Capstone */,
 				D945E1EC28718498005FFE04 /* CapstoneTests */,
 				D945E1F628718498005FFE04 /* CapstoneUITests */,
@@ -444,6 +447,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D97BE1F6287FEAD700CBC1C7 /* words.txt in Resources */,
 				D945E1E128718497005FFE04 /* LaunchScreen.storyboard in Resources */,
 				D945E1DE28718497005FFE04 /* Assets.xcassets in Resources */,
 				D945E1DC28718497005FFE04 /* Main.storyboard in Resources */,

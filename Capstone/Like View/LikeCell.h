@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LikeCell : UITableViewCell
-@property (strong, nonatomic) College *college;
+@property (strong, readwrite, nonatomic) College *college;
 @property (weak, nonatomic) IBOutlet UIImageView *likedCollegeImage;
 @property (weak, nonatomic) IBOutlet UILabel *likedCollegeName;
 @property (weak, nonatomic) IBOutlet UILabel *likedCollegeLocation;
