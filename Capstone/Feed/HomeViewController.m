@@ -21,6 +21,7 @@
     bool isFiltered;
     NSMutableArray *filteredColleges;
     NSMutableArray *colleges;
+    NSMutableDictionary *keyCoordinates;
 }
 
 - (void)viewDidLoad {
@@ -30,9 +31,11 @@
     self.searchBar.delegate = self;
     isFiltered = false;
     self->colleges = [[NSMutableArray alloc] init];
+    self->keyCoordinates = [[NSMutableDictionary alloc] init];
+    [self->keyCoordinates setObject:[NSNumber numberWithDouble:00] forKey:@"q"];
+    NSLog(@"%@111", [keyCoordinates objectForKey:@"q"]);
     [self fetchData];
 }
-
 - (void)fetchData {
     [[APIManager shared] fetchColleges:^(NSArray *colleges, NSError *error) {
         if (error != nil) {
@@ -44,7 +47,7 @@
     }];
 }
 
--(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     if (searchText.length == 0) {
         isFiltered = false;
     } else {
@@ -70,6 +73,14 @@
     return self->colleges.count;
 }
 
+- (void)buildWordDictionary {
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"words" ofType:@"txt"];
+    NSString* content = [NSString stringWithContentsOfFile:path
+                                                  encoding:NSUTF8StringEncoding
+                                                     error:NULL];
+    NSArray *arr = [content componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     HomeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeCell"];
     if (isFiltered) {
@@ -90,5 +101,4 @@
     DetailsViewController *detailVC = [segue destinationViewController];
     detailVC.college = collegeToPass;
 }
-
 @end
