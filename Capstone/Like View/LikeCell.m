@@ -24,5 +24,4 @@
     NSURL *url = [NSURL URLWithString:self.college.image];
     [self.likedCollegeImage setImageWithURL:url];
 }
-
 @end
