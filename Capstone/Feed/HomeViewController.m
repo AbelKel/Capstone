@@ -11,17 +11,18 @@
 #import "DetailsViewController.h"
 #import "APIManager.h"
 #import "College.h"
-
+#import "AutocorrectFunctions.h"
 @interface HomeViewController ()<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (nonatomic) double min;
+@property (weak, nonatomic) NSString *cWord;
 @end
 
 @implementation HomeViewController {
     bool isFiltered;
     NSMutableArray *filteredColleges;
     NSMutableArray *colleges;
-    NSMutableDictionary *keyCoordinates;
 }
 
 - (void)viewDidLoad {
@@ -31,9 +32,7 @@
     self.searchBar.delegate = self;
     isFiltered = false;
     self->colleges = [[NSMutableArray alloc] init];
-    self->keyCoordinates = [[NSMutableDictionary alloc] init];
-    [self->keyCoordinates setObject:[NSNumber numberWithDouble:00] forKey:@"q"];
-    NSLog(@"%@111", [keyCoordinates objectForKey:@"q"]);
+    [[AutocorrectFunctions shared] createCoordinates];
     [self fetchData];
 }
 - (void)fetchData {
@@ -71,14 +70,6 @@
         return self->filteredColleges.count;
     }
     return self->colleges.count;
-}
-
-- (void)buildWordDictionary {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"words" ofType:@"txt"];
-    NSString* content = [NSString stringWithContentsOfFile:path
-                                                  encoding:NSUTF8StringEncoding
-                                                     error:NULL];
-    NSArray *arr = [content componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

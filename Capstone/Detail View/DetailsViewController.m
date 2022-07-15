@@ -52,6 +52,12 @@
     } else {
         [self.likeCollege setImage:[UIImage imageNamed:@"favor-icon-red.png"]forState:UIControlStateNormal];
         [self->likesArray addObject: self.college.name];
+        PFObject *college = [PFObject objectWithClassName:@"College"];
+        college[@"name"] = self.college.name;
+        college[@"city"] = self.college.location;
+        college[@"shortDescription"] = self.college.details;
+        college[@"website"] = self.college.website;
+        [college saveEventually];
     }
     current[@"likes"] = [NSArray arrayWithArray:self->likesArray];
     [PFUser.currentUser saveInBackground];

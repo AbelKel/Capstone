@@ -13,6 +13,8 @@
 		D91B18552877944500FA423B /* College.m in Sources */ = {isa = PBXBuildFile; fileRef = D91B18542877944500FA423B /* College.m */; };
 		D91B185C28779E2E00FA423B /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D91B185B28779E2E00FA423B /* NewsViewController.m */; };
 		D91B185F2877B02B00FA423B /* NewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D91B185E2877B02B00FA423B /* NewsCell.m */; };
+		D92D11C52880E663000BB730 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D92D11C42880E663000BB730 /* MapKit.framework */; };
+		D92D11C9288119D9000BB730 /* AutocorrectFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = D92D11C8288119D9000BB730 /* AutocorrectFunctions.m */; };
 		D945E1D328718497005FFE04 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D945E1D228718497005FFE04 /* AppDelegate.m */; };
 		D945E1D628718497005FFE04 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D945E1D528718497005FFE04 /* SceneDelegate.m */; };
 		D945E1DC28718497005FFE04 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D945E1DA28718497005FFE04 /* Main.storyboard */; };
@@ -36,7 +38,6 @@
 		D9784FB0287507150056DD78 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9784FAF287507150056DD78 /* DetailsViewController.m */; };
 		D97A1FAC287B8609004B8893 /* CollegeNews.m in Sources */ = {isa = PBXBuildFile; fileRef = D97A1FAB287B8609004B8893 /* CollegeNews.m */; };
 		D97A1FAF287BC277004B8893 /* MatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D97A1FAE287BC277004B8893 /* MatchViewController.m */; };
-		D97BE1F6287FEAD700CBC1C7 /* words.txt in Resources */ = {isa = PBXBuildFile; fileRef = D97BE1F5287FEAD700CBC1C7 /* words.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,9 @@
 		D91B185B28779E2E00FA423B /* NewsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
 		D91B185D2877B02B00FA423B /* NewsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsCell.h; sourceTree = "<group>"; };
 		D91B185E2877B02B00FA423B /* NewsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsCell.m; sourceTree = "<group>"; };
+		D92D11C42880E663000BB730 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		D92D11C7288119D9000BB730 /* AutocorrectFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutocorrectFunctions.h; sourceTree = "<group>"; };
+		D92D11C8288119D9000BB730 /* AutocorrectFunctions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutocorrectFunctions.m; sourceTree = "<group>"; };
 		D945E1CE28718497005FFE04 /* Capstone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Capstone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D945E1D128718497005FFE04 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D945E1D228718497005FFE04 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -112,7 +116,6 @@
 		D97A1FAB287B8609004B8893 /* CollegeNews.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollegeNews.m; sourceTree = "<group>"; };
 		D97A1FAD287BC277004B8893 /* MatchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchViewController.h; sourceTree = "<group>"; };
 		D97A1FAE287BC277004B8893 /* MatchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchViewController.m; sourceTree = "<group>"; };
-		D97BE1F5287FEAD700CBC1C7 /* words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = words.txt; sourceTree = "<group>"; };
 		E7F7413D8AFD3D6D22A971FA /* Pods_Capstone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Capstone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECC90A25362ACDC45A2D613D /* Pods_CapstoneTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CapstoneTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F72102A915011E4B317643EB /* Pods-Capstone-CapstoneUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Capstone-CapstoneUITests.release.xcconfig"; path = "Target Support Files/Pods-Capstone-CapstoneUITests/Pods-Capstone-CapstoneUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -123,6 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D92D11C52880E663000BB730 /* MapKit.framework in Frameworks */,
 				1FC3C022174D43E2CA53B594 /* Pods_Capstone.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -201,10 +205,18 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		D92D11C62880EBCC000BB730 /* Autocorrect */ = {
+			isa = PBXGroup;
+			children = (
+				D92D11C7288119D9000BB730 /* AutocorrectFunctions.h */,
+				D92D11C8288119D9000BB730 /* AutocorrectFunctions.m */,
+			);
+			path = Autocorrect;
+			sourceTree = "<group>";
+		};
 		D945E1C528718497005FFE04 = {
 			isa = PBXGroup;
 			children = (
-				D97BE1F5287FEAD700CBC1C7 /* words.txt */,
 				D945E1D028718497005FFE04 /* Capstone */,
 				D945E1EC28718498005FFE04 /* CapstoneTests */,
 				D945E1F628718498005FFE04 /* CapstoneUITests */,
@@ -227,6 +239,7 @@
 		D945E1D028718497005FFE04 /* Capstone */ = {
 			isa = PBXGroup;
 			children = (
+				D92D11C62880EBCC000BB730 /* Autocorrect */,
 				D97795B5287E9347003F9A45 /* Like View */,
 				D9539290287E56EB00207CC6 /* Settings View */,
 				D9539280287C986E00207CC6 /* Match View */,
@@ -332,6 +345,7 @@
 		E3BD99B36C5AE25D9714456D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D92D11C42880E663000BB730 /* MapKit.framework */,
 				E7F7413D8AFD3D6D22A971FA /* Pods_Capstone.framework */,
 				511C5CEE66DA1C120E7C5E58 /* Pods_Capstone_CapstoneUITests.framework */,
 				ECC90A25362ACDC45A2D613D /* Pods_CapstoneTests.framework */,
@@ -447,7 +461,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D97BE1F6287FEAD700CBC1C7 /* words.txt in Resources */,
 				D945E1E128718497005FFE04 /* LaunchScreen.storyboard in Resources */,
 				D945E1DE28718497005FFE04 /* Assets.xcassets in Resources */,
 				D945E1DC28718497005FFE04 /* Main.storyboard in Resources */,
@@ -581,6 +594,7 @@
 				D97A1FAC287B8609004B8893 /* CollegeNews.m in Sources */,
 				D953928F287E327D00207CC6 /* CommentCell.m in Sources */,
 				D97795B4287E9340003F9A45 /* LikeViewController.m in Sources */,
+				D92D11C9288119D9000BB730 /* AutocorrectFunctions.m in Sources */,
 				D945E1D328718497005FFE04 /* AppDelegate.m in Sources */,
 				D9784FB0287507150056DD78 /* DetailsViewController.m in Sources */,
 				D9539283287CC1E800207CC6 /* MatchCell.m in Sources */,
