@@ -14,6 +14,7 @@
 
 @interface LikeViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSMutableArray *posts;
 @end
 
 @implementation LikeViewController {
@@ -31,38 +32,32 @@
     self->colleges = [[NSArray alloc] init];
     PFUser *current = [PFUser currentUser];
     self->likedCollegeNames = current[@"likes"];
-    [self fetchLikedCollegeList];
+    [self getPosts];
     [self.tableView reloadData];
+
 }
 
-- (void)fetchLikedCollegeList {
-    [[APIManager shared] fetchColleges:^(NSArray *colleges, NSError *error) {
-        if (error != nil) {
-            NSLog(@"%@", error);
+- (void)getPosts {
+    PFQuery *query = [PFQuery queryWithClassName:@"College"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil) {
+            self.posts = (NSMutableArray *)posts;
+            self->colleges = [College collegesWithArray:self.posts];
+            [self.tableView reloadData];
         } else {
-            self->colleges = colleges;
-            [self findLikedCollegeObjects];
+            NSLog(@"%@", error.localizedDescription);
         }
     }];
 }
 
-- (void)findLikedCollegeObjects {
-    for (College *college in self->colleges) {
-        if ([likedCollegeNames containsObject:college.name]) {
-            [self->likedCollegesToDisplay addObject: college];
-        }
-    }
-    [self.tableView reloadData];
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self->likedCollegesToDisplay.count;
+    return self->colleges.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     LikeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LikeCell"];
-    College *college = self->likedCollegesToDisplay[indexPath.row];
+    College *college = self->colleges[indexPath.row];
     cell.college = college;
     [cell buildLikeCell];
     return cell;

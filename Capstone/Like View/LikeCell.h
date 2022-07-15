@@ -7,10 +7,12 @@
 
 #import <UIKit/UIKit.h>
 #import "College.h"
+#import "Parse/Parse.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LikeCell : UITableViewCell
 @property (strong, readwrite, nonatomic) College *college;
+@property (strong, readwrite, nonatomic) PFObject *detailsCollege;
 @property (weak, nonatomic) IBOutlet UIImageView *likedCollegeImage;
 @property (weak, nonatomic) IBOutlet UILabel *likedCollegeName;
 @property (weak, nonatomic) IBOutlet UILabel *likedCollegeLocation;
