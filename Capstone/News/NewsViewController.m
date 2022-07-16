@@ -4,16 +4,13 @@
 //
 //  Created by Abel Kelbessa on 7/7/22.
 //
-
 #import "NewsViewController.h"
 #import "CollegeNews.h"
 #import "NewsCell.h"
 #import "APIManager.h"
-
 @interface NewsViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
-
 @implementation NewsViewController {
     NSMutableArray<CollegeNews *> *collegeArticles;
 }
@@ -46,7 +43,6 @@
     NewsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NewsCell"];
     CollegeNews *collegeNews = self->collegeArticles[indexPath.row];
     cell.collegeNews = collegeNews;
-    [cell buildNewsCell];
     return cell;
 }
 @end
