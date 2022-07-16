@@ -8,9 +8,8 @@
 #import "APIManager.h"
 #import "College.h"
 #import "AFNetworking.h"
-
-
 @implementation APIManager {
+    // TODO: Incorporate Sophia's feedback when working on Ambiguous issue part 1
     bool isPrivate;
     bool isPublic;
     bool isSmall;
@@ -73,6 +72,7 @@
     isLarge = true;
 }
 
+// TODO: Incorporate Sophia's feedback when working on Ambiguous issue part 1
 - (void)fetchCollegesForFiltering: (void(^)(NSArray *colleges, NSError *error))completion {
     if (isSmall && isPrivate) {
         url = [NSURL URLWithString:@"https://api.collegeai.com/v1/api/college-list?api_key=4c4e51cca8832178dcfb29217c&filters=%7B%0A%22funding-type%22%3A%5B%22private%22%5D%2C%0A%22schoolSize%22%3A%5B%22small%22%5D%2C%0A%7D&info_ids=website%2CshortDescription%2ClongDescription%2CcampusImage%2Ccity%2CstateAbbr%2Caliases%2Ccolors%2ClocationLong%2ClocationLat"];

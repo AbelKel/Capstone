@@ -4,12 +4,10 @@
 //
 //  Created by Abel Kelbessa on 7/7/22.
 //
-
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
-
 NS_ASSUME_NONNULL_BEGIN
 @interface College : NSObject <CLLocationManagerDelegate, MKMapViewDelegate> {
     CLLocationManager *locationManager;
@@ -21,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSString *website;
 @property (strong, nonatomic) NSString *longtuide;
 @property (strong, nonatomic) NSString *lat;
+@property (nonatomic) CLLocationCoordinate2D coordinate;
 @property (nonatomic, assign) double rigorScore;
 @property (nonatomic, assign) double distance;
 @property (nonatomic) int likeCount;

@@ -4,18 +4,19 @@
 //
 //  Created by Abel Kelbessa on 7/7/22.
 //
-
 #import "College.h"
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import <Parse/Parse.h>
 @implementation College
-
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];
     if (self) {
         self.name = dictionary[@"name"];
         self.details = dictionary[@"shortDescription"];
+        if (dictionary[@"shortDescription"] == nil) {
+            self.details = dictionary[@"longDescription"];
+        }
         self.location = dictionary[@"city"];
         self.image = dictionary[@"campusImage"];
         self.website = dictionary[@"website"];

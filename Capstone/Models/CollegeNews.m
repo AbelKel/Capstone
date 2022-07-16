@@ -4,9 +4,7 @@
 //
 //  Created by Abel Kelbessa on 7/10/22.
 //
-
 #import "CollegeNews.h"
-
 @implementation CollegeNews
 - (instancetype)initWithDictionaryNews:(NSDictionary *)dictionary {
     self = [super init];

@@ -4,14 +4,13 @@
 //
 //  Created by Abel Kelbessa on 7/7/22.
 //
-
 #import "NewsCell.h"
 #import "UIImageView+AFNetworking.h"
 @implementation NewsCell
-- (void)buildNewsCell {
-    self.NewsTitle.text = self.collegeNews.title;
-    self.NewsDescription.text = self.collegeNews.newsDescription;
-    NSURL *url = [NSURL URLWithString:self.collegeNews.imageUrl];
+- (void)setCollegeNews:(CollegeNews *)collegeNews {
+    self.NewsTitle.text = collegeNews.title;
+    self.NewsDescription.text = collegeNews.newsDescription;
+    NSURL *url = [NSURL URLWithString:collegeNews.imageUrl];
     [self.NewsImage setImageWithURL:url];
 }
 

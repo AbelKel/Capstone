@@ -19,9 +19,7 @@
 @end
 
 @implementation LoginViewController
-
 @synthesize fbLogin;
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
@@ -76,6 +74,4 @@
         regVC.delegate = self;
     }
 }
-
-
 @end

@@ -4,7 +4,6 @@
 //
 //  Created by Abel Kelbessa on 7/12/22.
 //
-
 #import "LikeViewController.h"
 #import <Parse/Parse.h>
 #import "APIManager.h"
@@ -14,6 +13,7 @@
 
 @interface LikeViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) NSMutableArray *posts;
 @end
 
@@ -21,6 +21,7 @@
     NSArray *likedCollegeNames;
     NSArray<College *> *colleges;
     NSMutableArray *likedCollegesToDisplay;
+    UIRefreshControl *refreshControl;
 }
 
 - (void)viewDidLoad {
@@ -33,21 +34,27 @@
     PFUser *current = [PFUser currentUser];
     self->likedCollegeNames = current[@"likes"];
     [self getPosts];
-    [self.tableView reloadData];
-
+    self->refreshControl = [[UIRefreshControl alloc] init];
+    [self->refreshControl addTarget:self action:@selector(getPosts) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self->refreshControl atIndex:0];
+    [self.activityIndicator startAnimating];
 }
 
 - (void)getPosts {
     PFQuery *query = [PFQuery queryWithClassName:@"College"];
+    [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             self.posts = (NSMutableArray *)posts;
             self->colleges = [College collegesWithArray:self.posts];
+            [self.activityIndicator stopAnimating];
+            [self.activityIndicator hidesWhenStopped];
             [self.tableView reloadData];
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
     }];
+    [self->refreshControl endRefreshing];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -59,7 +66,6 @@
     LikeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LikeCell"];
     College *college = self->colleges[indexPath.row];
     cell.college = college;
-    [cell buildLikeCell];
     return cell;
 }
 
