@@ -4,12 +4,14 @@
 //
 //  Created by Abel Kelbessa on 7/5/22.
 //
+
 #import "HomeCell.h"
 #import "College.h"
 #import "HomeViewController.h"
 #import "UIImageView+AFNetworking.h"
 
 @implementation HomeCell
+
 - (void)awakeFromNib {
     [super awakeFromNib];
 }

@@ -8,7 +8,9 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
+
 NS_ASSUME_NONNULL_BEGIN
+
 @interface College : NSObject <CLLocationManagerDelegate, MKMapViewDelegate> {
     CLLocationManager *locationManager;
 }
@@ -25,5 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) int likeCount;
 + (NSMutableArray *)collegesWithArray:(NSArray *)dictionaries;
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
+
 @end
+
 NS_ASSUME_NONNULL_END

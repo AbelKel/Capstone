@@ -34,12 +34,12 @@
 }
 
 - (void)fetchData {
-    [[APIManager shared] queryAPIs:^(NSArray * _Nonnull colleges, NSArray * _Nonnull colleges1, NSError * _Nonnull error) {
+    [[APIManager shared] queryAPIs:^(NSArray * _Nonnull collegesBasedonSize, NSArray * _Nonnull collegesBasedonFunding, NSError * _Nonnull error) {
         if (error != nil) {
             NSLog(@"%@", error);
         } else {
-            self->collegeBasedOnSize = colleges;
-            self->collegesBasedOnFunding = colleges1;
+            self->collegeBasedOnSize = collegesBasedonSize;
+            self->collegesBasedOnFunding = collegesBasedonSize;
         }
     }];
 }
