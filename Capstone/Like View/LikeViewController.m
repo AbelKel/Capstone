@@ -15,7 +15,7 @@
 @interface LikeViewController () <UITableViewDelegate, UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
-@property (strong, nonatomic) NSMutableArray *posts;
+@property (strong, nonatomic) NSMutableArray *collegesFromQuery;
 @end
 
 @implementation LikeViewController {
@@ -37,22 +37,22 @@
     self->colleges = [[NSArray alloc] init];
     PFUser *current = [PFUser currentUser];
     self->likedCollegeNames = current[@"likes"];
-    [self getPosts];
+    [self getLikedColleges];
     self->refreshControl = [[UIRefreshControl alloc] init];
-    [self->refreshControl addTarget:self action:@selector(getPosts) forControlEvents:UIControlEventValueChanged];
+    [self->refreshControl addTarget:self action:@selector(getLikedColleges) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self->refreshControl atIndex:0];
     [self.activityIndicator startAnimating];
 }
 
-- (void)getPosts {
+- (void)getLikedColleges {
     PFUser *current = [PFUser currentUser];
     PFQuery *query = [PFQuery queryWithClassName:@"College"];
     [query whereKey:@"userID" equalTo:current.username];
     [query orderByDescending:@"createdAt"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
-        if (posts != nil) {
-            self.posts = (NSMutableArray *)posts;
-            self->colleges = [College collegesWithArray:self.posts];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *colleges, NSError *error) {
+        if (colleges != nil) {
+            self.collegesFromQuery = (NSMutableArray *)colleges;
+            self->colleges = [College collegesWithArray:self.collegesFromQuery];
             [self.activityIndicator stopAnimating];
             [self.activityIndicator hidesWhenStopped];
             [self.tableView reloadData];

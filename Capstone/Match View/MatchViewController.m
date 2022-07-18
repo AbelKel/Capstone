@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *zipcodeField;
 @property (weak, nonatomic) IBOutlet UITextField *cityField;
 @end
+
 @implementation MatchViewController {
     NSMutableArray *initailCollegeList;
     NSString *satScore;

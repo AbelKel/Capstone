@@ -18,7 +18,6 @@
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
-@property (weak, nonatomic) UITableView *autocompleteTableView;
 @end
 
 @implementation HomeViewController {
@@ -55,15 +54,8 @@
     [self.refreshControl endRefreshing];
 }
 
+//TODO: implement table view for autocorrect suggestions
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    self.autocompleteTableView = [[UITableView alloc] initWithFrame: // still working on the tableview for autocomplete
-        CGRectMake(0, 80, 320, 120) style:UITableViewStylePlain];
-    self.autocompleteTableView.delegate = self;
-    self.autocompleteTableView.dataSource = self;
-    self.autocompleteTableView.scrollEnabled = YES;
-    self.autocompleteTableView.hidden = NO;
-    [self.view addSubview:self.autocompleteTableView];
-    [self.autocompleteTableView reloadData];
     if (searchText.length == 0) {
         isFiltered = false;
     } else {
@@ -77,7 +69,7 @@
                 [self->filteredColleges addObject:college];
             }
         }
-        NSString *correctWord = [[AutocorrectFunctions shared] findCorrectWord:searchText forColleges:self->colleges];
+        NSString *correctWord = [AutocorrectFunctions findCorrectWord:searchText forCollegesInArray:self->colleges];
         self->correctWordToDisplayInSearchBar = correctWord;
     }
     [self.tableView reloadData];

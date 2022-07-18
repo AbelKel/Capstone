@@ -9,19 +9,16 @@
 #import "College.h"
 
 @implementation AutocorrectFunctions
-+ (instancetype)shared {
-    AutocorrectFunctions *shared= [[AutocorrectFunctions alloc] init];
-    return shared;
-}
 
-- (NSString *)findCorrectWord:(NSString *)searchWord forColleges:(NSArray *)colleges {
-    double minDiffereceBetweenWords = 1000;
++ (NSString *)findCorrectWord:(NSString *)searchWord forCollegesInArray:(NSArray *)colleges {
+    AutocorrectFunctions *myAutocorrectFunctions = [[AutocorrectFunctions alloc] init];
+    double minDifferenceBetweenWords = 1000;
     NSString *correctWord;
     for (College *college in colleges) {
-        double hammingDistanceFullCollegeName = [self hammingDistanceCalculator:searchWord : college.name];
-        if (hammingDistanceFullCollegeName < minDiffereceBetweenWords) {
-            if (hammingDistanceFullCollegeName < minDiffereceBetweenWords) {
-                minDiffereceBetweenWords = hammingDistanceFullCollegeName;
+        double hammingDistanceFullCollegeName = [myAutocorrectFunctions hammingDistanceCalculator:searchWord secondWordToCompareOutOfTwoWords:college.name];
+        if (hammingDistanceFullCollegeName < minDifferenceBetweenWords) {
+            if (hammingDistanceFullCollegeName < minDifferenceBetweenWords) {
+                minDifferenceBetweenWords = hammingDistanceFullCollegeName;
             }
             correctWord = college.name;
         }
@@ -66,7 +63,7 @@
 /*
  This function takes in two strings and passes them on to hammingDistanceHelper method to calcualte the distance between each chatacter in the two words.
  */
-- (double)hammingDistanceCalculator:(NSString *)firstWordToCompareOutOfTwoWords :(NSString *)secondWordToCompareOutOfTwoWords {
+- (double)hammingDistanceCalculator:(NSString *)firstWordToCompareOutOfTwoWords secondWordToCompareOutOfTwoWords:(NSString *)secondWordToCompareOutOfTwoWords {
     [self createCoordinates];
     double sum = 0;
     NSString *character1;
@@ -77,20 +74,20 @@
         for (int i = 0; i < [firstWordToCompareOutOfTwoWords length]; i++) {
             character1 = [firstWordToCompareOutOfTwoWords substringWithRange:NSMakeRange(i, 1)];
             character2 = [secondWordToCompareOutOfTwoWords substringWithRange:NSMakeRange(i, 1)];
-            sum += [self hammingDistanceHelper:character1 :character2];
+            sum += [self hammingDistanceHelper:character1 characterFromTheSecondWord:character2];
         }
     } else if (lengthOfFirstWord > lengthOfSecondWord) {
             for (int i = 0; i < [secondWordToCompareOutOfTwoWords length]; i++) {
                 character1 = [firstWordToCompareOutOfTwoWords substringWithRange:NSMakeRange(i, 1)];
                 character2 = [secondWordToCompareOutOfTwoWords substringWithRange:NSMakeRange(i, 1)];
-                sum += [self hammingDistanceHelper:character1 :character2];
+                sum += [self hammingDistanceHelper:character1 characterFromTheSecondWord:character2];
         }
         sum += (lengthOfFirstWord - lengthOfSecondWord)*10;
     } else {
         for (int i = 0; i < [firstWordToCompareOutOfTwoWords length]; i++) {
             character1 = [firstWordToCompareOutOfTwoWords substringWithRange:NSMakeRange(i, 1)];
             character2 = [secondWordToCompareOutOfTwoWords substringWithRange:NSMakeRange(i, 1)];
-            sum += [self hammingDistanceHelper:character1 :character2];
+            sum += [self hammingDistanceHelper:character1 characterFromTheSecondWord:character2];
       }
         sum += (lengthOfSecondWord-lengthOfFirstWord)*10;
     }
@@ -100,7 +97,7 @@
 /*
  Calculates the distance between two characters on a keyboard.
  */
-- (double)hammingDistanceHelper:(NSString *)characterFromTheFirstWord :(NSString *)characterFromTheSecondWord {
+- (double)hammingDistanceHelper:(NSString *)characterFromTheFirstWord characterFromTheSecondWord:(NSString *)characterFromTheSecondWord {
     double characterDistanceSum = 0;
     NSString *char1Coordinate = [self.keyCoordinates objectForKey:[characterFromTheFirstWord lowercaseString]];
     NSInteger char1XValue = [[char1Coordinate substringWithRange:NSMakeRange(0, 1)] integerValue];
