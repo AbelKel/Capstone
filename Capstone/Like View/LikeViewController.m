@@ -45,7 +45,9 @@
 }
 
 - (void)getPosts {
+    PFUser *current = [PFUser currentUser];
     PFQuery *query = [PFQuery queryWithClassName:@"College"];
+    [query whereKey:@"userID" equalTo:current.username];
     [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
