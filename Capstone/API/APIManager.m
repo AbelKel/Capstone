@@ -18,10 +18,21 @@
 
 - (void)setSchoolSizePreference:(NSString *)schoolSize {
     self->schoolSize = schoolSize;
+    if ([self->schoolSize  isEqual: @"small"]) {
+        isSmall = true;
+    } else {
+        isSmall = false;
+    }
 }
 
 - (void)setSchoolType:(NSString *)schoolType {
     self->fundingType = schoolType;
+    if ([self->fundingType  isEqual: @"public"]) {
+        isPublic = true;
+    } else {
+        isPublic = false;
+    }
+    
 }
 
 + (instancetype)shared {
