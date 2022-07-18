@@ -77,7 +77,7 @@
                 [self->filteredColleges addObject:college];
             }
         }
-        NSString *correctWord = [[AutocorrectFunctions shared] findCorrectWord:searchText:self->colleges];
+        NSString *correctWord = [[AutocorrectFunctions shared] findCorrectWord:searchText forColleges:self->colleges];
         self->correctWordToDisplayInSearchBar = correctWord;
     }
     [self.tableView reloadData];

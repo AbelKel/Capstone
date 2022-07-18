@@ -138,7 +138,7 @@ In the first week of the start of the project, I plan on implementing the sign u
 ## Schema 
 *
 ### Models
-#### Parse
+#### Parse User
 
    | Property      | Type     | Description |
    | ------------- | -------- | ------------|
@@ -168,6 +168,15 @@ In the first week of the start of the project, I plan on implementing the sign u
    | title          | String   | title of the news article |
    | newsDescription| String   | description of the news |
    | imageUrl       | String     | url to the image presented on the cover of the articel|
+   
+#### Parse College Object
+   | Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | name          | String   | name of the college |
+   | city          | String   | city where the college college is based|
+   | website      | String   |website link of the college|
+   | details       | String      | contains a short description about the college|
+   | userID         | String   | this is stored in a the college object when the user likes a college|
   
 ### Networking
 * Login;

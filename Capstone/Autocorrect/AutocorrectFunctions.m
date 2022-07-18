@@ -14,11 +14,10 @@
     return shared;
 }
 
-- (NSString *)findCorrectWord:(NSString *)searchWord :(College *)colleges {
+- (NSString *)findCorrectWord:(NSString *)searchWord forColleges:(NSArray *)colleges {
     double minDiffereceBetweenWords = 1000;
     NSString *correctWord;
     for (College *college in colleges) {
-//        double hammingDistance = [self hammingDistanceCalculator:searchWord : [[college.name componentsSeparatedByString:@" "] objectAtIndex:0]];
         double hammingDistanceFullCollegeName = [self hammingDistanceCalculator:searchWord : college.name];
         if (hammingDistanceFullCollegeName < minDiffereceBetweenWords) {
             if (hammingDistanceFullCollegeName < minDiffereceBetweenWords) {
@@ -30,6 +29,10 @@
     return correctWord;
 }
 
+/*
+ This function helps map each key on the keyboard to a specific coordinate. It helps the HammingDistance calculaor calculate the distance between each characters of the two words.
+ The lesser the distance, the more closer the two character are. Based on this assumption, if two characters are really close to each other, then there is a higher chance of making a typo.
+ */
 - (void)createCoordinates {
     self.keyCoordinates = [[NSMutableDictionary alloc] init];
     [self.keyCoordinates setObject:@"00" forKey:@"q"];
@@ -60,41 +63,49 @@
     [self.keyCoordinates setObject:@"65" forKey:@"m"];
 }
 
-- (double)hammingDistanceCalculator:(NSString *)string1 :(NSString *)string2 {
+/*
+ This function takes in two strings and passes them on to hammingDistanceHelper method to calcualte the distance between each chatacter in the two words.
+ */
+- (double)hammingDistanceCalculator:(NSString *)firstWordToCompareOutOfTwoWords :(NSString *)secondWordToCompareOutOfTwoWords {
     [self createCoordinates];
     double sum = 0;
-    int l1 = string1.length;
-    int l2 = string2.length;
-    if (string1.length == string2.length) {
-        for (int i = 0; i < [string1 length]; i++) {
-            NSString *character1 = [string1 substringWithRange:NSMakeRange(i, 1)];
-            NSString *character2 = [string2 substringWithRange:NSMakeRange(i, 1)];
+    NSString *character1;
+    NSString *character2;
+    int lengthOfFirstWord = firstWordToCompareOutOfTwoWords.length;
+    int lengthOfSecondWord = secondWordToCompareOutOfTwoWords.length;
+    if (lengthOfFirstWord == lengthOfSecondWord) {
+        for (int i = 0; i < [firstWordToCompareOutOfTwoWords length]; i++) {
+            character1 = [firstWordToCompareOutOfTwoWords substringWithRange:NSMakeRange(i, 1)];
+            character2 = [secondWordToCompareOutOfTwoWords substringWithRange:NSMakeRange(i, 1)];
             sum += [self hammingDistanceHelper:character1 :character2];
         }
-    } else if (l1>l2) {
-            for (int i = 0; i < [string2 length]; i++) {
-                NSString *character1 = [string1 substringWithRange:NSMakeRange(i, 1)];
-                NSString *character2 = [string2 substringWithRange:NSMakeRange(i, 1)];
+    } else if (lengthOfFirstWord > lengthOfSecondWord) {
+            for (int i = 0; i < [secondWordToCompareOutOfTwoWords length]; i++) {
+                character1 = [firstWordToCompareOutOfTwoWords substringWithRange:NSMakeRange(i, 1)];
+                character2 = [secondWordToCompareOutOfTwoWords substringWithRange:NSMakeRange(i, 1)];
                 sum += [self hammingDistanceHelper:character1 :character2];
         }
-        sum += (l1-l2)*10;
+        sum += (lengthOfFirstWord - lengthOfSecondWord)*10;
     } else {
-        for (int i = 0; i < [string1 length]; i++) {
-            NSString *character1 = [string1 substringWithRange:NSMakeRange(i, 1)];
-            NSString *character2 = [string2 substringWithRange:NSMakeRange(i, 1)];
+        for (int i = 0; i < [firstWordToCompareOutOfTwoWords length]; i++) {
+            character1 = [firstWordToCompareOutOfTwoWords substringWithRange:NSMakeRange(i, 1)];
+            character2 = [secondWordToCompareOutOfTwoWords substringWithRange:NSMakeRange(i, 1)];
             sum += [self hammingDistanceHelper:character1 :character2];
       }
-        sum += (l2-l1)*10;
+        sum += (lengthOfSecondWord-lengthOfFirstWord)*10;
     }
     return sum;
 }
 
-- (double)hammingDistanceHelper:(NSString *)character1 :(NSString *)character2 {
+/*
+ Calculates the distance between two characters on a keyboard.
+ */
+- (double)hammingDistanceHelper:(NSString *)characterFromTheFirstWord :(NSString *)characterFromTheSecondWord {
     double characterDistanceSum = 0;
-    NSString *char1Coordinate = [self.keyCoordinates objectForKey:[character1 lowercaseString]];
+    NSString *char1Coordinate = [self.keyCoordinates objectForKey:[characterFromTheFirstWord lowercaseString]];
     NSInteger char1XValue = [[char1Coordinate substringWithRange:NSMakeRange(0, 1)] integerValue];
     NSInteger char1YValue = [[char1Coordinate substringWithRange:NSMakeRange(1, 1)] integerValue];
-    NSString *char2Coordinate = [self.keyCoordinates objectForKey:[character2 lowercaseString]];
+    NSString *char2Coordinate = [self.keyCoordinates objectForKey:[characterFromTheSecondWord lowercaseString]];
     NSInteger char2XValue = [[char2Coordinate substringWithRange:NSMakeRange(0, 1)] integerValue];
     NSInteger char2YValue = [[char2Coordinate substringWithRange:NSMakeRange(1, 1)] integerValue];
     double y = char2YValue-char1YValue;
