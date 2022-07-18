@@ -9,12 +9,16 @@
 #import "College.h"
 #import "AFNetworking.h"
 @implementation APIManager {
-    // TODO: Incorporate Sophia's feedback when working on Ambiguous issue part 1
-    bool isPrivate;
-    bool isPublic;
-    bool isSmall;
-    bool isLarge;
-    NSURL *url;
+    NSString *schoolSize;
+    NSString *fundingType;
+}
+
+- (void)setSchoolSizePreference:(NSString *)schoolSize {
+    self->schoolSize = schoolSize;
+}
+
+- (void)setSchoolType:(NSString *)schoolType {
+    self->fundingType = schoolType;
 }
 
 + (instancetype)shared {
@@ -27,6 +31,7 @@
 }
 
 - (void)fetchColleges: (void(^)(NSArray *colleges, NSError *error))completion {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     NSURL *url = [NSURL URLWithString:@"https://api.collegeai.com/v1/api/college-list?api_key=4c4e51cca8832178dcfb29217c&filters=&info_ids=website%2CshortDescription%2ClongDescription%2CcampusImage%2Ccity%2CstateAbbr%2Caliases%2Ccolors%2ClocationLong%2ClocationLat"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
@@ -36,9 +41,12 @@
            } else {
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                NSMutableArray *colleges = [College collegesWithArray:[dataDictionary objectForKey:@"colleges"]];
-               completion(colleges, nil);
+               dispatch_async(dispatch_get_main_queue(), ^{
+                   completion(colleges, nil);
+               });
             }}];
     [task resume];
+    });
 }
 
 - (void)fetchCollegeNews: (void(^)(NSArray *collegeNews, NSError *error))completion {
@@ -56,33 +64,11 @@
     [task resume];
 }
 
-- (void)chosePrivate {
-    isPrivate = true;
-}
-
-- (void)choseSmall {
-    isSmall = true;
-}
-
-- (void)chosePublic {
-    isPublic = true;
-}
-
-- (void)choseLarge {
-    isLarge = true;
-}
-
-// TODO: Incorporate Sophia's feedback when working on Ambiguous issue part 1
-- (void)fetchCollegesForFiltering: (void(^)(NSArray *colleges, NSError *error))completion {
-    if (isSmall && isPrivate) {
-        url = [NSURL URLWithString:@"https://api.collegeai.com/v1/api/college-list?api_key=4c4e51cca8832178dcfb29217c&filters=%7B%0A%22funding-type%22%3A%5B%22private%22%5D%2C%0A%22schoolSize%22%3A%5B%22small%22%5D%2C%0A%7D&info_ids=website%2CshortDescription%2ClongDescription%2CcampusImage%2Ccity%2CstateAbbr%2Caliases%2Ccolors%2ClocationLong%2ClocationLat"];
-    } else if (isLarge && isPublic) {
-        url = [NSURL URLWithString:@"https://api.collegeai.com/v1/api/college-list?api_key=4c4e51cca8832178dcfb29217c&filters=%7B%0A%22funding-type%22%3A%5B%22public%22%5D%2C%0A%22schoolSize%22%3A%5B%22large%22%5D%2C%0A%7D&info_ids=website%2CshortDescription%2ClongDescription%2CcampusImage%2Ccity%2CstateAbbr%2Caliases%2Ccolors%2ClocationLong%2ClocationLat"];
-    } else if (isSmall && isPublic) {
-        url = [NSURL URLWithString:@"https://api.collegeai.com/v1/api/college-list?api_key=4c4e51cca8832178dcfb29217c&filters=%7B%0A%22funding-type%22%3A%5B%22public%22%5D%2C%0A%22schoolSize%22%3A%5B%22small%22%5D%2C%0A%7D&info_ids=website%2CshortDescription%2ClongDescription%2CcampusImage%2Ccity%2CstateAbbr%2Caliases%2Ccolors%2ClocationLong%2ClocationLat"];
-    } else {
-        url = [NSURL URLWithString:@"https://api.collegeai.com/v1/api/college-list?api_key=4c4e51cca8832178dcfb29217c&filters=%7B%0A%22funding-type%22%3A%5B%22private%22%5D%2C%0A%22schoolSize%22%3A%5B%22large%22%5D%0A%7D&info_ids=website%2CshortDescription%2ClongDescription%2CcampusImage%2Ccity%2CstateAbbr%2Caliases%2Ccolors%2ClocationLong%2ClocationLat"];
-    }
+- (void)fetchCollegesBasedOnFundingType: (void(^)(NSArray *colleges, NSError *error))completion {
+    NSString *stringURL = @"https://api.collegeai.com/v1/api/college-list?api_key=4c4e51cca8832178dcfb29217c&filters=%7B%0A%22funding-type%22%3A%5B%22__%22%5D%0A%7D&info_ids=website%2CshortDescription%2ClongDescription%2CcampusImage%2Ccity%2CstateAbbr%2Caliases%2Ccolors%2ClocationLong%2ClocationLat";
+    stringURL = [stringURL stringByReplacingOccurrencesOfString:@"__"
+                                         withString:fundingType];
+    NSURL *url = [NSURL URLWithString:stringURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -91,8 +77,51 @@
            } else {
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                NSMutableArray *colleges = [College collegesWithArray:[dataDictionary objectForKey:@"colleges"]];
-               completion(colleges,nil);
+                   completion(colleges,nil);
            }}];
     [task resume];
+}
+
+- (void)fetchCollegesBasedOnSchoolSize: (void(^)(NSArray *colleges, NSError *error))completion {
+    NSString *stringURLForSize = @"https://api.collegeai.com/v1/api/college-list?api_key=4c4e51cca8832178dcfb29217c&filters=%7B%0A%22schoolSize%22%3A%5B%22___%22%5D%0A%7D&info_ids=website%2CshortDescription%2ClongDescription%2CcampusImage%2Ccity%2CstateAbbr%2Caliases%2Ccolors%2ClocationLong%2ClocationLat";
+    stringURLForSize = [stringURLForSize stringByReplacingOccurrencesOfString:@"___"
+                                         withString:schoolSize];
+    NSURL *urlForSize = [NSURL URLWithString:stringURLForSize];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSURLRequest *request = [NSURLRequest requestWithURL:urlForSize cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
+        NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
+        NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+               if (error != nil) {
+                   NSLog(@"%@", [error localizedDescription]);
+               } else {
+                   NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+                   NSMutableArray *colleges = [College collegesWithArray:[dataDictionary objectForKey:@"colleges"]];
+                completion(colleges,nil);
+               }}];
+        [task resume];
+    });
+}
+
+- (void)queryAPIs:(void(^)(NSArray *colleges, NSArray *colleges1, NSError *error))completion {
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_group_enter(group);
+    dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^ {
+        [self fetchCollegesBasedOnSchoolSize:^(NSArray *colleges, NSError *error) {
+            self.collegesBasedonSize = colleges;
+            dispatch_group_leave(group);
+        }];
+    });
+    dispatch_group_enter(group);
+    dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^ {
+        [self fetchCollegesBasedOnFundingType:^(NSArray *colleges, NSError *error) {
+            self.collegesBasedonFunding = colleges;
+            dispatch_group_leave(group);
+        }];
+    });
+    dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^ {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(self.collegesBasedonFunding, self.collegesBasedonSize, nil);
+        });
+    });
 }
 @end

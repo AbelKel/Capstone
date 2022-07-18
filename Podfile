@@ -11,6 +11,7 @@ target 'Capstone' do
   pod 'AFNetworking'
   pod 'TTTAttributedLabel'
   pod 'Parse/UI'
+  pod 'DZNEmptyDataSet'
 
   target 'CapstoneTests' do
     inherit! :search_paths

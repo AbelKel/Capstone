@@ -18,13 +18,11 @@
     double minDiffereceBetweenWords = 1000;
     NSString *correctWord;
     for (College *college in colleges) {
-        double hammingDistance = [self hammingDistanceCalculator:searchWord : [[college.name componentsSeparatedByString:@" "] objectAtIndex:0]];
+//        double hammingDistance = [self hammingDistanceCalculator:searchWord : [[college.name componentsSeparatedByString:@" "] objectAtIndex:0]];
         double hammingDistanceFullCollegeName = [self hammingDistanceCalculator:searchWord : college.name];
-        if (hammingDistance < minDiffereceBetweenWords) {
-            if (hammingDistanceFullCollegeName < hammingDistance) {
+        if (hammingDistanceFullCollegeName < minDiffereceBetweenWords) {
+            if (hammingDistanceFullCollegeName < minDiffereceBetweenWords) {
                 minDiffereceBetweenWords = hammingDistanceFullCollegeName;
-            } else {
-                minDiffereceBetweenWords = hammingDistance;
             }
             correctWord = college.name;
         }
