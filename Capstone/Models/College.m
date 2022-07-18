@@ -4,10 +4,12 @@
 //
 //  Created by Abel Kelbessa on 7/7/22.
 //
+
 #import "College.h"
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import <Parse/Parse.h>
+
 @implementation College
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];
