@@ -16,5 +16,6 @@
 
 - (void)buildMatchCell {
     self.collegeName.text = self.college.name;
+    NSLog(@"1111%@", self.college.name);
 }
 @end

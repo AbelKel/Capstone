@@ -11,8 +11,9 @@
 #import "APIManager.h"
 #import "College.h"
 #import "AutocorrectFunctions.h"
+#import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 
-@interface HomeViewController ()<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
+@interface HomeViewController ()<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;

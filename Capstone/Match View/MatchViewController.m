@@ -23,8 +23,8 @@
     NSMutableArray *filteredList;
     NSString *city;
     NSString *zipcode;
-    NSString *collegeSizeString;
-    NSString *collegePropertyString;
+    NSArray *collegeBasedOnSize;
+    NSArray *collegesBasedOnFunding;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,11 +33,12 @@
 }
 
 - (void)fetchData {
-    [[APIManager shared] fetchCollegesForFiltering:^(NSArray *colleges, NSError *error) {
+    [[APIManager shared] queryAPIs:^(NSArray * _Nonnull colleges, NSArray * _Nonnull colleges1, NSError * _Nonnull error) {
         if (error != nil) {
             NSLog(@"%@", error);
         } else {
-            self->initailCollegeList = (NSMutableArray *)colleges;
+            self->collegeBasedOnSize = colleges;
+            self->collegesBasedOnFunding = colleges1;
         }
     }];
 }
@@ -50,10 +51,10 @@
 - (IBAction)segmentCollegeProperty:(id)sender { 
     switch (self.collegeProperty.selectedSegmentIndex) {
         case 0:
-            [[APIManager shared] chosePublic];
+            [[APIManager shared] setSchoolType:@"public"];
             break;
         case 1:
-            [[APIManager shared] chosePrivate];
+            [[APIManager shared] setSchoolType:@"private"];
             break;
     }
 }
@@ -61,10 +62,10 @@
 - (IBAction)segemntedControlCity:(id)sender {
     switch (self.collegeSize.selectedSegmentIndex) {
         case 0:
-            [[APIManager shared] choseSmall];
+            [[APIManager shared] setSchoolSizePreference:@"small"];
             break;
         case 1:
-            [[APIManager shared] choseLarge];
+            [[APIManager shared] setSchoolSizePreference:@"large"];
             break;
     }
 }

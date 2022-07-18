@@ -10,8 +10,9 @@
 #import "College.h"
 #import "LikeCell.h"
 #import "DetailsViewController.h"
+#import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 
-@interface LikeViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface LikeViewController () <UITableViewDelegate, UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) NSMutableArray *posts;
@@ -28,6 +29,9 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.emptyDataSetSource = self;
+    self.tableView.emptyDataSetDelegate = self;
+    self.tableView.tableFooterView = [UIView new];
     self->likedCollegeNames = [[NSArray alloc] init];
     self->likedCollegesToDisplay = [[NSMutableArray alloc] init];
     self->colleges = [[NSArray alloc] init];
@@ -57,10 +61,28 @@
     [self->refreshControl endRefreshing];
 }
 
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIImage imageNamed:@"college"];
+}
+
+- (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIColor grayColor];
+}
+
+- (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView {
+    NSString *text = @"This page allows you to keep your liked colleges all in one place.";
+    NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
+    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+    paragraph.alignment = NSTextAlignmentCenter;
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14.0f],
+                                 NSForegroundColorAttributeName: [UIColor lightGrayColor],
+                                 NSParagraphStyleAttributeName: paragraph};
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self->colleges.count;
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     LikeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LikeCell"];
