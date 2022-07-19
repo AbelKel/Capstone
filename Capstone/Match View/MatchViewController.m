@@ -14,31 +14,39 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *collegeProperty;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *collegeSize;
 @property (weak, nonatomic) IBOutlet UILabel *satLabel;
-@property (weak, nonatomic) IBOutlet UITextField *zipcodeField;
+@property (weak, nonatomic) IBOutlet UISlider *distanceFromCurrentLocation;
 @property (weak, nonatomic) IBOutlet UITextField *cityField;
+@property (weak, nonatomic) IBOutlet UILabel *distanceInMiles;
+
 @end
 
 @implementation MatchViewController {
-    NSMutableArray *initailCollegeList;
+    NSArray *initailCollegeList;
     NSString *satScore;
     NSMutableArray *filteredList;
     NSString *city;
     NSString *zipcode;
-    NSString *collegeSizeString;
-    NSString *collegePropertyString;
+    NSArray *collegeBasedOnSize;
+    NSArray *collegesBasedOnFunding;
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self->filteredList = [[NSMutableArray alloc] init];
-    self->initailCollegeList = [[NSMutableArray alloc] init];
+    self->initailCollegeList = [[NSArray alloc] init];
+    self->collegeBasedOnSize = [[NSArray alloc] init];
+    self->collegesBasedOnFunding = [[NSArray alloc] init];
 }
 
 - (void)fetchData {
-    [[APIManager shared] fetchCollegesForFiltering:^(NSArray *colleges, NSError *error) {
+    [[APIManager shared] queryAPIs:^(NSArray * _Nonnull collegesBasedonSize, NSArray * _Nonnull collegesBasedonFunding, NSError * _Nonnull error) {
         if (error != nil) {
             NSLog(@"%@", error);
         } else {
-            self->initailCollegeList = (NSMutableArray *)colleges;
+            self->collegeBasedOnSize = collegesBasedonSize;
+            self->collegesBasedOnFunding = collegesBasedonFunding;
+            self->initailCollegeList = [self->initailCollegeList arrayByAddingObjectsFromArray:self->collegesBasedOnFunding];
+            self->initailCollegeList = [self->initailCollegeList arrayByAddingObjectsFromArray:self->collegeBasedOnSize];
         }
     }];
 }
@@ -51,27 +59,28 @@
 - (IBAction)segmentCollegeProperty:(id)sender { 
     switch (self.collegeProperty.selectedSegmentIndex) {
         case 0:
-            [[APIManager shared] chosePublic];
+            [[APIManager shared] setSchoolType:@"public"];
             break;
         case 1:
-            [[APIManager shared] chosePrivate];
+            [[APIManager shared] setSchoolType:@"private"];
             break;
     }
 }
+
+- (IBAction)didSlideDistanceFromCurrent:(id)sender {
+    self.distanceInMiles.text = [NSString stringWithFormat:@"%0.0f", self.distanceFromCurrentLocation.value];
+}
+
 
 - (IBAction)segemntedControlCity:(id)sender {
     switch (self.collegeSize.selectedSegmentIndex) {
         case 0:
-            [[APIManager shared] choseSmall];
+            [[APIManager shared] setSchoolSizePreference:@"small"];
             break;
         case 1:
-            [[APIManager shared] choseLarge];
+            [[APIManager shared] setSchoolSizePreference:@"large"];
             break;
     }
-}
-
-- (IBAction)didTapAddZipcode:(id)sender {
-    self->zipcode = self.zipcodeField.text;
 }
 
 - (IBAction)didTapAddCity:(id)sender {
@@ -91,11 +100,12 @@
 - (void)filter {
     double convertedScore = 50*(1-(([self->satScore doubleValue])/1600))+0.1;
     for (College *college in self->initailCollegeList) {
-        if ((college.rigorScore) >= convertedScore) {
+        if ((college.distance < [self.distanceInMiles.text doubleValue])) {
             [self->filteredList addObject:college];
         }
     }
 }
+//(college.rigorScore) >= convertedScore) &&
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     [self filter];

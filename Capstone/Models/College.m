@@ -8,14 +8,17 @@
 #import "College.h"
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import <Parse/Parse.h>
 
-@implementation College
-
+@implementation College 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];
     if (self) {
         self.name = dictionary[@"name"];
         self.details = dictionary[@"shortDescription"];
+        if (dictionary[@"shortDescription"] == nil) {
+            self.details = dictionary[@"longDescription"];
+        }
         self.location = dictionary[@"city"];
         self.image = dictionary[@"campusImage"];
         self.website = dictionary[@"website"];
@@ -23,25 +26,28 @@
         self.lat = dictionary[@"locationLat"];
         self.rigorScore = [dictionary[@"score"] doubleValue];
         self.likeCount = 0;
-        CLLocation *startLocation = [[CLLocation alloc] initWithLatitude:[dictionary[@"locationLong"] doubleValue] longitude:[dictionary[@"locationLat"] doubleValue]];
+        CLLocation *startLocation = [[CLLocation alloc] initWithLatitude:[dictionary[@"locationLat"] doubleValue] longitude:[dictionary[@"locationLong"] doubleValue]];
         CLLocationCoordinate2D coordinate = [self getLocation];
         NSString *latitude = [NSString stringWithFormat:@"%f", coordinate.latitude];
         NSString *longitude = [NSString stringWithFormat:@"%f", coordinate.longitude];
         CLLocation *endLocation = [[CLLocation alloc] initWithLatitude:[latitude doubleValue] longitude:[longitude doubleValue]];
         CLLocationDistance distance = [startLocation distanceFromLocation:endLocation];
-        int const convertingMetersToMiles = 1609.34;
+        double const convertingMetersToMiles = 1609.34;
         self.distance = (distance/convertingMetersToMiles);
     }
     return self;
 }
 
--(CLLocationCoordinate2D)getLocation {
-    CLLocationManager *locationManager = [[CLLocationManager alloc] init];
-    locationManager.delegate = self;
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    locationManager.distanceFilter = kCLDistanceFilterNone;
-    [locationManager startUpdatingLocation];
-    CLLocation *location = [locationManager location];
+- (CLLocationCoordinate2D)getLocation {
+    self->locationManager = [[CLLocationManager alloc] init];
+    self->locationManager.delegate = self;
+    self->locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self->locationManager.distanceFilter = kCLDistanceFilterNone;
+    if (([self->locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])) {
+        [self->locationManager requestWhenInUseAuthorization];
+    }
+    [self->locationManager startUpdatingLocation];
+    CLLocation *location = [self->locationManager location];
     CLLocationCoordinate2D coordinate = [location coordinate];
     return coordinate;
 }
@@ -54,6 +60,4 @@
     }
     return colleges;
 }
-
-
 @end

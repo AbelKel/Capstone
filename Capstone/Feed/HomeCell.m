@@ -16,16 +16,15 @@
     [super awakeFromNib];
 }
 
--(void)buildCell {
-    self.homeCollegeName.text = self.college.name;
-    self.homeCollegeDetails.text = self.college.details;
-    self.homeCollegeLocation.text = self.college.location;
-    NSURL *url = [NSURL URLWithString:self.college.image];
+-(void)setCollege:(College *)college {
+    self.homeCollegeName.text = college.name;
+    self.homeCollegeDetails.text = college.details;
+    self.homeCollegeLocation.text = college.location;
+    NSURL *url = [NSURL URLWithString:college.image];
     [self.homeCellImage setImageWithURL:url];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 }
-
 @end

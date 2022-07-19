@@ -7,10 +7,15 @@
 
 #import <UIKit/UIKit.h>
 #import "College.h"
+
 NS_ASSUME_NONNULL_BEGIN
+
 @interface MatchCell : UITableViewCell
+
 @property (weak, nonatomic) IBOutlet UILabel *collegeName;
 @property (strong, nonatomic) College *college;
 - (void)buildMatchCell;
+
 @end
+
 NS_ASSUME_NONNULL_END
