@@ -146,7 +146,9 @@ In the first week of the start of the project, I plan on implementing the sign u
    | username      | String   | username chosen by user during signup |
    | image         | File     | image that user uploads for profile picture|
    | email         | String   | email used by the user during signup |
-
+   | likes         | Array    | contains names of colleges liked by the user to keep track of liked colleges in the details view|
+   | comments      | Dictionary  | comments made by the user under a college|
+   
 #### College
    
    | Property      | Type        | Description |
@@ -169,15 +171,16 @@ In the first week of the start of the project, I plan on implementing the sign u
    | newsDescription| String   | description of the news |
    | imageUrl       | String     | url to the image presented on the cover of the articel|
    
-#### Parse College Object
+#### Parse College Object (Stored on parse for the like view)
+
    | Property      | Type     | Description |
    | ------------- | -------- | ------------|
    | name          | String   | name of the college |
    | city          | String   | city where the college college is based|
    | website       | String   | website link of the college|
    | details       | String   | contains a short description about the college|
-   | userID        | String   | this is stored in a the college object when the user likes a college|
-    | comments      | Dictionary  | comments made by the user under a college|
+   | userID        | String   | the user's username is stored in a the college object when the user likes a college|
+   | comments      | Dictionary  | comments made by the user under a college|
   
 ### Networking
 * Login;
