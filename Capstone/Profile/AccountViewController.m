@@ -51,7 +51,6 @@
     MatchCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MatchCell"];
     College *college = self.matchedColleges[indexPath.row];
     cell.college = college;
-    [cell buildMatchCell];
     return cell;
 }
 @end
