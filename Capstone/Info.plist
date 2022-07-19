@@ -2,25 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Privacy -Location When In Use Usage Description</key>
-	<string>Application wants to use your location</string>
-	<key>NSCameraUsageDescription</key>
-	<string>Need camera access to take pictures</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Need library access to upload images</string>
-	<key>CFBundleIdentifier</key>
-	<string></string>
-	<key>FacebookClientToken</key>
-	<string>ef00b180d5ef9b606b5904232bddd59c</string>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>fb-messenger-share-api</string>
-		<string>fbapi</string>
-	</array>
-	<key>FacebookDisplayName</key>
-	<string>APP-NAME</string>
-	<key>FacebookAppID</key>
-	<string>602717327794927</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>This application requires location services to work</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This application requires location services to work</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -31,6 +16,17 @@
 				<string>fb602717327794927</string>
 			</array>
 		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>602717327794927</string>
+	<key>FacebookClientToken</key>
+	<string>ef00b180d5ef9b606b5904232bddd59c</string>
+	<key>FacebookDisplayName</key>
+	<string>APP-NAME</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fb-messenger-share-api</string>
+		<string>fbapi</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
@@ -51,5 +47,11 @@
 			</array>
 		</dict>
 	</dict>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>location</string>
+		<string>processing</string>
+	</array>
 </dict>
 </plist>

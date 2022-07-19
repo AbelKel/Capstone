@@ -64,6 +64,7 @@
         college[@"campusImage"] = self.college.image;
         college[@"website"] = self.college.website;
         college[@"userID"] = current.username;
+        college[@"comments"] = [NSMutableDictionary dictionaryWithDictionary:self->comments];
         [college saveEventually];
     }
     current[@"likes"] = [NSArray arrayWithArray:self->likesArray];

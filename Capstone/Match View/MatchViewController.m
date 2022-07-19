@@ -16,10 +16,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *satLabel;
 @property (weak, nonatomic) IBOutlet UITextField *zipcodeField;
 @property (weak, nonatomic) IBOutlet UITextField *cityField;
+
 @end
 
 @implementation MatchViewController {
-    NSMutableArray *initailCollegeList;
+    NSArray *initailCollegeList;
     NSString *satScore;
     NSMutableArray *filteredList;
     NSString *city;
@@ -27,10 +28,13 @@
     NSArray *collegeBasedOnSize;
     NSArray *collegesBasedOnFunding;
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self->filteredList = [[NSMutableArray alloc] init];
-    self->initailCollegeList = [[NSMutableArray alloc] init];
+    self->initailCollegeList = [[NSArray alloc] init];
+    self->collegeBasedOnSize = [[NSArray alloc] init];
+    self->collegesBasedOnFunding = [[NSArray alloc] init];
 }
 
 - (void)fetchData {
@@ -39,7 +43,9 @@
             NSLog(@"%@", error);
         } else {
             self->collegeBasedOnSize = collegesBasedonSize;
-            self->collegesBasedOnFunding = collegesBasedonSize;
+            self->collegesBasedOnFunding = collegesBasedonFunding;
+            self->initailCollegeList = [self->initailCollegeList arrayByAddingObjectsFromArray:self->collegesBasedOnFunding];
+            self->initailCollegeList = [self->initailCollegeList arrayByAddingObjectsFromArray:self->collegeBasedOnSize];
         }
     }];
 }

@@ -84,7 +84,6 @@
     [task resume];
 }
 
-//TODO: fix code reptition above
 - (void)queryAPIs:(void(^)(NSArray *collegesBasedonSize, NSArray *collegesBasedonFunding, NSError *error))completion {
     dispatch_group_t group = dispatch_group_create();
     dispatch_group_enter(group);
