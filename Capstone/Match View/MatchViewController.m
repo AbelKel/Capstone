@@ -14,8 +14,9 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *collegeProperty;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *collegeSize;
 @property (weak, nonatomic) IBOutlet UILabel *satLabel;
-@property (weak, nonatomic) IBOutlet UITextField *zipcodeField;
+@property (weak, nonatomic) IBOutlet UISlider *distanceFromCurrentLocation;
 @property (weak, nonatomic) IBOutlet UITextField *cityField;
+@property (weak, nonatomic) IBOutlet UILabel *distanceInMiles;
 
 @end
 
@@ -66,6 +67,11 @@
     }
 }
 
+- (IBAction)didSlideDistanceFromCurrent:(id)sender {
+    self.distanceInMiles.text = [NSString stringWithFormat:@"%0.0f", self.distanceFromCurrentLocation.value];
+}
+
+
 - (IBAction)segemntedControlCity:(id)sender {
     switch (self.collegeSize.selectedSegmentIndex) {
         case 0:
@@ -75,10 +81,6 @@
             [[APIManager shared] setSchoolSizePreference:@"large"];
             break;
     }
-}
-
-- (IBAction)didTapAddZipcode:(id)sender {
-    self->zipcode = self.zipcodeField.text;
 }
 
 - (IBAction)didTapAddCity:(id)sender {
@@ -98,11 +100,12 @@
 - (void)filter {
     double convertedScore = 50*(1-(([self->satScore doubleValue])/1600))+0.1;
     for (College *college in self->initailCollegeList) {
-        if ((college.rigorScore) >= convertedScore) {
+        if ((college.distance < [self.distanceInMiles.text doubleValue])) {
             [self->filteredList addObject:college];
         }
     }
 }
+//(college.rigorScore) >= convertedScore) &&
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     [self filter];

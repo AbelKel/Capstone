@@ -11,9 +11,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface College : NSObject <CLLocationManagerDelegate, MKMapViewDelegate> 
-@property (strong, nonatomic) CLLocationManager *locationManager;
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations;
+@interface College : NSObject <CLLocationManagerDelegate, MKMapViewDelegate> {
+    CLLocationManager *locationManager;
+}
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *image;
 @property (strong, nonatomic) NSString *location;

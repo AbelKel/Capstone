@@ -10,7 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <Parse/Parse.h>
 
-@implementation College
+@implementation College 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];
     if (self) {
@@ -26,36 +26,30 @@
         self.lat = dictionary[@"locationLat"];
         self.rigorScore = [dictionary[@"score"] doubleValue];
         self.likeCount = 0;
-        CLLocation *startLocation = [[CLLocation alloc] initWithLatitude:[dictionary[@"locationLong"] doubleValue] longitude:[dictionary[@"locationLat"] doubleValue]];
+        CLLocation *startLocation = [[CLLocation alloc] initWithLatitude:[dictionary[@"locationLat"] doubleValue] longitude:[dictionary[@"locationLong"] doubleValue]];
         CLLocationCoordinate2D coordinate = [self getLocation];
         NSString *latitude = [NSString stringWithFormat:@"%f", coordinate.latitude];
         NSString *longitude = [NSString stringWithFormat:@"%f", coordinate.longitude];
         CLLocation *endLocation = [[CLLocation alloc] initWithLatitude:[latitude doubleValue] longitude:[longitude doubleValue]];
         CLLocationDistance distance = [startLocation distanceFromLocation:endLocation];
-        int const convertingMetersToMiles = 1609.34;
+        double const convertingMetersToMiles = 1609.34;
         self.distance = (distance/convertingMetersToMiles);
     }
     return self;
 }
 
--(CLLocationCoordinate2D)getLocation {
-    self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.delegate = self;
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    self.locationManager.distanceFilter = kCLDistanceFilterNone;
-    if (([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])) {
-        [self.locationManager requestWhenInUseAuthorization];
+- (CLLocationCoordinate2D)getLocation {
+    self->locationManager = [[CLLocationManager alloc] init];
+    self->locationManager.delegate = self;
+    self->locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self->locationManager.distanceFilter = kCLDistanceFilterNone;
+    if (([self->locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])) {
+        [self->locationManager requestWhenInUseAuthorization];
     }
-    [self.locationManager startUpdatingLocation];
-    CLLocation *location = [self.locationManager location];
+    [self->locationManager startUpdatingLocation];
+    CLLocation *location = [self->locationManager location];
     CLLocationCoordinate2D coordinate = [location coordinate];
     return coordinate;
-}
-
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
-    CLLocation* location = [locations lastObject];
-//    NSDate* eventDate = location.timestamp;
-    NSLog(@"%f,%f",location.coordinate.latitude,location.coordinate.longitude);
 }
 
 + (NSMutableArray *)collegesWithArray:(NSArray *)dictionaries {
