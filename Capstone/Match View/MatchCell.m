@@ -8,7 +8,6 @@
 #import "MatchCell.h"
 
 @implementation MatchCell
-
 - (void)awakeFromNib {
     [super awakeFromNib];
 }
@@ -20,5 +19,4 @@
 - (void)buildMatchCell {
     self.collegeName.text = self.college.name;
 }
-
 @end

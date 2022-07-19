@@ -4,24 +4,27 @@
 //
 //  Created by Abel Kelbessa on 7/4/22.
 //
-
 #import "HomeViewController.h"
 #import "HomeCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "DetailsViewController.h"
 #import "APIManager.h"
 #import "College.h"
+#import "AutocorrectFunctions.h"
+#import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 
-@interface HomeViewController ()<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
+@interface HomeViewController ()<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @end
 
 @implementation HomeViewController {
     bool isFiltered;
     NSMutableArray *filteredColleges;
     NSMutableArray *colleges;
-    NSMutableDictionary *keyCoordinates;
+    NSString *correctWordToDisplayInSearchBar;
 }
 
 - (void)viewDidLoad {
@@ -31,10 +34,11 @@
     self.searchBar.delegate = self;
     isFiltered = false;
     self->colleges = [[NSMutableArray alloc] init];
-    self->keyCoordinates = [[NSMutableDictionary alloc] init];
-    [self->keyCoordinates setObject:[NSNumber numberWithDouble:00] forKey:@"q"];
-    NSLog(@"%@111", [keyCoordinates objectForKey:@"q"]);
     [self fetchData];
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchData) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
+    [self.activityIndicator startAnimating];
 }
 - (void)fetchData {
     [[APIManager shared] fetchColleges:^(NSArray *colleges, NSError *error) {
@@ -42,11 +46,15 @@
             NSLog(@"%@", error);
         } else {
             self->colleges = (NSMutableArray *)colleges;
+            [self.activityIndicator stopAnimating];
+            [self.activityIndicator hidesWhenStopped];
             [self.tableView reloadData];
         }
     }];
+    [self.refreshControl endRefreshing];
 }
 
+//TODO: implement table view for autocorrect suggestions
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     if (searchText.length == 0) {
         isFiltered = false;
@@ -61,24 +69,21 @@
                 [self->filteredColleges addObject:college];
             }
         }
+        NSString *correctWord = [AutocorrectFunctions findCorrectWord:searchText forCollegesInArray:self->colleges];
+        self->correctWordToDisplayInSearchBar = correctWord;
     }
     [self.tableView reloadData];
 }
 
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    searchBar.text = self->correctWordToDisplayInSearchBar;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (isFiltered) {
         return self->filteredColleges.count;
     }
     return self->colleges.count;
-}
-
-- (void)buildWordDictionary {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"words" ofType:@"txt"];
-    NSString* content = [NSString stringWithContentsOfFile:path
-                                                  encoding:NSUTF8StringEncoding
-                                                     error:NULL];
-    NSArray *arr = [content componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -90,7 +95,6 @@
         College *college = self->colleges[indexPath.row];
         cell.college = college;
     }
-    [cell buildCell];
     return cell;
 }
 

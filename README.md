@@ -31,21 +31,21 @@ In the first week of the start of the project, I plan on implementing the sign u
 ### 1. User Stories (Required and Optional)
 
 **Required Must-have Stories**
- * User can login using Facebook account
- * User can search for a college
- * User can like/save a college
- * User can comment under a specific college
- * User can comment about student athlete lifestyle in a sports section
- * User can view academic rigor on a scale of 1 - 10
- * User can see the ranks of colleges in top 10, top 20, etc
- * User can fill out survey of college preferences during registration
+ * User can login using Facebook account **[Complete]**
+ * User can search for a college **[Complete]**
+ * User can like/save a college **[Complete]**
+ * User can comment under a specific college **[Complete with need for improvement]**
+ * Filter college by location **[In Progress]**
+ * User can view academic rigor on a scale of 1 - 10 
+ * User can see the ranks of colleges in top 10, top 20, etc **[Currently can see the top 20]**
+ * User can fill out survey of college preferences during registration **[In Progress]**
  
 **Optional Nice-to-have Stories**
 
-* Find links to different colleges’ websites
+* Find links to different colleges’ websites **[links need to redirect]**
 * User can see photos of college campuses
 * User can add a college (if it does not exist)
-* User can follow a specific college for news or any updates (News API)
+* User can follow a specific college for news or any updates (News API) **[Made significant progress]**
 
 
 ### 2. Screen Archetypes
@@ -111,11 +111,15 @@ In the first week of the start of the project, I plan on implementing the sign u
   * Proximity to current location 
 * Search for a college using a keyword
 * Like a college 
-* Rate academic rigor 
-## Week 3: 
-* Commenting under a specific college/Commenting about student athlete lifestyle 
-* Accessing the ranks of colleges in top 10, top 20
+* Commenting under a specific college/Commenting about student athlete lifestyle
 * Find links to different colleges’ websites
+* Ambiguous Problem: Autocomplete and Autocorrect 
+## Week 3:
+* Ambiguous Problem: Making Async API calls 
+* Adding the external library DZNEmptyDataSet for visual polish
+* Double tap to like a college on home view using the method addGestureRecognizer
+* Implement fading out logo on loading/start up screen
+* Accessing the ranks of colleges in top 10, top 20
 * Seeing photos of college campuses through details page
 ## Week 4: 
 * Adding a college (if it does not exist)
@@ -131,13 +135,50 @@ In the first week of the start of the project, I plan on implementing the sign u
 * Presentations
 
 
-
 ## Schema 
 *
 ### Models
-**User**
-- Properties: profile image, preferences such as location, tuition, major, and size, like count for a college, and comments made to a college.
+#### Parse User
 
+   | Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | objectId      | String   | unique id for the user post (default field) |
+   | username      | String   | username chosen by user during signup |
+   | image         | File     | image that user uploads for profile picture|
+   | email         | String   | email used by the user during signup |
+
+#### College
+   
+   | Property      | Type        | Description |
+   | ------------- | ----------- | ------------|
+   | college name  | String      | name of the college |
+   | comments      | Dictionary  | comments made by the user under a college|  
+   | image         | String      | link to the college's photo| 
+   | details       | String      | contains a short description about the college|
+   | website       | String      | link to the college's website |
+   | longtuide     | String      | longitudnal location of the college |
+   | latitude      | String      | latitudinal location of the college |
+   | rigor score   | Double      | the score give to the college by the API|
+   | distance      | Double      | the college's distance from the user|
+   
+#### CollegeNews 
+
+   | Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | title          | String   | title of the news article |
+   | newsDescription| String   | description of the news |
+   | imageUrl       | String     | url to the image presented on the cover of the articel|
+   
+#### Parse College Object
+   | Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | name          | String   | name of the college |
+   | city          | String   | city where the college college is based|
+   | website       | String   | website link of the college|
+   | details       | String   | contains a short description about the college|
+   | userID        | String   | this is stored in a the college object when the user likes a college|
+    | comments      | Dictionary  | comments made by the user under a college|
+  
 ### Networking
 * Login;
   * making use of parse for the login screen

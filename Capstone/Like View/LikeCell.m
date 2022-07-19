@@ -4,7 +4,6 @@
 //
 //  Created by Abel Kelbessa on 7/12/22.
 //
-
 #import "LikeCell.h"
 #import "UIImageView+AFNetworking.h"
 
@@ -17,11 +16,11 @@
     [super setSelected:selected animated:animated];
 }
 
-- (void)buildLikeCell {
-    self.likedCollegeName.text = self.college.name;
-    self.likedCollegeLocation.text = self.college.location;
-    self.likedCollegeDescription.text = self.college.details;
-    NSURL *url = [NSURL URLWithString:self.college.image];
+- (void)setCollege:(College *)college {
+    self.likedCollegeName.text = college.name;
+    self.likedCollegeLocation.text = college.location;
+    self.likedCollegeDescription.text = college.details;
+    NSURL *url = [NSURL URLWithString:college.image];
     [self.likedCollegeImage setImageWithURL:url];
 }
 @end
