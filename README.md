@@ -174,9 +174,10 @@ In the first week of the start of the project, I plan on implementing the sign u
    | ------------- | -------- | ------------|
    | name          | String   | name of the college |
    | city          | String   | city where the college college is based|
-   | website      | String   |website link of the college|
-   | details       | String      | contains a short description about the college|
-   | userID         | String   | this is stored in a the college object when the user likes a college|
+   | website       | String   | website link of the college|
+   | details       | String   | contains a short description about the college|
+   | userID        | String   | this is stored in a the college object when the user likes a college|
+    | comments      | Dictionary  | comments made by the user under a college|
   
 ### Networking
 * Login;

@@ -39,14 +39,23 @@
 }
 
 -(CLLocationCoordinate2D)getLocation {
-    CLLocationManager *locationManager = [[CLLocationManager alloc] init];
-    locationManager.delegate = self;
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    locationManager.distanceFilter = kCLDistanceFilterNone;
-    [locationManager startUpdatingLocation];
-    CLLocation *location = [locationManager location];
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.locationManager.distanceFilter = kCLDistanceFilterNone;
+    if (([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])) {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+    [self.locationManager startUpdatingLocation];
+    CLLocation *location = [self.locationManager location];
     CLLocationCoordinate2D coordinate = [location coordinate];
     return coordinate;
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    CLLocation* location = [locations lastObject];
+//    NSDate* eventDate = location.timestamp;
+    NSLog(@"%f,%f",location.coordinate.latitude,location.coordinate.longitude);
 }
 
 + (NSMutableArray *)collegesWithArray:(NSArray *)dictionaries {
