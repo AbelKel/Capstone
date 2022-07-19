@@ -6,6 +6,7 @@
 //
 
 #import "MatchCell.h"
+#import "UIImageView+AFNetworking.h"
 
 @implementation MatchCell
 - (void)awakeFromNib {
@@ -16,7 +17,9 @@
     [super setSelected:selected animated:animated];
 }
 
-- (void)buildMatchCell {
-    self.collegeName.text = self.college.name;
+- (void)setCollege:(College *)college {
+    self.collegeName.text = college.name;
+    NSURL *url = [NSURL URLWithString:college.image];
+    [self.macthedCollegeImage setImageWithURL:url];
 }
 @end

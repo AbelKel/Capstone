@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MatchCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *macthedCollegeImage;
 @property (weak, nonatomic) IBOutlet UILabel *collegeName;
 @property (strong, nonatomic) College *college;
 - (void)buildMatchCell;

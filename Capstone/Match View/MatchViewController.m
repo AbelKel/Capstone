@@ -90,6 +90,11 @@
 - (IBAction)filterButton:(id)sender {
     [self fetchData];
 }
+
+- (IBAction)didTapBack:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 /**
  The lowest rigor score for a college can go as high as upto 50.
  The highest rigor score is 0.1
@@ -100,12 +105,15 @@
 - (void)filter {
     double convertedScore = 50*(1-(([self->satScore doubleValue])/1600))+0.1;
     for (College *college in self->initailCollegeList) {
-        if ((college.distance < [self.distanceInMiles.text doubleValue])) {
+        if ((((college.rigorScore) <= convertedScore)) && (college.distance < [self.distanceInMiles.text doubleValue])) {
             [self->filteredList addObject:college];
         }
     }
 }
-//(college.rigorScore) >= convertedScore) &&
+
+//- (IBAction)didTapDone:(id)sender {
+//    [self performSegueWithIdentifier:@"profile" sender:self];
+//}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     [self filter];
