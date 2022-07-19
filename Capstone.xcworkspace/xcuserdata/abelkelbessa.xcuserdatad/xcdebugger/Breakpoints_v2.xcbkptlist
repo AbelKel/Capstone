@@ -190,9 +190,9 @@
             filePath = "Capstone/Autocorrect/AutocorrectFunctions.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
-            landmarkName = "-hammingDistanceHelper:characterFromTheSecondWord:"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "+hammingDistanceHelper:characterFromTheSecondWord:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -206,9 +206,9 @@
             filePath = "Capstone/Autocorrect/AutocorrectFunctions.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "-hammingDistanceHelper:characterFromTheSecondWord:"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "+hammingDistanceHelper:characterFromTheSecondWord:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -222,9 +222,9 @@
             filePath = "Capstone/Autocorrect/AutocorrectFunctions.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
-            landmarkName = "-hammingDistanceHelper:characterFromTheSecondWord:"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "+hammingDistanceHelper:characterFromTheSecondWord:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -238,9 +238,9 @@
             filePath = "Capstone/Autocorrect/AutocorrectFunctions.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
-            landmarkName = "-hammingDistanceHelper:characterFromTheSecondWord:"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "+hammingDistanceHelper:characterFromTheSecondWord:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -254,9 +254,9 @@
             filePath = "Capstone/Autocorrect/AutocorrectFunctions.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
-            landmarkName = "-hammingDistanceHelper:characterFromTheSecondWord:"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "+hammingDistanceHelper:characterFromTheSecondWord:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -270,9 +270,9 @@
             filePath = "Capstone/Autocorrect/AutocorrectFunctions.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
-            landmarkName = "-hammingDistanceHelper:characterFromTheSecondWord:"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "+hammingDistanceHelper:characterFromTheSecondWord:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -286,9 +286,9 @@
             filePath = "Capstone/Autocorrect/AutocorrectFunctions.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
-            landmarkName = "-hammingDistanceHelper:characterFromTheSecondWord:"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "+hammingDistanceHelper:characterFromTheSecondWord:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -302,9 +302,9 @@
             filePath = "Capstone/Autocorrect/AutocorrectFunctions.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
-            landmarkName = "-hammingDistanceHelper:characterFromTheSecondWord:"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "+hammingDistanceHelper:characterFromTheSecondWord:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -320,7 +320,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "67"
             endingLineNumber = "67"
-            landmarkName = "-hammingDistanceCalculator:secondWordToCompareOutOfTwoWords:"
+            landmarkName = "+hammingDistanceCalculator:secondWordToCompareOutOfTwoWords:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -336,7 +336,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "68"
             endingLineNumber = "68"
-            landmarkName = "-hammingDistanceCalculator:secondWordToCompareOutOfTwoWords:"
+            landmarkName = "+hammingDistanceCalculator:secondWordToCompareOutOfTwoWords:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -400,7 +400,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "66"
             endingLineNumber = "66"
-            landmarkName = "-hammingDistanceCalculator:secondWordToCompareOutOfTwoWords:"
+            landmarkName = "+hammingDistanceCalculator:secondWordToCompareOutOfTwoWords:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -782,8 +782,8 @@
             filePath = "Capstone/Match View/MatchViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "-fetchData"
             landmarkType = "7">
          </BreakpointContent>
@@ -798,8 +798,8 @@
             filePath = "Capstone/Match View/MatchViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
             landmarkName = "-fetchData"
             landmarkType = "7">
          </BreakpointContent>
@@ -814,8 +814,8 @@
             filePath = "Capstone/Match View/MatchViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
             landmarkName = "-fetchData"
             landmarkType = "7">
          </BreakpointContent>
@@ -830,8 +830,8 @@
             filePath = "Capstone/Match View/MatchViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "-fetchData"
             landmarkType = "7">
          </BreakpointContent>
@@ -1008,8 +1008,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "14"
             endingLineNumber = "14"
-            landmarkName = "-setSchoolSizePreference:"
-            landmarkType = "6">
+            landmarkName = "collegesBasedonFunding"
+            landmarkType = "24">
             <Locations>
                <Location
                   uuid = "FE7719D3-BA40-4D24-B2C8-6BE69794C5D6 - 3c045f633108bb35"
@@ -1054,8 +1054,8 @@
             filePath = "Capstone/Match View/MatchViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
             landmarkName = "-fetchData"
             landmarkType = "7">
          </BreakpointContent>
@@ -1070,8 +1070,8 @@
             filePath = "Capstone/Match View/MatchViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
             landmarkName = "-fetchData"
             landmarkType = "7">
          </BreakpointContent>
@@ -1159,22 +1159,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "173791C8-1755-470C-8072-10235AA019A1"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Capstone/Models/College.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "-locationManager:didUpdateLocations:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "253385E5-C302-4B0E-A678-E52B4050DF90"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -1191,17 +1175,113 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "2A67FB72-09F5-4BF1-97AB-9C6AC3D599CA"
-            shouldBeEnabled = "Yes"
+            uuid = "B94418CE-E700-4499-A615-3C3331A08763"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Capstone/Models/College.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "-locationManager:didUpdateLocations:"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "-initWithDictionary:"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F3F7CE6C-0B85-465E-AF27-F11C43AEA4F4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Capstone/Match View/MatchViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "-filter"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5D09B656-4D4E-4320-B2AD-2100FE3C6492"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Capstone/Match View/MatchViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "-filter"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "72EB2EE7-5B05-4B52-94E9-EE02839022C5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Capstone/Match View/MatchViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "-filter"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B92BAF7E-159D-4A2E-9C52-0D439D369B05"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Capstone/Models/College.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "-initWithDictionary:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B92BAF7E-159D-4A2E-9C52-0D439D369B05 - e83bdb783b3d0fda"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[College initWithDictionary:]"
+                  moduleName = "Capstone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abelkelbessa/Documents/Capstone%206%202/Capstone/Models/College.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "1288">
+               </Location>
+               <Location
+                  uuid = "B92BAF7E-159D-4A2E-9C52-0D439D369B05 - e83bdb783b3d0fda"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[College initWithDictionary:]"
+                  moduleName = "Capstone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abelkelbessa/Documents/Capstone%206%202/Capstone/Models/College.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "1328">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

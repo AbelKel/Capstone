@@ -10,7 +10,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AutocorrectFunctions : NSObject
 
-@property (strong, nonatomic) NSMutableDictionary *keyCoordinates;
 + (NSString *)findCorrectWord:(NSString *)searchWord forCollegesInArray:(NSArray *)colleges;
 
 @end

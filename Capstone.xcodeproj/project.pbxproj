@@ -38,6 +38,7 @@
 		D9784FB0287507150056DD78 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9784FAF287507150056DD78 /* DetailsViewController.m */; };
 		D97A1FAC287B8609004B8893 /* CollegeNews.m in Sources */ = {isa = PBXBuildFile; fileRef = D97A1FAB287B8609004B8893 /* CollegeNews.m */; };
 		D97A1FAF287BC277004B8893 /* MatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D97A1FAE287BC277004B8893 /* MatchViewController.m */; };
+		D98A9C3F28870E3D009D4C74 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D98A9C3E28870E3D009D4C74 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +117,7 @@
 		D97A1FAB287B8609004B8893 /* CollegeNews.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollegeNews.m; sourceTree = "<group>"; };
 		D97A1FAD287BC277004B8893 /* MatchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchViewController.h; sourceTree = "<group>"; };
 		D97A1FAE287BC277004B8893 /* MatchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchViewController.m; sourceTree = "<group>"; };
+		D98A9C3E28870E3D009D4C74 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E7F7413D8AFD3D6D22A971FA /* Pods_Capstone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Capstone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECC90A25362ACDC45A2D613D /* Pods_CapstoneTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CapstoneTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F72102A915011E4B317643EB /* Pods-Capstone-CapstoneUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Capstone-CapstoneUITests.release.xcconfig"; path = "Target Support Files/Pods-Capstone-CapstoneUITests/Pods-Capstone-CapstoneUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D98A9C3F28870E3D009D4C74 /* CoreLocation.framework in Frameworks */,
 				D92D11C52880E663000BB730 /* MapKit.framework in Frameworks */,
 				1FC3C022174D43E2CA53B594 /* Pods_Capstone.framework in Frameworks */,
 			);
@@ -345,6 +348,7 @@
 		E3BD99B36C5AE25D9714456D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D98A9C3E28870E3D009D4C74 /* CoreLocation.framework */,
 				D92D11C42880E663000BB730 /* MapKit.framework */,
 				E7F7413D8AFD3D6D22A971FA /* Pods_Capstone.framework */,
 				511C5CEE66DA1C120E7C5E58 /* Pods_Capstone_CapstoneUITests.framework */,
