@@ -42,20 +42,17 @@
 }
 
 - (void)fetchData {
-    [[APIManager shared] fetchColleges:^(NSArray *colleges, NSError *error) {
-        if (error != nil) {
-            NSLog(@"%@", error);
-        } else {
+    [[APIManager shared] getColleges:^(NSArray * _Nonnull colleges, NSError * _Nonnull error) {
+        if (error == nil) {
             self->colleges = (NSMutableArray *)colleges;
             [self.activityIndicator stopAnimating];
             [self.activityIndicator hidesWhenStopped];
             [self.tableView reloadData];
+            [self.refreshControl endRefreshing];
         }
     }];
-    [self.refreshControl endRefreshing];
 }
 
-//TODO: implement table view for autocorrect suggestions
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     if (searchText.length == 0) {
         isFiltered = false;
@@ -80,8 +77,8 @@
     searchBar.text = self->correctWordToDisplayInSearchBar;
 }
 
-- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
-    
+- (IBAction)onTap:(id)sender {
+    [self.view endEditing:true];
 }
 
 - (IBAction)didTapLoadWithLocation:(id)sender {
