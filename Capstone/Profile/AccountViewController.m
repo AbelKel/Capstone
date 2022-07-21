@@ -23,11 +23,11 @@
     NSMutableArray *matchedColleges;
     NSArray<College *> *colleges;
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewForMatches) name:@"reloadDataForMatches" object:nil];
     [self setUser];
     PFUser *current = [PFUser currentUser];
     if (current[@"image"]) {
@@ -35,9 +35,14 @@
         [self.profileImage loadInBackground];
     }
     [self getMatchedColleges];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewForMatches) name:@"reloadDataForMatches" object:nil];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(getMatchedColleges) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
+}
+
+- (void)reloadTableViewForMatches {
+    [self getMatchedColleges];
 }
 
 - (void)getMatchedColleges {
@@ -59,10 +64,6 @@
     [self.refreshControl endRefreshing];
 }
 
-- (void)reloadTableViewForMatches {
-    [self getMatchedColleges];
-}
-
 - (IBAction)didTapLogout:(id)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -75,6 +76,7 @@
     PFUser *username = [PFUser currentUser];
     self.profileName.text = username.username;
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self->colleges.count;
 }

@@ -216,6 +216,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="jBZ-lW-DpB"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="5am-vk-bfZ" firstAttribute="top" secondItem="NLV-TQ-GHo" secondAttribute="bottom" constant="8" id="2xe-WZ-lu2"/>
                             <constraint firstItem="h1k-70-Et7" firstAttribute="leading" secondItem="5am-vk-bfZ" secondAttribute="leading" id="B8e-mi-CHp"/>
@@ -230,6 +231,9 @@
                             <constraint firstItem="NLV-TQ-GHo" firstAttribute="baseline" secondItem="aM5-3F-Ck2" secondAttribute="baseline" id="t4X-c0-IFw"/>
                             <constraint firstItem="h1k-70-Et7" firstAttribute="centerX" secondItem="es6-zc-56Z" secondAttribute="centerX" id="uDw-rR-RNe"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="C6w-wQ-Bob" appends="YES" id="hoT-y0-Jam"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="mot-JE-x7D"/>
                     <connections>
@@ -239,6 +243,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5hd-4k-iBC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="C6w-wQ-Bob">
+                    <connections>
+                        <action selector="onTap:" destination="fln-8b-2Ib" id="K9R-7i-rOp"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2428.985507246377" y="1775.8928571428571"/>
         </scene>
@@ -905,6 +914,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="4lt-EA-Bit"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="gUK-vg-U0p" firstAttribute="top" secondItem="X4t-u1-r5v" secondAttribute="bottom" constant="-1" id="5Cp-e5-bKe"/>
                             <constraint firstItem="gVX-gC-DWP" firstAttribute="top" secondItem="pyU-Ne-NB9" secondAttribute="bottom" constant="15" id="62X-to-ANf"/>
@@ -946,6 +956,9 @@
                             <constraint firstItem="A8g-BU-mNR" firstAttribute="leading" secondItem="kmd-z6-YCm" secondAttribute="leading" id="yVp-0F-RvP"/>
                             <constraint firstItem="XaE-W6-e7e" firstAttribute="top" secondItem="ndQ-HJ-Vu9" secondAttribute="bottom" constant="8" symbolic="YES" id="zQF-Y5-pRe"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="j8A-zE-LVk" appends="YES" id="6yI-Bp-EXa"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Survey" id="mTi-rF-1Al"/>
                     <connections>
@@ -959,6 +972,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BH7-0o-Ufn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="j8A-zE-LVk">
+                    <connections>
+                        <action selector="onTap:" destination="4Ac-co-nWr" id="TNt-0Z-obG"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="6411.594202898551" y="2654.4642857142858"/>
         </scene>
@@ -1048,14 +1066,14 @@
                             <tableViewSection headerTitle="About" id="zEK-fs-vHD">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="aut-24-wOP">
-                                        <rect key="frame" x="0.0" y="184.5" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="184.5" width="414" height="43"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aut-24-wOP" id="GSO-8G-97a">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wmx-7q-L7l">
-                                                    <rect key="frame" x="33" y="11" width="46" height="21.5"/>
+                                                    <rect key="frame" x="33" y="11" width="46" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1299,7 +1317,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="e5a-Bl-J8B"/>
+        <segue reference="o3Y-YI-sGd"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.forward" catalog="system" width="128" height="98"/>

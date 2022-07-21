@@ -97,6 +97,10 @@
     [self filter];
 }
 
+- (IBAction)onTap:(id)sender {
+    [self.view endEditing:true];
+}
+
 /**
  The lowest rigor score for a college can go as high as upto 50.
  The highest rigor score is 0.1
@@ -117,6 +121,12 @@
     [self uploadCollegesToParse];
 }
 
+/*
+ I wanted to only upload colleges that have all the information that a user would need to
+ look up a college. That is why you see a long if statement in the uploadCollegesToParse function. It also
+ helps avoid the problem of dealing with NSNull. However, making use of a new Schema in the next PR will
+ probably improve it. 
+ */
 - (void)uploadCollegesToParse {
     PFUser *current = [PFUser currentUser];
     PFObject *collegeToParse = [PFObject objectWithClassName:@"MacthedColleges"];

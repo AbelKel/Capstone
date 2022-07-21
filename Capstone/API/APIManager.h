@@ -12,13 +12,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong, nonatomic) NSArray *collegesBasedonSize;
 @property (strong, nonatomic) NSArray *collegesBasedonFunding;
+@property (strong, nonatomic) NSArray *allColleges;
 - (void)setSchoolSizePreference:(NSString *)schoolSize;
 - (void)setSchoolType:(NSString *)schoolType;
 + (instancetype)shared;
-- (void)fetchColleges: (void(^)(NSArray *colleges, NSError *error))completion;
 - (void)fetchCollegeNews: (void(^)(NSArray *collegeNews, NSError *error))completion;
 - (void)fetchCollegesBasedOnFilterPreference:(NSString *)stringURL getArrayOfColleges:(void(^)(NSArray *colleges, NSError *error))completion;
 - (void)queryAPIs:(void(^)(NSArray *colleges, NSArray *colleges1, NSError *error))completion;
+- (void)getColleges:(void(^)(NSArray *colleges, NSError *error))completion;
 
 @end
 
