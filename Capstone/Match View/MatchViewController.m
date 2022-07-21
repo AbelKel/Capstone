@@ -8,8 +8,10 @@
 #import "APIManager.h"
 #import "College.h"
 #import "AccountViewController.h"
+#import <Parse/Parse.h>
 
 @interface MatchViewController ()
+
 @property (weak, nonatomic) IBOutlet UISlider *satSlider;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *collegeProperty;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *collegeSize;
@@ -91,8 +93,8 @@
     [self fetchData];
 }
 
-- (IBAction)didTapBack:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+- (IBAction)didTapDone:(id)sender {
+    [self filter];
 }
 
 /**
@@ -102,22 +104,34 @@
  - parameters to consider (college.location == self.city) &&
  - college.distance < 1000
 */
+//TODO: start thinking about intersection of chatacteristics
 - (void)filter {
     double convertedScore = 50*(1-(([self->satScore doubleValue])/1600))+0.1;
     for (College *college in self->initailCollegeList) {
-        if ((((college.rigorScore) <= convertedScore)) && (college.distance < [self.distanceInMiles.text doubleValue])) {
+        if (((college.rigorScore) <= convertedScore) && (college.distance <= [self.distanceInMiles.text doubleValue])) {
             [self->filteredList addObject:college];
         }
     }
+    NSSortDescriptor *sortingBasedOnDistance = [[NSSortDescriptor alloc] initWithKey:@"distance" ascending:YES];
+    self->filteredList = [self->filteredList sortedArrayUsingDescriptors:@[sortingBasedOnDistance]];
+    [self uploadCollegesToParse];
 }
 
-//- (IBAction)didTapDone:(id)sender {
-//    [self performSegueWithIdentifier:@"profile" sender:self];
-//}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    [self filter];
-    AccountViewController *accountVC = [segue destinationViewController];
-    accountVC.matchedColleges = self->filteredList;
+- (void)uploadCollegesToParse {
+    PFUser *current = [PFUser currentUser];
+    PFObject *collegeToParse = [PFObject objectWithClassName:@"MacthedColleges"];
+    for (College *college in self->filteredList) {
+        if ((college.name != nil) && (college.location != nil) && (college.details != nil) && (college.image != nil) && (college.website != nil)) {
+            collegeToParse[@"name"] = college.name;
+            collegeToParse[@"city"] = college.location;
+            collegeToParse[@"shortDescription"] = college.details;
+            collegeToParse[@"longDescription"] = college.detailsLong;
+            collegeToParse[@"campusImage"] = college.image;
+            collegeToParse[@"website"] = college.website;
+            collegeToParse[@"userID"] = current.username;
+            [collegeToParse saveEventually];
+        }
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadDataForMatches" object:self];
 }
 @end

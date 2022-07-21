@@ -9,6 +9,9 @@
 #import "TTTAttributedLabel.h"
 #import <Parse/Parse.h>
 #import "CommentCell.h"
+#import "LikeViewController.h"
+#import "LongDetailsViewController.h"
+
 @interface DetailsViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIImageView *detailsCollegeImage;
 @property (weak, nonatomic) IBOutlet UILabel *detailsCollegeName;
@@ -34,10 +37,18 @@
     self.detailsCollegeLocation.text = self.college.location;
     NSURL *url = [NSURL URLWithString:self.college.image];
     [self.detailsCollegeImage setImageWithURL:url];
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
+    tapGesture.numberOfTapsRequired = 2;
+    [self.detailsCollegeImage setUserInteractionEnabled:YES];
+    [self.detailsCollegeImage addGestureRecognizer:tapGesture];
     PFUser *current = [PFUser currentUser];
     self->likesArray = [NSMutableArray arrayWithArray:current[@"likes"]];
     self->comments = [NSMutableDictionary dictionaryWithDictionary:current[@"comments"]];
     [self likeChecker];
+}
+
+- (void)handleDoubleTap:(UITapGestureRecognizer *)sender {
+    [self performSegueWithIdentifier:@"moreDetails" sender:self];
 }
 
 - (IBAction)didTapOnGoToWebsite:(id)sender {
@@ -57,6 +68,7 @@
     } else {
         [self.likeCollege setImage:[UIImage imageNamed:@"favor-icon-red.png"]forState:UIControlStateNormal];
         [self->likesArray addObject: self.college.name];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
         PFObject *college = [PFObject objectWithClassName:@"College"];
         college[@"name"] = self.college.name;
         college[@"city"] = self.college.location;
@@ -95,6 +107,12 @@
     CommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell"];
     cell.comment.text = [self->comments objectForKey:self.college.name];
     return cell;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    College *collegeToPass = self.college;
+    LongDetailsViewController *longDVC = [segue destinationViewController];
+    longDVC.college = collegeToPass;
 }
 @end
 

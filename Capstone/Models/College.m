@@ -16,9 +16,7 @@
     if (self) {
         self.name = dictionary[@"name"];
         self.details = dictionary[@"shortDescription"];
-        if (dictionary[@"shortDescription"] == nil) {
-            self.details = dictionary[@"longDescription"];
-        }
+        self.detailsLong = dictionary[@"longDescription"];
         self.location = dictionary[@"city"];
         self.image = dictionary[@"campusImage"];
         self.website = dictionary[@"website"];

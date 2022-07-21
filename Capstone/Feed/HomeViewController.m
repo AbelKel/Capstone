@@ -40,6 +40,7 @@
     [self.tableView insertSubview:self.refreshControl atIndex:0];
     [self.activityIndicator startAnimating];
 }
+
 - (void)fetchData {
     [[APIManager shared] fetchColleges:^(NSArray *colleges, NSError *error) {
         if (error != nil) {
@@ -77,6 +78,16 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     searchBar.text = self->correctWordToDisplayInSearchBar;
+}
+
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+    
+}
+
+- (IBAction)didTapLoadWithLocation:(id)sender {
+    NSSortDescriptor *sortingBasedOnDistance = [[NSSortDescriptor alloc] initWithKey:@"distance" ascending:YES];
+    self->colleges = [self->colleges sortedArrayUsingDescriptors:@[sortingBasedOnDistance]];
+    [self.tableView reloadData];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
