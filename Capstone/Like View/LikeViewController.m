@@ -37,12 +37,16 @@
     self->colleges = [[NSArray alloc] init];
     PFUser *current = [PFUser currentUser];
     self->likedCollegeNames = current[@"likes"];
+    [self.tableView reloadData];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:@"reloadData" object:nil];
     [self getLikedColleges];
     self->refreshControl = [[UIRefreshControl alloc] init];
     [self->refreshControl addTarget:self action:@selector(getLikedColleges) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self->refreshControl atIndex:0];
     [self.activityIndicator startAnimating];
 }
+
+
 
 - (void)getLikedColleges {
     PFUser *current = [PFUser currentUser];
@@ -61,6 +65,10 @@
         }
     }];
     [self->refreshControl endRefreshing];
+}
+
+- (void)reloadTableView {
+    [self getLikedColleges];
 }
 
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {

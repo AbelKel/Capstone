@@ -22,6 +22,23 @@
     self.homeCollegeLocation.text = college.location;
     NSURL *url = [NSURL URLWithString:college.image];
     [self.homeCellImage setImageWithURL:url];
+    [self.homeCollegeName setAlpha:0.f];
+    [self.homeCollegeDetails setAlpha:0.f];
+    [self.homeCollegeLocation setAlpha:0.f];
+    [self.homeCellImage setAlpha:0.f];
+     [UIView animateWithDuration:2.f delay:0.f options:UIViewAnimationOptionCurveEaseIn animations:^{
+         [self.homeCollegeName setAlpha:1.f];
+         [self.homeCollegeDetails setAlpha:1.f];
+         [self.homeCollegeLocation setAlpha:1.f];
+         [self.homeCellImage setAlpha:1.f];
+     } completion:^(BOOL finished) {
+         [UIView animateWithDuration:2.f delay:0.f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+             [self.homeCollegeName setAlpha:2.f];
+             [self.homeCollegeDetails setAlpha:2.f];
+             [self.homeCollegeLocation setAlpha:2.f];
+             [self.homeCellImage setAlpha:2.f];
+         } completion:nil];
+     }];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
