@@ -35,13 +35,13 @@
         [self.profileImage loadInBackground];
     }
     [self getMatchedColleges];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewForMatches) name:@"reloadDataForMatches" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(viewDidAppear:) name:@"reloadDataForMatches" object:nil];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(getMatchedColleges) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
-- (void)reloadTableViewForMatches {
+- (void)viewDidAppear:(BOOL)animated {
     [self getMatchedColleges];
 }
 
