@@ -20,7 +20,7 @@
 @end
 
 @implementation AccountViewController {
-    NSMutableArray *matchedColleges;
+    NSMutableArray<College *> *matchedColleges;
     NSArray<College *> *colleges;
 }
 
