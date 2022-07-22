@@ -11,6 +11,7 @@
 #import "CommentCell.h"
 #import "LikeViewController.h"
 #import "LongDetailsViewController.h"
+#import "Comment.h"
 
 @interface DetailsViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIImageView *detailsCollegeImage;
@@ -24,7 +25,7 @@
 @end
 
 @implementation DetailsViewController {
-    NSMutableDictionary *comments;
+    NSArray *comments;
     NSMutableArray *likesArray;
 }
 - (void)viewDidLoad {
@@ -43,8 +44,8 @@
     [self.detailsCollegeImage addGestureRecognizer:tapGesture];
     PFUser *current = [PFUser currentUser];
     self->likesArray = [NSMutableArray arrayWithArray:current[@"likes"]];
-    self->comments = [NSMutableDictionary dictionaryWithDictionary:current[@"comments"]];
     [self likeChecker];
+    [self getComments];
 }
 
 - (void)handleDoubleTap:(UITapGestureRecognizer *)sender {
@@ -60,6 +61,20 @@
     }
 }
 
+- (void)getComments {
+    PFQuery *query = [PFQuery queryWithClassName:@"Comments"];
+    [query includeKey:@"author"];
+    [query whereKey:@"college" equalTo:self.college.name];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *comments, NSError *error) {
+        if (comments != nil) {
+            self->comments = comments;
+            [self.tableView reloadData];
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+}
+
 - (IBAction)didTapLike:(id)sender {
     PFUser *current = [PFUser currentUser];
     if ([self->likesArray containsObject:self.college.name]) {
@@ -69,15 +84,6 @@
         [self.likeCollege setImage:[UIImage imageNamed:@"favor-icon-red.png"]forState:UIControlStateNormal];
         [self->likesArray addObject: self.college.name];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
-        PFObject *college = [PFObject objectWithClassName:@"College"];
-        college[@"name"] = self.college.name;
-        college[@"city"] = self.college.location;
-        college[@"shortDescription"] = self.college.details;
-        college[@"campusImage"] = self.college.image;
-        college[@"website"] = self.college.website;
-        college[@"userID"] = current.username;
-        college[@"comments"] = [NSMutableDictionary dictionaryWithDictionary:self->comments];
-        [college saveEventually];
     }
     current[@"likes"] = [NSArray arrayWithArray:self->likesArray];
     [PFUser.currentUser saveInBackground];
@@ -91,21 +97,24 @@
     }
 }
 
+- (IBAction)onTap:(id)sender {
+    [self.view endEditing:true];
+}
+
 - (IBAction)didTapComment:(id)sender {
-    [self->comments setValue:[NSString stringWithString:self.commentTextField.text] forKey:self.college.name];
-    PFUser *current = [PFUser currentUser];
-    current[@"comments"] = [NSMutableDictionary dictionaryWithDictionary:self->comments];
-    [PFUser.currentUser saveInBackground];
+    [Comment postUserComment:self.commentTextField.text underCollege:self.college.name withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+    }];
     [self.tableView reloadData];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return self->comments.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell"];
-    cell.comment.text = [self->comments objectForKey:self.college.name];
+    Comment *comment = self->comments[indexPath.row];
+    cell.commentPosted = comment;
     return cell;
 }
 

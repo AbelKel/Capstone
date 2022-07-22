@@ -114,7 +114,7 @@
     for (College *college in self->initailCollegeList) {
         if (((college.rigorScore) <= convertedScore) && (college.distance <= [self.distanceInMiles.text doubleValue])) {
             [self->filteredList addObject:college];
-        } else if ([self->city isEqual: college.location] && ![self->filteredList containsObject:college.location]) {
+        } else if ([self->city isEqual:college.location] && ![self->filteredList containsObject:college.location]) {
             [self->filteredList addObject:college];
         }
     }
