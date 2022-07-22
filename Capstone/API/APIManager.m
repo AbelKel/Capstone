@@ -34,7 +34,7 @@
         if (error != nil) {
             NSLog(@"%@", error);
         } else {
-            self.allColleges = (NSMutableArray *)colleges;
+            self.allColleges = colleges;
             completion(self.allColleges, nil);
         }
     }];

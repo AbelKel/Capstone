@@ -19,9 +19,9 @@
 @end
 
 @implementation LikeViewController {
-    NSArray *likedCollegeNames;
+    NSArray<College *> *likedCollegeNames;
     NSArray<College *> *colleges;
-    NSMutableArray *likedCollegesToDisplay;
+    NSMutableArray<College *> *likedCollegesToDisplay;
     UIRefreshControl *refreshControl;
 }
 
@@ -38,15 +38,13 @@
     PFUser *current = [PFUser currentUser];
     self->likedCollegeNames = current[@"likes"];
     [self.tableView reloadData];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:@"reloadData" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(viewDidAppear:) name:@"reloadData" object:nil];
     [self getLikedColleges];
     self->refreshControl = [[UIRefreshControl alloc] init];
     [self->refreshControl addTarget:self action:@selector(getLikedColleges) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self->refreshControl atIndex:0];
     [self.activityIndicator startAnimating];
 }
-
-
 
 - (void)getLikedColleges {
     PFUser *current = [PFUser currentUser];
@@ -67,8 +65,8 @@
     [self->refreshControl endRefreshing];
 }
 
-- (void)reloadTableView {
-    [self getLikedColleges];
+- (void)viewDidAppear:(BOOL)animated {
+    [self.tableView reloadData];
 }
 
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {

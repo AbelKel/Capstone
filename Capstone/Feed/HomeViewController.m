@@ -22,8 +22,8 @@
 
 @implementation HomeViewController {
     bool isFiltered;
-    NSMutableArray *filteredColleges;
-    NSMutableArray *colleges;
+    NSMutableArray<College *> *filteredColleges;
+    NSMutableArray<College *> *colleges;
     NSString *correctWordToDisplayInSearchBar;
 }
 

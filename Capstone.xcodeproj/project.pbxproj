@@ -39,7 +39,9 @@
 		D97A1FAC287B8609004B8893 /* CollegeNews.m in Sources */ = {isa = PBXBuildFile; fileRef = D97A1FAB287B8609004B8893 /* CollegeNews.m */; };
 		D97A1FAF287BC277004B8893 /* MatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D97A1FAE287BC277004B8893 /* MatchViewController.m */; };
 		D98A9C3F28870E3D009D4C74 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D98A9C3E28870E3D009D4C74 /* CoreLocation.framework */; };
+		D9900A8E288B513000BFFB20 /* ParseCollege.m in Sources */ = {isa = PBXBuildFile; fileRef = D9900A8D288B513000BFFB20 /* ParseCollege.m */; };
 		D9F6FA692887EAFB009AF63A /* LongDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9F6FA682887EAFB009AF63A /* LongDetailsViewController.m */; };
+		D9F6FA6C2889EDBE009AF63A /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = D9F6FA6B2889EDBE009AF63A /* Comment.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,8 +121,12 @@
 		D97A1FAD287BC277004B8893 /* MatchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchViewController.h; sourceTree = "<group>"; };
 		D97A1FAE287BC277004B8893 /* MatchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchViewController.m; sourceTree = "<group>"; };
 		D98A9C3E28870E3D009D4C74 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		D9900A8C288B513000BFFB20 /* ParseCollege.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParseCollege.h; sourceTree = "<group>"; };
+		D9900A8D288B513000BFFB20 /* ParseCollege.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ParseCollege.m; sourceTree = "<group>"; };
 		D9F6FA672887EAFB009AF63A /* LongDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LongDetailsViewController.h; sourceTree = "<group>"; };
 		D9F6FA682887EAFB009AF63A /* LongDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LongDetailsViewController.m; sourceTree = "<group>"; };
+		D9F6FA6A2889EDBE009AF63A /* Comment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
+		D9F6FA6B2889EDBE009AF63A /* Comment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
 		E7F7413D8AFD3D6D22A971FA /* Pods_Capstone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Capstone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECC90A25362ACDC45A2D613D /* Pods_CapstoneTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CapstoneTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F72102A915011E4B317643EB /* Pods-Capstone-CapstoneUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Capstone-CapstoneUITests.release.xcconfig"; path = "Target Support Files/Pods-Capstone-CapstoneUITests/Pods-Capstone-CapstoneUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -176,6 +182,10 @@
 				D91B18542877944500FA423B /* College.m */,
 				D97A1FAA287B8609004B8893 /* CollegeNews.h */,
 				D97A1FAB287B8609004B8893 /* CollegeNews.m */,
+				D9F6FA6A2889EDBE009AF63A /* Comment.h */,
+				D9F6FA6B2889EDBE009AF63A /* Comment.m */,
+				D9900A8C288B513000BFFB20 /* ParseCollege.h */,
+				D9900A8D288B513000BFFB20 /* ParseCollege.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -606,6 +616,8 @@
 				D92D11C9288119D9000BB730 /* AutocorrectFunctions.m in Sources */,
 				D945E1D328718497005FFE04 /* AppDelegate.m in Sources */,
 				D9784FB0287507150056DD78 /* DetailsViewController.m in Sources */,
+				D9F6FA6C2889EDBE009AF63A /* Comment.m in Sources */,
+				D9900A8E288B513000BFFB20 /* ParseCollege.m in Sources */,
 				D9539283287CC1E800207CC6 /* MatchCell.m in Sources */,
 				D91B18552877944500FA423B /* College.m in Sources */,
 				D945E1E428718497005FFE04 /* main.m in Sources */,
