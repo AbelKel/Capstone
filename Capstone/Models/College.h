@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
+#import "Parse/Parse.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSString *image;
 @property (strong, nonatomic) NSString *location;
 @property (strong, nonatomic) NSString *details;
+@property (strong, nonatomic) NSString *detailsLong;
 @property (strong, nonatomic) NSString *website;
 @property (strong, nonatomic) NSString *longtuide;
 @property (strong, nonatomic) NSString *lat;
