@@ -9,9 +9,11 @@
 #import "APIManager.h"
 #import "College.h"
 #import "AFNetworking.h"
+
 @implementation APIManager {
     NSString *stringURLForSizeOfColleges;
     NSString *stringURLForFundingType;
+    NSString *getAllColleges;
 }
 
 - (void)setSchoolSizePreference:(NSString *)schoolSize {
@@ -26,6 +28,18 @@
                                          withString:schoolType];
 }
 
+- (void)getColleges:(void(^)(NSArray *colleges, NSError *error))completion {
+    getAllColleges = @"https://api.collegeai.com/v1/api/college-list?api_key=4c4e51cca8832178dcfb29217c&filters=&info_ids=website%2CshortDescription%2ClongDescription%2CcampusImage%2Ccity%2CstateAbbr%2Caliases%2Ccolors%2ClocationLong%2ClocationLat";
+    [self fetchCollegesBasedOnFilterPreference:getAllColleges getArrayOfColleges:^(NSArray * _Nonnull colleges, NSError * _Nonnull error) {
+        if (error != nil) {
+            NSLog(@"%@", error);
+        } else {
+            self.allColleges = colleges;
+            completion(self.allColleges, nil);
+        }
+    }];
+}
+
 + (instancetype)shared {
     static APIManager *sharedManager = nil;
     static dispatch_once_t onceToken;
@@ -33,25 +47,6 @@
         sharedManager = [[self alloc] init];
     });
     return sharedManager;
-}
-
-- (void)fetchColleges:(void(^)(NSArray *colleges, NSError *error))completion {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    NSURL *url = [NSURL URLWithString:@"https://api.collegeai.com/v1/api/college-list?api_key=4c4e51cca8832178dcfb29217c&filters=&info_ids=website%2CshortDescription%2ClongDescription%2CcampusImage%2Ccity%2CstateAbbr%2Caliases%2Ccolors%2ClocationLong%2ClocationLat"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
-    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-           if (error != nil) {
-               completion(nil, error);
-           } else {
-               NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-               NSMutableArray *colleges = [College collegesWithArray:[dataDictionary objectForKey:@"colleges"]];
-               dispatch_async(dispatch_get_main_queue(), ^{
-                   completion(colleges, nil);
-               });
-            }}];
-    [task resume];
-    });
 }
 
 - (void)fetchCollegeNews:(void(^)(NSArray *collegeNews, NSError *error))completion {
