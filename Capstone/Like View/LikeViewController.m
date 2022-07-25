@@ -22,7 +22,7 @@
 
 @implementation LikeViewController {
     NSArray<College *> *likedCollegeNames;
-    NSArray *colleges;
+    NSArray<ParseCollege *> *colleges;
     NSMutableArray<College *> *likedCollegesToDisplay;
     UIRefreshControl *refreshControl;
 }
