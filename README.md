@@ -139,6 +139,8 @@ In the first week of the start of the project, I plan on implementing the sign u
 *
 ### Models
 
+/Users/abelkelbessa/Downloads/CamScanner 07-25-2022 09.32n_1.jpg
+
 ### View Data Model
 #### College
    
