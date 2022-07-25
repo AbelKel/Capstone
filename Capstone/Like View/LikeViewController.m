@@ -5,11 +5,13 @@
 //  Created by Abel Kelbessa on 7/12/22.
 //
 #import "LikeViewController.h"
+#import "LikesRelations.h"
 #import <Parse/Parse.h>
 #import "APIManager.h"
 #import "College.h"
 #import "LikeCell.h"
 #import "DetailsViewController.h"
+#import "ParseCollege.h"
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 
 @interface LikeViewController () <UITableViewDelegate, UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
@@ -20,7 +22,7 @@
 
 @implementation LikeViewController {
     NSArray<College *> *likedCollegeNames;
-    NSArray<College *> *colleges;
+    NSArray *colleges;
     NSMutableArray<College *> *likedCollegesToDisplay;
     UIRefreshControl *refreshControl;
 }
@@ -35,11 +37,6 @@
     self->likedCollegeNames = [[NSArray alloc] init];
     self->likedCollegesToDisplay = [[NSMutableArray alloc] init];
     self->colleges = [[NSArray alloc] init];
-    PFUser *current = [PFUser currentUser];
-    self->likedCollegeNames = current[@"likes"];
-    [self.tableView reloadData];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(viewDidAppear:) name:@"reloadData" object:nil];
-    [self getLikedColleges];
     self->refreshControl = [[UIRefreshControl alloc] init];
     [self->refreshControl addTarget:self action:@selector(getLikedColleges) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self->refreshControl atIndex:0];
@@ -47,14 +44,19 @@
 }
 
 - (void)getLikedColleges {
-    PFUser *current = [PFUser currentUser];
-    PFQuery *query = [PFQuery queryWithClassName:@"College"];
-    [query whereKey:@"userID" equalTo:current.username];
+    self.collegesFromQuery = [[NSMutableArray alloc] init];
+    PFQuery *query = [PFQuery queryWithClassName:@"LikesRelations"];
+    [query includeKey:@"author"];
+    [query includeKey:@"likedCollege"];
     [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *colleges, NSError *error) {
         if (colleges != nil) {
-            self.collegesFromQuery = (NSMutableArray *)colleges;
-            self->colleges = [College collegesWithArray:self.collegesFromQuery];
+            for (LikesRelations *college in colleges) {
+                if (college.author.username == [PFUser currentUser].username) {
+                    [self.collegesFromQuery addObject:college.likedCollege];
+                }
+            }
+            self->colleges = self.collegesFromQuery;
             [self.activityIndicator stopAnimating];
             [self.activityIndicator hidesWhenStopped];
             [self.tableView reloadData];
@@ -65,8 +67,9 @@
     [self->refreshControl endRefreshing];
 }
 
+
 - (void)viewDidAppear:(BOOL)animated {
-    [self.tableView reloadData];
+    [self getLikedColleges];
 }
 
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
