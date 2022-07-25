@@ -139,8 +139,6 @@ In the first week of the start of the project, I plan on implementing the sign u
 *
 ### Models
 
-/Users/abelkelbessa/Downloads/CamScanner 07-25-2022 09.32n_1.jpg
-
 ### View Data Model
 #### College
    
@@ -158,11 +156,11 @@ In the first week of the start of the project, I plan on implementing the sign u
    
 #### CollegeNews 
 
-    | Property      | Type     | Description |
-    | ------------- | -------- | ------------|
+    | Property       | Type     | Description |
+    | -------------  | -------- | ------------|
     | title          | String   | title of the news article |
     | newsDescription| String   | description of the news |
-    | imageUrl       | String     | url to the image presented on the cover of the articel|
+    | imageUrl       | String   | url to the image presented on the cover of the articel|
     
 ### Data Model (Parse)
    
