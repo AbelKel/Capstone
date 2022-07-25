@@ -285,8 +285,6 @@
 				D945E1DF28718497005FFE04 /* LaunchScreen.storyboard */,
 				D945E1E228718497005FFE04 /* Info.plist */,
 				D945E1E328718497005FFE04 /* main.m */,
-				D9F6FA672887EAFB009AF63A /* LongDetailsViewController.h */,
-				D9F6FA682887EAFB009AF63A /* LongDetailsViewController.m */,
 			);
 			path = Capstone;
 			sourceTree = "<group>";
@@ -346,6 +344,8 @@
 				D9784FAF287507150056DD78 /* DetailsViewController.m */,
 				D953928D287E327D00207CC6 /* CommentCell.h */,
 				D953928E287E327D00207CC6 /* CommentCell.m */,
+				D9F6FA672887EAFB009AF63A /* LongDetailsViewController.h */,
+				D9F6FA682887EAFB009AF63A /* LongDetailsViewController.m */,
 			);
 			path = "Detail View";
 			sourceTree = "<group>";

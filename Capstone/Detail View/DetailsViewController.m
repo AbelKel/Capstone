@@ -66,6 +66,10 @@
     }
 }
 
+/*
+ This method gets the Parse Objects from Like Relations class in Parse along with all the  collges the
+ user has liked hence the key being used "likedCollege"
+ */
 - (void)getLikedColleges {
     PFQuery *query = [PFQuery queryWithClassName:@"LikesRelations"];
     [query includeKey:@"likedCollege"];
@@ -88,6 +92,9 @@
     }];
 }
 
+/*
+ Should I implement pointers and relations for this. It seems to work fine without them.
+ */
 - (void)getComments {
     PFQuery *query = [PFQuery queryWithClassName:@"Comments"];
     [query includeKey:@"author"];
@@ -101,6 +108,10 @@
         }
     }];
 }
+
+/*
+ This works well, but I feel like it can be optimized.
+ */
 
 - (IBAction)didTapLike:(id)sender {
     NSMutableArray *likedCollegeNames = [[NSMutableArray alloc] init];
