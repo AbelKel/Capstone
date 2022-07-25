@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)fetchCollegesBasedOnFilterPreference:(NSString *)stringURL getArrayOfColleges:(void(^)(NSArray *colleges, NSError *error))completion;
 - (void)queryAPIs:(void(^)(NSArray *colleges, NSArray *colleges1, NSError *error))completion;
 - (void)getColleges:(void(^)(NSArray *colleges, NSError *error))completion;
+- (void)fetchCollege:(void(^)(NSArray *colleges, NSError *error))completion;
 
 @end
 

@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControlHome;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @end
 
@@ -24,7 +25,9 @@
     bool isFiltered;
     NSMutableArray<College *> *filteredColleges;
     NSMutableArray<College *> *colleges;
+    NSMutableArray<College *> *collegesAtSegment2;
     NSString *correctWordToDisplayInSearchBar;
+    int currentSegmentIndex;
 }
 
 - (void)viewDidLoad {
@@ -52,6 +55,17 @@
         }
     }];
 }
+
+- (IBAction)segmentControl:(id)sender {
+    currentSegmentIndex = self.segmentControlHome.selectedSegmentIndex;
+    [[APIManager shared] fetchCollege:^(NSArray * _Nonnull colleges, NSError * _Nonnull error) {
+        if (error == nil) {
+            self->collegesAtSegment2 = colleges;
+        }
+    }];
+    [self.tableView reloadData];
+}
+
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     if (searchText.length == 0) {
@@ -88,6 +102,9 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (currentSegmentIndex == 1) {
+        return self->collegesAtSegment2.count;
+    }
     if (isFiltered) {
         return self->filteredColleges.count;
     }
@@ -96,6 +113,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     HomeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeCell"];
+    if (currentSegmentIndex == 1) {
+        College *college = self->collegesAtSegment2[indexPath.row];
+        cell.college = college;
+    }
     if (isFiltered) {
         College *college = self->filteredColleges[indexPath.row];
         cell.college = college;
