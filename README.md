@@ -158,8 +158,8 @@ In the first week of the start of the project, I plan on implementing the sign u
 
     | Property       | Type     | Description |
     | -------------  | -------- | ------------|
-    | title          | String   | title of the news article |
-    | newsDescription| String   | description of the news |
+    | title          | String   | title of the news article|
+    | newsDescription| String   | description of the news|
     | imageUrl       | String   | url to the image presented on the cover of the articel|
     
 ### Data Model (Parse)
