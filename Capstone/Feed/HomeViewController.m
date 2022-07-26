@@ -24,7 +24,6 @@
 @implementation HomeViewController {
     bool isFiltered;
     NSMutableArray<College *> *filteredColleges;
-    NSMutableArray<College *> *colleges;
     NSArray<College *> *collegesAtSegment;
     NSString *correctWordToDisplayInSearchBar;
 }
@@ -35,7 +34,6 @@
     self.tableView.delegate = self;
     self.searchBar.delegate = self;
     isFiltered = false;
-    self->colleges = [[NSMutableArray alloc] init];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(getCollegesForSegmentControl) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
