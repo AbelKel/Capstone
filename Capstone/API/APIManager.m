@@ -79,15 +79,21 @@
     [task resume];
 }
 
-- (void)fetchCollege:(void(^)(NSArray *colleges, NSError *error))completion {
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:@"https://api.collegeai.com/v1/api/college-list?api_key=4c4e51cca8832178dcfb29217c&offset=100"]];
-    [request setHTTPMethod:@"GET"];NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    [[session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-        NSMutableArray *colleges = [College collegesWithArray:[dataDictionary objectForKey:@"colleges"]];
-        completion(colleges, nil);
-    }] resume];
+- (void)fetchCollege:(NSString *)segmentNumber getColleges:(void(^)(NSArray *colleges, NSError *error))completion {
+    NSString *segmentStringURL = @"https://api.collegeai.com/v1/api/college-list?api_key=4c4e51cca8832178dcfb29217c&filters=&info_ids=website%2CshortDescription%2ClongDescription%2CcampusImage%2Ccity%2CstateAbbr%2Caliases%2Ccolors%2ClocationLong%2ClocationLat&offset=";
+    segmentStringURL = [segmentStringURL stringByAppendingString:segmentNumber];
+    NSURL *url = [NSURL URLWithString:segmentStringURL];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+           if (error != nil) {
+               NSLog(@"%@", [error localizedDescription]);
+           } else {
+               NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+               NSMutableArray *colleges = [College collegesWithArray:[dataDictionary objectForKey:@"colleges"]];
+                   completion(colleges,nil);
+           }}];
+    [task resume];
 }
 
 - (void)queryAPIs:(void(^)(NSArray *collegesBasedonSize, NSArray *collegesBasedonFunding, NSError *error))completion {

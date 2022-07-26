@@ -17,9 +17,9 @@
 }
 
 -(void)setCollege:(College *)college {
-    float const animationDuration = 2.f;
+    float const animationDuration = 1.f;
     float const animationDelay = 0.f;
-    float const animationFadeInInterval = 1.f;
+    float const animationFadeInInterval = 2.f;
     self.homeCollegeName.text = college.name;
     self.homeCollegeDetails.text = college.details;
     self.homeCollegeLocation.text = college.location;
