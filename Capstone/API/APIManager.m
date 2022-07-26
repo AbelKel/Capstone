@@ -28,18 +28,6 @@
                                          withString:schoolType];
 }
 
-- (void)getColleges:(void(^)(NSArray *colleges, NSError *error))completion {
-    getAllColleges = @"https://api.collegeai.com/v1/api/college-list?api_key=4c4e51cca8832178dcfb29217c&filters=&info_ids=website%2CshortDescription%2ClongDescription%2CcampusImage%2Ccity%2CstateAbbr%2Caliases%2Ccolors%2ClocationLong%2ClocationLat";
-    [self fetchCollegesBasedOnFilterPreference:getAllColleges getArrayOfColleges:^(NSArray * _Nonnull colleges, NSError * _Nonnull error) {
-        if (error != nil) {
-            NSLog(@"%@", error);
-        } else {
-            self.allColleges = colleges;
-            completion(self.allColleges, nil);
-        }
-    }];
-}
-
 + (instancetype)shared {
     static APIManager *sharedManager = nil;
     static dispatch_once_t onceToken;
@@ -79,7 +67,7 @@
     [task resume];
 }
 
-- (void)fetchCollege:(NSString *)segmentNumber getColleges:(void(^)(NSArray *colleges, NSError *error))completion {
+- (void)fetchCollegeForSegment:(NSString *)segmentNumber getColleges:(void(^)(NSArray *colleges, NSError *error))completion {
     NSString *segmentStringURL = @"https://api.collegeai.com/v1/api/college-list?api_key=4c4e51cca8832178dcfb29217c&filters=&info_ids=website%2CshortDescription%2ClongDescription%2CcampusImage%2Ccity%2CstateAbbr%2Caliases%2Ccolors%2ClocationLong%2ClocationLat&offset=";
     segmentStringURL = [segmentStringURL stringByAppendingString:segmentNumber];
     NSURL *url = [NSURL URLWithString:segmentStringURL];
