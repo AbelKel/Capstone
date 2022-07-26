@@ -25,7 +25,7 @@
     bool isFiltered;
     NSMutableArray<College *> *filteredColleges;
     NSMutableArray<College *> *colleges;
-    NSMutableArray<College *> *collegesAtSegment;
+    NSArray<College *> *collegesAtSegment;
     NSString *correctWordToDisplayInSearchBar;
 }
 
@@ -80,8 +80,8 @@
 }
 
 - (void)getCollegesForSegmentControl {
-    NSString *segmentPosition = [NSString stringWithFormat:@"%ld", (self.segmentControlHome.selectedSegmentIndex*10 +10)];
-    [[APIManager shared] fetchCollege:segmentPosition getColleges:^(NSArray * _Nonnull colleges, NSError * _Nonnull error) {
+    NSString *segmentPosition = [NSString stringWithFormat:@"%ld", (self.segmentControlHome.selectedSegmentIndex*10 + 10)];
+    [[APIManager shared] fetchCollegeForSegment:segmentPosition getColleges:^(NSArray * _Nonnull colleges, NSError * _Nonnull error) {
         if (error == nil) {
             self->collegesAtSegment = colleges;
             NSSortDescriptor *sortingBasedOnRigor = [[NSSortDescriptor alloc] initWithKey:@"rigorScore" ascending:YES];
@@ -91,7 +91,7 @@
             [self.tableView reloadData];
             [self.refreshControl endRefreshing];
         } else {
-            NSLog(@"error");
+            NSLog(@"%@", error.localizedDescription);
         }
     }];
 }

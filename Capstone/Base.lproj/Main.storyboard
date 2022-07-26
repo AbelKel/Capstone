@@ -153,13 +153,13 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temple University" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w8F-SE-ccu">
-                                                    <rect key="frame" x="133" y="11" width="261" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temple University" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w8F-SE-ccu">
+                                                    <rect key="frame" x="133" y="2" width="266" height="33"/>
                                                     <gestureRecognizers/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="Icg-tE-KDR"/>
+                                                        <constraint firstAttribute="height" constant="33" id="Icg-tE-KDR"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <connections>
@@ -177,17 +177,17 @@
                                             <constraints>
                                                 <constraint firstItem="d3L-f4-UJb" firstAttribute="leading" secondItem="fkm-6L-RBy" secondAttribute="leadingMargin" constant="-10" id="2iL-08-0tD"/>
                                                 <constraint firstItem="d3L-f4-UJb" firstAttribute="bottom" secondItem="fkm-6L-RBy" secondAttribute="bottomMargin" id="3m8-MJ-zG3"/>
-                                                <constraint firstAttribute="trailing" secondItem="w8F-SE-ccu" secondAttribute="trailing" constant="20" symbolic="YES" id="4vG-M1-jd7"/>
+                                                <constraint firstAttribute="trailing" secondItem="w8F-SE-ccu" secondAttribute="trailing" constant="15" id="4vG-M1-jd7"/>
                                                 <constraint firstAttribute="trailing" secondItem="Kgf-pk-uKI" secondAttribute="trailing" constant="20" symbolic="YES" id="4zb-Ad-Dgh"/>
-                                                <constraint firstItem="w8F-SE-ccu" firstAttribute="trailing" secondItem="Kgf-pk-uKI" secondAttribute="trailing" id="5RP-06-9LJ"/>
-                                                <constraint firstItem="d3L-f4-UJb" firstAttribute="top" secondItem="w8F-SE-ccu" secondAttribute="top" id="7HK-aq-jG1"/>
+                                                <constraint firstItem="w8F-SE-ccu" firstAttribute="trailing" secondItem="Kgf-pk-uKI" secondAttribute="trailing" constant="5" id="5RP-06-9LJ"/>
+                                                <constraint firstItem="d3L-f4-UJb" firstAttribute="top" secondItem="w8F-SE-ccu" secondAttribute="top" constant="9" id="7HK-aq-jG1"/>
                                                 <constraint firstItem="w8F-SE-ccu" firstAttribute="leading" secondItem="20r-pb-VSQ" secondAttribute="leading" id="F2K-cm-Ad7"/>
                                                 <constraint firstAttribute="trailing" secondItem="20r-pb-VSQ" secondAttribute="trailing" constant="95" id="ZS0-yE-Be1"/>
                                                 <constraint firstItem="d3L-f4-UJb" firstAttribute="top" secondItem="fkm-6L-RBy" secondAttribute="topMargin" id="aH2-05-WkT"/>
                                                 <constraint firstItem="20r-pb-VSQ" firstAttribute="leading" secondItem="Kgf-pk-uKI" secondAttribute="leading" id="bwt-oy-Ji4"/>
                                                 <constraint firstItem="w8F-SE-ccu" firstAttribute="leading" secondItem="d3L-f4-UJb" secondAttribute="trailing" constant="8" id="e14-LC-Hdl"/>
                                                 <constraint firstItem="Kgf-pk-uKI" firstAttribute="top" secondItem="20r-pb-VSQ" secondAttribute="bottom" constant="8" id="rbY-aX-eaD"/>
-                                                <constraint firstItem="20r-pb-VSQ" firstAttribute="top" secondItem="w8F-SE-ccu" secondAttribute="bottom" constant="8" id="uSs-e0-qBY"/>
+                                                <constraint firstItem="20r-pb-VSQ" firstAttribute="top" secondItem="w8F-SE-ccu" secondAttribute="bottom" constant="5" id="uSs-e0-qBY"/>
                                                 <constraint firstItem="d3L-f4-UJb" firstAttribute="bottom" secondItem="Kgf-pk-uKI" secondAttribute="bottom" id="ycW-5C-w1h"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -1129,14 +1129,14 @@
                             <tableViewSection headerTitle="About" id="zEK-fs-vHD">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="aut-24-wOP">
-                                        <rect key="frame" x="0.0" y="184.5" width="414" height="43"/>
+                                        <rect key="frame" x="0.0" y="184.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aut-24-wOP" id="GSO-8G-97a">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wmx-7q-L7l">
-                                                    <rect key="frame" x="33" y="11" width="46" height="21"/>
+                                                    <rect key="frame" x="33" y="11" width="46" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
