@@ -45,7 +45,6 @@
     [self getCollegesForSegmentControl];
 }
 
-
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     if (searchText.length == 0) {
         isFiltered = false;
@@ -71,7 +70,6 @@
     self->collegesAtSegment = [self->collegesAtSegment sortedArrayUsingDescriptors:@[sortingBasedOnRigor]];
     [self.tableView reloadData];
 }
-
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     searchBar.text = self->correctWordToDisplayInSearchBar;
