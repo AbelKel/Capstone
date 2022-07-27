@@ -35,6 +35,7 @@
     bool isCollegeAlreadyInParse;
     NSString *iconName;
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.delegate = self;
@@ -69,7 +70,6 @@
     }
 }
 
-
 - (void)getLikedColleges {
     self->relation = [self->currentUser relationForKey:@"likes"];
     PFQuery *query = [relation query];
@@ -86,6 +86,9 @@
     }];
 }
 
+/*
+ Getting all the colleges in parse to avoid duplication when creating relations
+ */
 - (void)allCollegesFromParse {
     PFQuery *query = [PFQuery queryWithClassName:@"Colleges"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *colleges, NSError *error) {
@@ -110,7 +113,6 @@
         }
     }];
 }
-
 
 - (IBAction)didTapLike:(id)sender {
     if ([self->likedCollegeNames containsObject:self.college.name]) {
