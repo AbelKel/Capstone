@@ -183,7 +183,6 @@
 				D97A1FAA287B8609004B8893 /* CollegeNews.h */,
 				D97A1FAB287B8609004B8893 /* CollegeNews.m */,
 				D9F6FA6A2889EDBE009AF63A /* Comment.h */,
-				D9F6FA6B2889EDBE009AF63A /* Comment.m */,
 				D9900A8C288B513000BFFB20 /* ParseCollege.h */,
 				D9900A8D288B513000BFFB20 /* ParseCollege.m */,
 			);
@@ -356,6 +355,7 @@
 			children = (
 				D9784FAB2874B5F90056DD78 /* APIManager.h */,
 				D9784FAC2874B5F90056DD78 /* APIManager.m */,
+				D9F6FA6B2889EDBE009AF63A /* Comment.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
