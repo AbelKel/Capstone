@@ -17,13 +17,14 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControlHome;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @end
 
 @implementation HomeViewController {
     bool isFiltered;
     NSMutableArray<College *> *filteredColleges;
-    NSMutableArray<College *> *colleges;
+    NSArray<College *> *collegesAtSegment;
     NSString *correctWordToDisplayInSearchBar;
 }
 
@@ -33,24 +34,15 @@
     self.tableView.delegate = self;
     self.searchBar.delegate = self;
     isFiltered = false;
-    self->colleges = [[NSMutableArray alloc] init];
-    [self fetchData];
     self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(fetchData) forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl addTarget:self action:@selector(getCollegesForSegmentControl) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
+    [self getCollegesForSegmentControl];
     [self.activityIndicator startAnimating];
 }
 
-- (void)fetchData {
-    [[APIManager shared] getColleges:^(NSArray * _Nonnull colleges, NSError * _Nonnull error) {
-        if (error == nil) {
-            self->colleges = (NSMutableArray *)colleges;
-            [self.activityIndicator stopAnimating];
-            [self.activityIndicator hidesWhenStopped];
-            [self.tableView reloadData];
-            [self.refreshControl endRefreshing];
-        }
-    }];
+- (IBAction)segmentControl:(id)sender {
+    [self getCollegesForSegmentControl];
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
@@ -59,7 +51,7 @@
     } else {
         isFiltered = true;
         self->filteredColleges = [[NSMutableArray alloc] init];
-        for (College *college in self->colleges) {
+        for (College *college in self->collegesAtSegment) {
             NSRange collegeName = [college.name rangeOfString:searchText options:NSCaseInsensitiveSearch];
             if (collegeName.location != NSNotFound) {
                 [self->filteredColleges addObject:college];
@@ -67,14 +59,39 @@
                 [self->filteredColleges addObject:college];
             }
         }
-        NSString *correctWord = [AutocorrectFunctions findCorrectWord:searchText forCollegesInArray:self->colleges];
+        NSString *correctWord = [AutocorrectFunctions findCorrectWord:searchText forCollegesInArray:self->collegesAtSegment];
         self->correctWordToDisplayInSearchBar = correctWord;
     }
     [self.tableView reloadData];
 }
 
+- (IBAction)didTapRigor:(id)sender {
+    NSSortDescriptor *sortingBasedOnRigor = [[NSSortDescriptor alloc] initWithKey:@"rigorScore" ascending:YES];
+    self->collegesAtSegment = [self->collegesAtSegment sortedArrayUsingDescriptors:@[sortingBasedOnRigor]];
+    [self.tableView reloadData];
+}
+
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     searchBar.text = self->correctWordToDisplayInSearchBar;
+}
+
+- (void)getCollegesForSegmentControl {
+    int segmentIndexCorrection = 10;
+    int getCollegesFromAPIAtPostion = self.segmentControlHome.selectedSegmentIndex*10 + segmentIndexCorrection;
+    NSString *segmentPosition = [NSString stringWithFormat:@"%d", (getCollegesFromAPIAtPostion)];
+    [[APIManager shared] fetchCollegeForSegment:segmentPosition getColleges:^(NSArray * _Nonnull colleges, NSError * _Nonnull error) {
+        if (error == nil) {
+            self->collegesAtSegment = colleges;
+            NSSortDescriptor *sortingBasedOnRigor = [[NSSortDescriptor alloc] initWithKey:@"rigorScore" ascending:YES];
+            self->collegesAtSegment = [self->collegesAtSegment sortedArrayUsingDescriptors:@[sortingBasedOnRigor]];
+            [self.activityIndicator stopAnimating];
+            [self.activityIndicator hidesWhenStopped];
+            [self.tableView reloadData];
+            [self.refreshControl endRefreshing];
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
 }
 
 - (IBAction)onTap:(id)sender {
@@ -83,7 +100,7 @@
 
 - (IBAction)didTapLoadWithLocation:(id)sender {
     NSSortDescriptor *sortingBasedOnDistance = [[NSSortDescriptor alloc] initWithKey:@"distance" ascending:YES];
-    self->colleges = [self->colleges sortedArrayUsingDescriptors:@[sortingBasedOnDistance]];
+    self->collegesAtSegment = [self->collegesAtSegment sortedArrayUsingDescriptors:@[sortingBasedOnDistance]];
     [self.tableView reloadData];
 }
 
@@ -91,7 +108,7 @@
     if (isFiltered) {
         return self->filteredColleges.count;
     }
-    return self->colleges.count;
+    return self->collegesAtSegment.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -100,7 +117,7 @@
         College *college = self->filteredColleges[indexPath.row];
         cell.college = college;
     } else {
-        College *college = self->colleges[indexPath.row];
+        College *college = self->collegesAtSegment[indexPath.row];
         cell.college = college;
     }
     return cell;
@@ -109,7 +126,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UITableViewCell *cell = sender;
     NSIndexPath *myIndexPath = [self.tableView indexPathForCell:cell];
-    College *collegeToPass = self->colleges[myIndexPath.row];
+    College *collegeToPass = self->collegesAtSegment[myIndexPath.row];
     DetailsViewController *detailVC = [segue destinationViewController];
     detailVC.college = collegeToPass;
 }
