@@ -15,7 +15,6 @@
 		D91B185F2877B02B00FA423B /* NewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D91B185E2877B02B00FA423B /* NewsCell.m */; };
 		D92D11C52880E663000BB730 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D92D11C42880E663000BB730 /* MapKit.framework */; };
 		D92D11C9288119D9000BB730 /* AutocorrectFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = D92D11C8288119D9000BB730 /* AutocorrectFunctions.m */; };
-		D937304B288C87F100979E57 /* LikesRelations.m in Sources */ = {isa = PBXBuildFile; fileRef = D937304A288C87F100979E57 /* LikesRelations.m */; };
 		D937304E288E30DF00979E57 /* MatchesRelations.m in Sources */ = {isa = PBXBuildFile; fileRef = D937304D288E30DF00979E57 /* MatchesRelations.m */; };
 		D945E1D328718497005FFE04 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D945E1D228718497005FFE04 /* AppDelegate.m */; };
 		D945E1D628718497005FFE04 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D945E1D528718497005FFE04 /* SceneDelegate.m */; };
@@ -79,8 +78,6 @@
 		D92D11C42880E663000BB730 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D92D11C7288119D9000BB730 /* AutocorrectFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutocorrectFunctions.h; sourceTree = "<group>"; };
 		D92D11C8288119D9000BB730 /* AutocorrectFunctions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutocorrectFunctions.m; sourceTree = "<group>"; };
-		D9373049288C87F100979E57 /* LikesRelations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LikesRelations.h; sourceTree = "<group>"; };
-		D937304A288C87F100979E57 /* LikesRelations.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LikesRelations.m; sourceTree = "<group>"; };
 		D937304C288E30DF00979E57 /* MatchesRelations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchesRelations.h; sourceTree = "<group>"; };
 		D937304D288E30DF00979E57 /* MatchesRelations.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchesRelations.m; sourceTree = "<group>"; };
 		D945E1CE28718497005FFE04 /* Capstone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Capstone.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -192,8 +189,6 @@
 				D9F6FA6B2889EDBE009AF63A /* Comment.m */,
 				D9900A8C288B513000BFFB20 /* ParseCollege.h */,
 				D9900A8D288B513000BFFB20 /* ParseCollege.m */,
-				D9373049288C87F100979E57 /* LikesRelations.h */,
-				D937304A288C87F100979E57 /* LikesRelations.m */,
 				D937304C288E30DF00979E57 /* MatchesRelations.h */,
 				D937304D288E30DF00979E57 /* MatchesRelations.m */,
 			);
@@ -643,7 +638,6 @@
 				D91B185F2877B02B00FA423B /* NewsCell.m in Sources */,
 				D9539289287E181A00207CC6 /* SettingsTableViewController.m in Sources */,
 				D945E20A287188C7005FFE04 /* LoginViewController.m in Sources */,
-				D937304B288C87F100979E57 /* LikesRelations.m in Sources */,
 				D94C5B872872B2E800BE7FDD /* RegistrationViewController.m in Sources */,
 				D9784FA3287404C90056DD78 /* HomeViewController.m in Sources */,
 			);
