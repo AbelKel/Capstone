@@ -12,7 +12,6 @@
 #import "LikeViewController.h"
 #import "LongDetailsViewController.h"
 #import "Comment.h"
-#import "LikesRelations.h"
 #import "ParseCollege.h"
 
 @interface DetailsViewController () <UITableViewDelegate, UITableViewDataSource>
@@ -28,27 +27,31 @@
 
 @implementation DetailsViewController {
     NSArray<Comment *> *comments;
-    NSMutableArray<LikesRelations *> *likedCollegesFromParse;
-    NSMutableArray<ParseCollege *> *colleges;
-    NSMutableArray<LikesRelations *> *likedRelations;
     NSMutableArray<ParseCollege *> *allLikedColleges;
+    NSMutableArray<ParseCollege *> *allCollegesFromParse;
+    NSMutableArray<NSString *> *likedCollegeNames;
+    PFUser *currentUser;
+    PFRelation *relation;
+    bool isCollegeAlreadyInParse;
+    NSString *iconName;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self->likedRelations = [[NSMutableArray alloc] init];
     self.detailsCollegeName.text = self.college.name;;
     self.detailsCollegeDetails.text = self.college.details;
     self.detailsCollegeLocation.text = self.college.location;
     NSURL *url = [NSURL URLWithString:self.college.image];
     [self.detailsCollegeImage setImageWithURL:url];
-    self->colleges = [[NSMutableArray alloc] init];
+    self->currentUser = [PFUser currentUser];
     self->allLikedColleges = [[NSMutableArray alloc] init];
+    self->likedCollegeNames = [[NSMutableArray alloc] init];
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
     tapGesture.numberOfTapsRequired = 2;
     [self.detailsCollegeImage setUserInteractionEnabled:YES];
     [self.detailsCollegeImage addGestureRecognizer:tapGesture];
+    [self allCollegesFromParse];
     [self getComments];
     [self getLikedColleges];
 }
@@ -66,24 +69,15 @@
     }
 }
 
-/*
- This method gets the Parse Objects from Like Relations class in Parse along with all the  collges the
- user has liked hence the key being used "likedCollege"
- */
+
 - (void)getLikedColleges {
-    PFQuery *query = [PFQuery queryWithClassName:@"LikesRelations"];
-    [query includeKey:@"likedCollege"];
-    [query includeKey:@"author"];
+    self->relation = [self->currentUser relationForKey:@"likes"];
+    PFQuery *query = [relation query];
     [query findObjectsInBackgroundWithBlock:^(NSArray *colleges, NSError *error) {
         if (colleges != nil) {
-            self->likedCollegesFromParse = (NSMutableArray *)colleges;
-            for (LikesRelations *allCollegeObjetsInParse in self->likedCollegesFromParse) {
-                [self->allLikedColleges addObject:allCollegeObjetsInParse.likedCollege];
-            }
-            for (LikesRelations *collegeFromParse in self->likedCollegesFromParse) {
-                if (collegeFromParse.author.username == [PFUser currentUser].username) {
-                    [self->colleges addObject:collegeFromParse.likedCollege];
-                }
+            self->allLikedColleges = (NSMutableArray *)colleges;
+            for (ParseCollege *likedCollege in self->allLikedColleges) {
+                [self->likedCollegeNames addObject:likedCollege.name];
             }
             [self likeChecker];
         } else {
@@ -92,9 +86,17 @@
     }];
 }
 
-/*
- Should I implement pointers and relations for this. It seems to work fine without them.
- */
+- (void)allCollegesFromParse {
+    PFQuery *query = [PFQuery queryWithClassName:@"Colleges"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *colleges, NSError *error) {
+        if (colleges != nil) {
+            self->allCollegesFromParse = (NSMutableArray *)colleges;
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+}
+
 - (void)getComments {
     PFQuery *query = [PFQuery queryWithClassName:@"Comments"];
     [query includeKey:@"author"];
@@ -109,69 +111,45 @@
     }];
 }
 
-/*
- This works well, but I feel like it can be optimized.
- */
 
 - (IBAction)didTapLike:(id)sender {
-    NSMutableArray *likedCollegeNames = [[NSMutableArray alloc] init];
-    for (ParseCollege *likedColleges in self->colleges) {
-        [likedCollegeNames addObject:likedColleges.name];
-    }
-    if ([likedCollegeNames containsObject:self.college.name]) {
-        [self.likeCollege setImage:[UIImage imageNamed:@"favor-icon.png"]forState:UIControlStateNormal];
-        [self deleteParseObject:self.college.name];
+    if ([self->likedCollegeNames containsObject:self.college.name]) {
+        for (ParseCollege *likedCollege in self->allLikedColleges) {
+            if ([likedCollege.name isEqual:self.college.name]) {
+                [self->relation removeObject:likedCollege];
+                [self->currentUser save];
+            }
+        }
+        self->iconName = @"favor-icon.png";
     } else {
-        [self.likeCollege setImage:[UIImage imageNamed:@"favor-icon-red.png"]forState:UIControlStateNormal];
-        NSMutableArray *allLikedCollegeNames = [[NSMutableArray alloc] init];
-        for (ParseCollege *likedColleges in self->allLikedColleges) {
-            [allLikedCollegeNames addObject:likedColleges.name];
-        }
-        if (![allLikedCollegeNames containsObject:self.college.name]) {
-            ParseCollege *current = [ParseCollege postCollege:self.college withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-            }];
-            [LikesRelations postUserLikes:self.college forParseCollege:current withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-            }];
-        } else {
-            for (ParseCollege *college in self->allLikedColleges) {
-                if ([college.name isEqual:self.college.name]) {
-                    [LikesRelations postUserLikes:self.college forParseCollege:college withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-                    }];
-                }
+        self->isCollegeAlreadyInParse = false;
+        for (ParseCollege *college in self->allCollegesFromParse) { //checking if the college is already in the parse database
+            if ([college.name isEqual:self.college.name]) {
+                self->isCollegeAlreadyInParse = true;
+                [self->relation addObject:college]; //adding a relation to the already existing college object in parse
+                [self->currentUser saveInBackground];
             }
         }
+        if (!isCollegeAlreadyInParse) {
+            ParseCollege *currentCollege = [ParseCollege postCollege:self.college withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+            }];
+            [currentCollege save];
+            [self->currentUser save];
+            [self->relation addObject:currentCollege];
+            [self->currentUser saveInBackground];
+        }
+        self->iconName = @"favor-icon-red.png";
     }
-}
-
-- (void)deleteParseObject:(NSString *)name {
-    PFQuery *query = [PFQuery queryWithClassName:@"LikesRelations"];
-    [query includeKey:@"likedCollege"];
-    [query includeKey:@"author"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *colleges, NSError *error) {
-        if (colleges != nil) {
-            for (LikesRelations *relation in colleges) {
-                ParseCollege *collegeToDelete = relation.likedCollege;
-                if ([[PFUser currentUser].username isEqual:relation.username] && ([collegeToDelete.name isEqual:self.college.name])) {
-                    [relation deleteInBackground];
-                }
-            }
-        } else {
-            NSLog(@"%@", error.localizedDescription);
-        }
-    }];
+    [self.likeCollege setImage:[UIImage imageNamed:self->iconName]forState:UIControlStateNormal];
 }
 
 - (void)likeChecker {
-    NSMutableArray *likedCollegeNames = [[NSMutableArray alloc] init];
-    for (ParseCollege *likedColleges in self->colleges) {
-        [likedCollegeNames addObject:likedColleges.name];
-    }
-    if ([likedCollegeNames containsObject:self.college.name]) {
-        [self.likeCollege setImage:[UIImage imageNamed:@"favor-icon-red.png"]forState:UIControlStateNormal];
+    if ([self->likedCollegeNames containsObject:self.college.name]) {
+        self->iconName = @"favor-icon-red.png";
     } else {
-        [self.likeCollege setImage:[UIImage imageNamed:@"favor-icon.png"]forState:UIControlStateNormal];
+        self->iconName = @"favor-icon.png";
     }
-    
+    [self.likeCollege setImage:[UIImage imageNamed:self->iconName]forState:UIControlStateNormal];
 }
 
 - (IBAction)onTap:(id)sender {

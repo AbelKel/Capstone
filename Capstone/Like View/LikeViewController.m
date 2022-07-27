@@ -5,7 +5,6 @@
 //  Created by Abel Kelbessa on 7/12/22.
 //
 #import "LikeViewController.h"
-#import "LikesRelations.h"
 #import <Parse/Parse.h>
 #import "APIManager.h"
 #import "College.h"
@@ -21,9 +20,7 @@
 @end
 
 @implementation LikeViewController {
-    NSArray<College *> *likedCollegeNames;
-    NSArray<ParseCollege *> *colleges;
-    NSMutableArray<College *> *likedCollegesToDisplay;
+    NSArray<ParseCollege *> *likedColleges;
     UIRefreshControl *refreshControl;
 }
 
@@ -34,9 +31,7 @@
     self.tableView.emptyDataSetSource = self;
     self.tableView.emptyDataSetDelegate = self;
     self.tableView.tableFooterView = [UIView new];
-    self->likedCollegeNames = [[NSArray alloc] init];
-    self->likedCollegesToDisplay = [[NSMutableArray alloc] init];
-    self->colleges = [[NSArray alloc] init];
+    self->likedColleges = [[NSArray alloc] init];
     self->refreshControl = [[UIRefreshControl alloc] init];
     [self->refreshControl addTarget:self action:@selector(getLikedColleges) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self->refreshControl atIndex:0];
@@ -44,19 +39,13 @@
 }
 
 - (void)getLikedColleges {
-    self.collegesFromQuery = [[NSMutableArray alloc] init];
-    PFQuery *query = [PFQuery queryWithClassName:@"LikesRelations"];
-    [query includeKey:@"author"];
-    [query includeKey:@"likedCollege"];
+    PFUser *currentUser = [PFUser currentUser];
+    PFRelation *relation = [currentUser relationForKey:@"likes"];
+    PFQuery *query = [relation query];
     [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *colleges, NSError *error) {
         if (colleges != nil) {
-            for (LikesRelations *college in colleges) {
-                if (college.author.username == [PFUser currentUser].username) {
-                    [self.collegesFromQuery addObject:college.likedCollege];
-                }
-            }
-            self->colleges = self.collegesFromQuery;
+            self->likedColleges = colleges;
             [self.activityIndicator stopAnimating];
             [self.activityIndicator hidesWhenStopped];
             [self.tableView reloadData];
@@ -92,12 +81,12 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self->colleges.count;
+    return self->likedColleges.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     LikeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LikeCell"];
-    College *college = self->colleges[indexPath.row];
+    College *college = self->likedColleges[indexPath.row];
     cell.college = college;
     return cell;
 }
@@ -105,7 +94,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UITableViewCell *cell = sender;
     NSIndexPath *myIndexPath = [self.tableView indexPathForCell:cell];
-    College *collegeToPass = self->colleges[myIndexPath.row];
+    College *collegeToPass = self->likedColleges[myIndexPath.row];
     DetailsViewController *detailVC = [segue destinationViewController];
     detailVC.college = collegeToPass;
 }
