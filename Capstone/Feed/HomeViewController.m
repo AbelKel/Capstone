@@ -76,7 +76,9 @@
 }
 
 - (void)getCollegesForSegmentControl {
-    NSString *segmentPosition = [NSString stringWithFormat:@"%ld", (self.segmentControlHome.selectedSegmentIndex*10 + 10)];
+    int segmentIndexCorrection = 10;
+    int getCollegesFromAPIAtPostion = self.segmentControlHome.selectedSegmentIndex*10 + segmentIndexCorrection;
+    NSString *segmentPosition = [NSString stringWithFormat:@"%d", (getCollegesFromAPIAtPostion)];
     [[APIManager shared] fetchCollegeForSegment:segmentPosition getColleges:^(NSArray * _Nonnull colleges, NSError * _Nonnull error) {
         if (error == nil) {
             self->collegesAtSegment = colleges;
