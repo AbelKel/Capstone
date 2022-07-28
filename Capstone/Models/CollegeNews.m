@@ -19,8 +19,10 @@
 + (NSMutableArray *)collegesWithArrayNews:(NSArray *)dictionaries {
     NSMutableArray *collegeNews = [[NSMutableArray alloc] init];
     for (NSDictionary *dictionary in dictionaries) {
-        CollegeNews *college = [[CollegeNews alloc] initWithDictionaryNews:dictionary];
-        [collegeNews addObject:college];
+        if (dictionary[@"title"] != [NSNull null] && dictionary[@"description"] != [NSNull null] && dictionary[@"urlToImage"] != [NSNull null]) {
+            CollegeNews *college = [[CollegeNews alloc] initWithDictionaryNews:dictionary];
+            [collegeNews addObject:college];
+        }
     }
     return collegeNews;
 }
