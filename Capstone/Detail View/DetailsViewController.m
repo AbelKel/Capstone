@@ -27,13 +27,12 @@
 
 @implementation DetailsViewController {
     NSArray<Comment *> *comments;
-    NSMutableArray<ParseCollege *> *allLikedColleges;
-    NSMutableArray<ParseCollege *> *allCollegesFromParse;
-    NSMutableArray<NSString *> *likedCollegeNames;
     PFUser *currentUser;
     PFRelation *relation;
     bool isCollegeAlreadyInParse;
     NSString *iconName;
+    ParseCollege *collegeFromParse;
+    NSInteger likedCollegeMatches;
 }
 
 - (void)viewDidLoad {
@@ -46,15 +45,13 @@
     NSURL *url = [NSURL URLWithString:self.college.image];
     [self.detailsCollegeImage setImageWithURL:url];
     self->currentUser = [PFUser currentUser];
-    self->allLikedColleges = [[NSMutableArray alloc] init];
-    self->likedCollegeNames = [[NSMutableArray alloc] init];
+    self->relation = [self->currentUser relationForKey:@"likes"];
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
     tapGesture.numberOfTapsRequired = 2;
     [self.detailsCollegeImage setUserInteractionEnabled:YES];
     [self.detailsCollegeImage addGestureRecognizer:tapGesture];
     [self allCollegesFromParse];
     [self getComments];
-    [self getLikedColleges];
 }
 
 - (void)handleDoubleTap:(UITapGestureRecognizer *)sender {
@@ -70,34 +67,21 @@
     }
 }
 
-- (void)getLikedColleges {
-    self->relation = [self->currentUser relationForKey:@"likes"];
-    PFQuery *query = [relation query];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *colleges, NSError *error) {
-        if (colleges != nil) {
-            self->allLikedColleges = (NSMutableArray *)colleges;
-            for (ParseCollege *likedCollege in self->allLikedColleges) {
-                [self->likedCollegeNames addObject:likedCollege.name];
-            }
-            [self likeChecker];
-        } else {
-            NSLog(@"%@", error.localizedDescription);
-        }
-    }];
-}
-
 /*
  Getting all the colleges in parse to avoid duplication when creating relations
  */
 - (void)allCollegesFromParse {
     PFQuery *query = [PFQuery queryWithClassName:@"Colleges"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *colleges, NSError *error) {
-        if (colleges != nil) {
-            self->allCollegesFromParse = (NSMutableArray *)colleges;
-        } else {
-            NSLog(@"%@", error.localizedDescription);
-        }
-    }];
+    [query whereKey:@"name" equalTo:self.college.name];
+    NSInteger collegeMatches = [query countObjects];
+    if (collegeMatches > 0) {
+        [query findObjectsInBackgroundWithBlock:^(NSArray *colleges, NSError *error) {
+            self->collegeFromParse = [colleges objectAtIndex:0];
+            self->isCollegeAlreadyInParse = true;
+            [self likeChecker];
+        }];
+    }
+    
 }
 
 - (void)getComments {
@@ -115,40 +99,35 @@
 }
 
 - (IBAction)didTapLike:(id)sender {
-    if ([self->likedCollegeNames containsObject:self.college.name]) {
-        for (ParseCollege *likedCollege in self->allLikedColleges) {
-            if ([likedCollege.name isEqual:self.college.name]) {
-                [self->relation removeObject:likedCollege];
-                [self->currentUser save];
-            }
-        }
+    if (self->likedCollegeMatches > 0) {
+        [self->relation removeObject:self->collegeFromParse];
+        [self->currentUser saveInBackground];
         self->iconName = @"favor-icon.png";
-    } else {
-        self->isCollegeAlreadyInParse = false;
-        for (ParseCollege *college in self->allCollegesFromParse) { //checking if the college is already in the parse database
-            if ([college.name isEqual:self.college.name]) {
-                self->isCollegeAlreadyInParse = true;
-                [self->relation addObject:college]; //adding a relation to the already existing college object in parse
-                [self->currentUser saveInBackground];
-            }
-        }
-        if (!isCollegeAlreadyInParse) {
-            ParseCollege *currentCollege = [ParseCollege postCollege:self.college withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-            }];
-            [currentCollege save];
-            [self->currentUser save];
-            [self->relation addObject:currentCollege];
-            [self->currentUser saveInBackground];
-        }
+    } else if (isCollegeAlreadyInParse && likedCollegeMatches == 0) {
+        [self->relation addObject:self->collegeFromParse];
+        [self->currentUser saveInBackground];
         self->iconName = @"favor-icon-red.png";
+    } else {
+        ParseCollege *currentCollege = [ParseCollege postCollege:self.college withCompletion:^(BOOL succeeded, NSError * _Nullable error) {}];
+        [currentCollege save];
+        [self->relation addObject:currentCollege];
+        [self->currentUser saveInBackground];
+        self->iconName = @"favor-icon-red.png";
+
     }
     [self.likeCollege setImage:[UIImage imageNamed:self->iconName]forState:UIControlStateNormal];
 }
 
 - (void)likeChecker {
-    if ([self->likedCollegeNames containsObject:self.college.name]) {
+    PFRelation *relation = [self->currentUser relationForKey:@"likes"];
+    PFQuery *likesQuery = [relation query];
+    if (self->collegeFromParse != nil) {
+    [likesQuery whereKey:@"name" equalTo:self->collegeFromParse.name];
+    self->likedCollegeMatches = [likesQuery countObjects];
+    }
+    if (self->likedCollegeMatches == 1) {
         self->iconName = @"favor-icon-red.png";
-    } else {
+    } else if (self->likedCollegeMatches == 0){
         self->iconName = @"favor-icon.png";
     }
     [self.likeCollege setImage:[UIImage imageNamed:self->iconName]forState:UIControlStateNormal];
