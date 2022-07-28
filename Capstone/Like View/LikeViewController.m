@@ -42,7 +42,6 @@
     PFUser *currentUser = [PFUser currentUser];
     PFRelation *relation = [currentUser relationForKey:@"likes"];
     PFQuery *query = [relation query];
-    [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *colleges, NSError *error) {
         if (colleges != nil) {
             self->likedColleges = colleges;
