@@ -37,8 +37,10 @@
     return sharedManager;
 }
 
-- (void)fetchCollegeNews:(void(^)(NSArray *collegeNews, NSError *error))completion {
-    NSURL *url = [NSURL URLWithString:@"https://newsapi.org/v2/everything?q=University&apiKey=7f0d9c3ee4ac401e8d6a714629947c61"];
+- (void)fetchCollegeNews:(NSString *)collegeWebsite getArrayOfColelgeNews:(void(^)(NSArray *collegeNews, NSError *error))completion {
+    NSString *stringURLForCollegeNews = @"https://newsapi.org/v2/everything?apiKey=7f0d9c3ee4ac401e8d6a714629947c61&domains=";
+    stringURLForCollegeNews = [stringURLForCollegeNews stringByAppendingString:collegeWebsite];
+    NSURL *url = [NSURL URLWithString:stringURLForCollegeNews];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {

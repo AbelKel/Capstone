@@ -8,11 +8,16 @@
 #import "CollegeNews.h"
 #import "NewsCell.h"
 #import "APIManager.h"
+#import "ParseCollege.h"
+
 @interface NewsViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 @end
 @implementation NewsViewController {
     NSMutableArray<CollegeNews *> *collegeArticles;
+    NSString *websitesToGetNewsFrom;
 }
 
 - (void)viewDidLoad {
@@ -20,18 +25,43 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self->collegeArticles = [[NSMutableArray alloc] init];
-    [self fetchData];
+    self->websitesToGetNewsFrom = [[NSString alloc] init];
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchUserLikes) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
+    [self fetchUserLikes];
+    [self.activityIndicator startAnimating];
 }
 
-- (void)fetchData {
-    [[APIManager shared] fetchCollegeNews:^(NSArray *collegeNews, NSError *error) {
-        if (error != nil) {
-            NSLog(@"%@", error);
+- (void)viewDidAppear:(BOOL)animated {
+    [self fetchUserLikes];
+}
+
+- (void)fetchUserLikes {
+    PFUser *currentUser = [PFUser currentUser];
+    PFRelation *relation = [currentUser relationForKey:@"likes"];
+    PFQuery *query = [relation query];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *colleges, NSError *error) {
+        if (colleges != nil) {
+            NSString* collegeSite;
+            for (ParseCollege *college in colleges) {
+                collegeSite = [college.website substringFromIndex:4];
+                self->websitesToGetNewsFrom = [self->websitesToGetNewsFrom stringByAppendingString:collegeSite];
+                self->websitesToGetNewsFrom = [self->websitesToGetNewsFrom stringByAppendingString:@","];
+            }
+            [self getArticles:self->websitesToGetNewsFrom];
         } else {
-            self->collegeArticles = (NSMutableArray *)collegeNews;
-            NSLog(@"%@", self->collegeArticles);
-            [self.tableView reloadData];
+            NSLog(@"%@", error.localizedDescription);
         }
+    }];
+}
+
+- (void)getArticles:(NSString *)website {
+    [[APIManager shared] fetchCollegeNews:website getArrayOfColelgeNews:^(NSArray * _Nonnull collegeNews, NSError * _Nonnull error) {
+        self->collegeArticles = collegeNews;
+        [self.activityIndicator stopAnimating];
+        [self.activityIndicator hidesWhenStopped];
+        [self.tableView reloadData];
     }];
 }
 
