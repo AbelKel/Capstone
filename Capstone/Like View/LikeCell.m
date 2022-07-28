@@ -22,5 +22,6 @@
     self.likedCollegeDescription.text = college.details;
     NSURL *url = [NSURL URLWithString:college.image];
     [self.likedCollegeImage setImageWithURL:url];
+    NSLog(@"%@", college.details);
 }
 @end

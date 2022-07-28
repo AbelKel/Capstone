@@ -11,6 +11,7 @@
 #import <FBSDKCoreKit/FBSDKProfile.h>
 #import "MatchCell.h"
 #import "MatchViewController.h"
+#import "MatchesRelations.h"
 #import "DetailsViewController.h"
 
 @interface AccountViewController () <UITableViewDelegate, UITableViewDataSource>
@@ -20,8 +21,8 @@
 @end
 
 @implementation AccountViewController {
-    NSMutableArray<College *> *matchedColleges;
     NSArray<College *> *colleges;
+    NSMutableArray<ParseCollege *> *collegesFromQuery;
 }
 
 - (void)viewDidLoad {
@@ -34,8 +35,6 @@
         self.profileImage.file = current[@"image"];
         [self.profileImage loadInBackground];
     }
-    [self getMatchedColleges];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(viewDidAppear:) name:@"reloadDataForMatches" object:nil];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(getMatchedColleges) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
@@ -46,22 +45,24 @@
 }
 
 - (void)getMatchedColleges {
-    PFUser *current = [PFUser currentUser];
-    PFQuery *query = [PFQuery queryWithClassName:@"MacthedColleges"];
-    [query whereKey:@"userID" equalTo:current.username];
+    self->collegesFromQuery = [[NSMutableArray alloc] init];
+    PFQuery *query = [PFQuery queryWithClassName:@"MatchesRelations"];
+    [query includeKey:@"author"];
+    [query includeKey:@"matchedCollege"];
     [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *colleges, NSError *error) {
         if (colleges != nil) {
-            self->matchedColleges = (NSMutableArray *)colleges;
-            if (self->matchedColleges != nil) {
-                self->colleges = [College collegesWithArray:self->matchedColleges];
-                [self.tableView reloadData];
+            for (MatchesRelations *match in colleges) {
+                if (match.author.username == [PFUser currentUser].username) {
+                    [self->collegesFromQuery addObject:match.matchedCollege];
+                }
             }
+            self->colleges = self->collegesFromQuery;
+            [self.tableView reloadData];
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
     }];
-    [self.refreshControl endRefreshing];
 }
 
 - (IBAction)didTapLogout:(id)sender {

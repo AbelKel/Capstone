@@ -15,6 +15,7 @@
 		D91B185F2877B02B00FA423B /* NewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D91B185E2877B02B00FA423B /* NewsCell.m */; };
 		D92D11C52880E663000BB730 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D92D11C42880E663000BB730 /* MapKit.framework */; };
 		D92D11C9288119D9000BB730 /* AutocorrectFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = D92D11C8288119D9000BB730 /* AutocorrectFunctions.m */; };
+		D937304E288E30DF00979E57 /* MatchesRelations.m in Sources */ = {isa = PBXBuildFile; fileRef = D937304D288E30DF00979E57 /* MatchesRelations.m */; };
 		D945E1D328718497005FFE04 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D945E1D228718497005FFE04 /* AppDelegate.m */; };
 		D945E1D628718497005FFE04 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D945E1D528718497005FFE04 /* SceneDelegate.m */; };
 		D945E1DC28718497005FFE04 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D945E1DA28718497005FFE04 /* Main.storyboard */; };
@@ -77,6 +78,8 @@
 		D92D11C42880E663000BB730 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D92D11C7288119D9000BB730 /* AutocorrectFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutocorrectFunctions.h; sourceTree = "<group>"; };
 		D92D11C8288119D9000BB730 /* AutocorrectFunctions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutocorrectFunctions.m; sourceTree = "<group>"; };
+		D937304C288E30DF00979E57 /* MatchesRelations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchesRelations.h; sourceTree = "<group>"; };
+		D937304D288E30DF00979E57 /* MatchesRelations.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchesRelations.m; sourceTree = "<group>"; };
 		D945E1CE28718497005FFE04 /* Capstone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Capstone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D945E1D128718497005FFE04 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D945E1D228718497005FFE04 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -185,6 +188,8 @@
 				D9F6FA6A2889EDBE009AF63A /* Comment.h */,
 				D9900A8C288B513000BFFB20 /* ParseCollege.h */,
 				D9900A8D288B513000BFFB20 /* ParseCollege.m */,
+				D937304C288E30DF00979E57 /* MatchesRelations.h */,
+				D937304D288E30DF00979E57 /* MatchesRelations.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -619,6 +624,7 @@
 				D9F6FA6C2889EDBE009AF63A /* Comment.m in Sources */,
 				D9900A8E288B513000BFFB20 /* ParseCollege.m in Sources */,
 				D9539283287CC1E800207CC6 /* MatchCell.m in Sources */,
+				D937304E288E30DF00979E57 /* MatchesRelations.m in Sources */,
 				D91B18552877944500FA423B /* College.m in Sources */,
 				D945E1E428718497005FFE04 /* main.m in Sources */,
 				D9F6FA692887EAFB009AF63A /* LongDetailsViewController.m in Sources */,
