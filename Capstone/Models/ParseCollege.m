@@ -40,7 +40,7 @@
     collegeToParse.lat = college.lat;
     collegeToParse.rigorScore = college.rigorScore;
     collegeToParse.distance = college.distance;
-//    [collegeToParse saveInBackgroundWithBlock: completion];
+    [collegeToParse saveInBackgroundWithBlock: completion];
     return collegeToParse;
 }
 @end
