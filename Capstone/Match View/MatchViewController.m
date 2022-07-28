@@ -8,7 +8,9 @@
 #import "APIManager.h"
 #import "College.h"
 #import "AccountViewController.h"
+#import "ParseCollege.h"
 #import <Parse/Parse.h>
+#import "MatchesRelations.h"
 
 @interface MatchViewController ()
 
@@ -23,13 +25,16 @@
 @end
 
 @implementation MatchViewController {
-    NSArray *initailCollegeList;
+    NSArray<College *> *initailCollegeList;
     NSString *satScore;
-    NSMutableArray *filteredList;
+    NSMutableArray<College *> *filteredList;
     NSString *city;
     NSString *zipcode;
-    NSArray *collegeBasedOnSize;
-    NSArray *collegesBasedOnFunding;
+    NSArray<College *> *collegeBasedOnSize;
+    NSArray<College *> *collegesBasedOnFunding;
+    NSArray<MatchesRelations *> *allColleges;
+    NSMutableArray<NSString *> *allCollegeNames;
+    NSMutableArray<ParseCollege *> *allCollegeFromParse;
 }
 
 - (void)viewDidLoad {
@@ -38,6 +43,8 @@
     self->initailCollegeList = [[NSArray alloc] init];
     self->collegeBasedOnSize = [[NSArray alloc] init];
     self->collegesBasedOnFunding = [[NSArray alloc] init];
+    self->allCollegeNames = [[NSMutableArray alloc] init];
+    self->allCollegeFromParse = [[NSMutableArray alloc] init];
 }
 
 - (void)fetchData {
@@ -120,30 +127,50 @@
     }
     NSSortDescriptor *sortingBasedOnDistance = [[NSSortDescriptor alloc] initWithKey:@"distance" ascending:YES];
     self->filteredList = [self->filteredList sortedArrayUsingDescriptors:@[sortingBasedOnDistance]];
-    [self uploadCollegesToParse];
+    [self getCollegesInParse];
 }
 
-/*
- I wanted to only upload colleges that have all the information that a user would need to
- look up a college. That is why you see a long if statement in the uploadCollegesToParse function. It also
- helps avoid the problem of dealing with NSNull. However, making use of a new Schema in the next PR will
- probably improve it. 
- */
+- (void)getCollegesInParse {
+    PFQuery *query = [PFQuery queryWithClassName:@"MatchesRelations"];
+    [query includeKey:@"matchedCollege"];
+    [query includeKey:@"author"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *colleges, NSError *error) {
+        if (colleges != nil) {
+            self->allColleges = colleges;
+            for (MatchesRelations *relations in self->allColleges) {
+                [self->allCollegeFromParse addObject:relations.matchedCollege];
+            }
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+        [self uploadCollegesToParse];
+    }];
+    
+}
+
 - (void)uploadCollegesToParse {
-    PFUser *current = [PFUser currentUser];
-    PFObject *collegeToParse = [PFObject objectWithClassName:@"MacthedColleges"];
-    for (College *college in self->filteredList) {
-        if ((college.name != nil) && (college.location != nil) && (college.details != nil) && (college.image != nil) && (college.website != nil)) {
-            collegeToParse[@"name"] = college.name;
-            collegeToParse[@"city"] = college.location;
-            collegeToParse[@"shortDescription"] = college.details;
-            collegeToParse[@"longDescription"] = college.detailsLong;
-            collegeToParse[@"campusImage"] = college.image;
-            collegeToParse[@"website"] = college.website;
-            collegeToParse[@"userID"] = current.username;
-            [collegeToParse saveEventually];
+    if (self->filteredList != nil) {
+        for (ParseCollege *college in self->allCollegeFromParse) {
+            [self->allCollegeNames addObject:college.name];
+        }
+        for (College *collegeInFilteredList in self->filteredList) {
+            if (![self->allCollegeNames containsObject:collegeInFilteredList.name]) {
+                ParseCollege *current = [ParseCollege postCollege:collegeInFilteredList withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+                }];
+                [MatchesRelations postUserMatches:collegeInFilteredList forParseCollege:current withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+                }];
+            }
+        }
+        for (MatchesRelations *college in self->allColleges) {
+            for (College *collegeInFilteredList in self->filteredList) {
+                ParseCollege *collegeInParse = college.matchedCollege;
+
+                if ([collegeInParse.name isEqual:collegeInFilteredList.name]) {
+                    [MatchesRelations postUserMatches:collegeInFilteredList forParseCollege:collegeInParse withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+                    }];
+                }
+            }
         }
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadDataForMatches" object:self];
 }
 @end

@@ -12,6 +12,7 @@
 #import "LikeViewController.h"
 #import "LongDetailsViewController.h"
 #import "Comment.h"
+#import "ParseCollege.h"
 
 @interface DetailsViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIImageView *detailsCollegeImage;
@@ -25,26 +26,31 @@
 @end
 
 @implementation DetailsViewController {
-    NSArray *comments;
-    NSMutableArray *likesArray;
+    NSArray<Comment *> *comments;
+    PFUser *currentUser;
+    PFRelation *relation;
+    bool isCollegeAlreadyInParse;
+    NSString *iconName;
+    ParseCollege *collegeFromParse;
+    NSInteger likedCollegeMatches;
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self->likesArray = [[NSMutableArray alloc] init];
     self.detailsCollegeName.text = self.college.name;;
     self.detailsCollegeDetails.text = self.college.details;
     self.detailsCollegeLocation.text = self.college.location;
     NSURL *url = [NSURL URLWithString:self.college.image];
     [self.detailsCollegeImage setImageWithURL:url];
+    self->currentUser = [PFUser currentUser];
+    self->relation = [self->currentUser relationForKey:@"likes"];
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
     tapGesture.numberOfTapsRequired = 2;
     [self.detailsCollegeImage setUserInteractionEnabled:YES];
     [self.detailsCollegeImage addGestureRecognizer:tapGesture];
-    PFUser *current = [PFUser currentUser];
-    self->likesArray = [NSMutableArray arrayWithArray:current[@"likes"]];
-    [self likeChecker];
+    [self allCollegesFromParse];
     [self getComments];
 }
 
@@ -59,6 +65,23 @@
     if ([[UIApplication sharedApplication] canOpenURL:url]) {
        [[UIApplication sharedApplication] openURL:url];
     }
+}
+
+/*
+ Getting all the colleges in parse to avoid duplication when creating relations
+ */
+- (void)allCollegesFromParse {
+    PFQuery *query = [PFQuery queryWithClassName:@"Colleges"];
+    [query whereKey:@"name" equalTo:self.college.name];
+    NSInteger collegeMatches = [query countObjects];
+    if (collegeMatches > 0) {
+        [query findObjectsInBackgroundWithBlock:^(NSArray *colleges, NSError *error) {
+            self->collegeFromParse = [colleges objectAtIndex:0];
+            self->isCollegeAlreadyInParse = true;
+            [self likeChecker];
+        }];
+    }
+    
 }
 
 - (void)getComments {
@@ -76,25 +99,38 @@
 }
 
 - (IBAction)didTapLike:(id)sender {
-    PFUser *current = [PFUser currentUser];
-    if ([self->likesArray containsObject:self.college.name]) {
-        [self.likeCollege setImage:[UIImage imageNamed:@"favor-icon.png"]forState:UIControlStateNormal];
-        [self->likesArray removeObject:self.college.name];
+    if (self->likedCollegeMatches > 0) {
+        [self->relation removeObject:self->collegeFromParse];
+        [self->currentUser saveInBackground];
+        self->iconName = @"favor-icon.png";
+    } else if (isCollegeAlreadyInParse && likedCollegeMatches == 0) {
+        [self->relation addObject:self->collegeFromParse];
+        [self->currentUser saveInBackground];
+        self->iconName = @"favor-icon-red.png";
     } else {
-        [self.likeCollege setImage:[UIImage imageNamed:@"favor-icon-red.png"]forState:UIControlStateNormal];
-        [self->likesArray addObject: self.college.name];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
+        ParseCollege *currentCollege = [ParseCollege postCollege:self.college withCompletion:^(BOOL succeeded, NSError * _Nullable error) {}];
+        [currentCollege save];
+        [self->relation addObject:currentCollege];
+        [self->currentUser saveInBackground];
+        self->iconName = @"favor-icon-red.png";
+
     }
-    current[@"likes"] = [NSArray arrayWithArray:self->likesArray];
-    [PFUser.currentUser saveInBackground];
+    [self.likeCollege setImage:[UIImage imageNamed:self->iconName]forState:UIControlStateNormal];
 }
 
 - (void)likeChecker {
-    if ([self->likesArray containsObject:self.college.name]) {
-        [self.likeCollege setImage:[UIImage imageNamed:@"favor-icon-red.png"]forState:UIControlStateNormal];
-    } else {
-        [self.likeCollege setImage:[UIImage imageNamed:@"favor-icon.png"]forState:UIControlStateNormal];
+    PFRelation *relation = [self->currentUser relationForKey:@"likes"];
+    PFQuery *likesQuery = [relation query];
+    if (self->collegeFromParse != nil) {
+    [likesQuery whereKey:@"name" equalTo:self->collegeFromParse.name];
+    self->likedCollegeMatches = [likesQuery countObjects];
     }
+    if (self->likedCollegeMatches == 1) {
+        self->iconName = @"favor-icon-red.png";
+    } else if (self->likedCollegeMatches == 0){
+        self->iconName = @"favor-icon.png";
+    }
+    [self.likeCollege setImage:[UIImage imageNamed:self->iconName]forState:UIControlStateNormal];
 }
 
 - (IBAction)onTap:(id)sender {

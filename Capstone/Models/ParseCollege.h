@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSString *lat;
 @property (nonatomic, assign) double rigorScore;
 @property (nonatomic, assign) double distance;
-+ (void)postUserComment: (College * _Nullable )college withCompletion: (PFBooleanResultBlock  _Nullable)completion;
++ (ParseCollege *)postCollege: (College * _Nullable )college withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
 @end
 

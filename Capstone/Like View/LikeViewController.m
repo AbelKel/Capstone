@@ -10,6 +10,7 @@
 #import "College.h"
 #import "LikeCell.h"
 #import "DetailsViewController.h"
+#import "ParseCollege.h"
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 
 @interface LikeViewController () <UITableViewDelegate, UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
@@ -19,9 +20,7 @@
 @end
 
 @implementation LikeViewController {
-    NSArray<College *> *likedCollegeNames;
-    NSArray<College *> *colleges;
-    NSMutableArray<College *> *likedCollegesToDisplay;
+    NSArray<ParseCollege *> *likedColleges;
     UIRefreshControl *refreshControl;
 }
 
@@ -32,14 +31,7 @@
     self.tableView.emptyDataSetSource = self;
     self.tableView.emptyDataSetDelegate = self;
     self.tableView.tableFooterView = [UIView new];
-    self->likedCollegeNames = [[NSArray alloc] init];
-    self->likedCollegesToDisplay = [[NSMutableArray alloc] init];
-    self->colleges = [[NSArray alloc] init];
-    PFUser *current = [PFUser currentUser];
-    self->likedCollegeNames = current[@"likes"];
-    [self.tableView reloadData];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(viewDidAppear:) name:@"reloadData" object:nil];
-    [self getLikedColleges];
+    self->likedColleges = [[NSArray alloc] init];
     self->refreshControl = [[UIRefreshControl alloc] init];
     [self->refreshControl addTarget:self action:@selector(getLikedColleges) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self->refreshControl atIndex:0];
@@ -47,14 +39,13 @@
 }
 
 - (void)getLikedColleges {
-    PFUser *current = [PFUser currentUser];
-    PFQuery *query = [PFQuery queryWithClassName:@"College"];
-    [query whereKey:@"userID" equalTo:current.username];
+    PFUser *currentUser = [PFUser currentUser];
+    PFRelation *relation = [currentUser relationForKey:@"likes"];
+    PFQuery *query = [relation query];
     [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *colleges, NSError *error) {
         if (colleges != nil) {
-            self.collegesFromQuery = (NSMutableArray *)colleges;
-            self->colleges = [College collegesWithArray:self.collegesFromQuery];
+            self->likedColleges = colleges;
             [self.activityIndicator stopAnimating];
             [self.activityIndicator hidesWhenStopped];
             [self.tableView reloadData];
@@ -65,8 +56,9 @@
     [self->refreshControl endRefreshing];
 }
 
+
 - (void)viewDidAppear:(BOOL)animated {
-    [self.tableView reloadData];
+    [self getLikedColleges];
 }
 
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
@@ -89,12 +81,12 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self->colleges.count;
+    return self->likedColleges.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     LikeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LikeCell"];
-    College *college = self->colleges[indexPath.row];
+    College *college = self->likedColleges[indexPath.row];
     cell.college = college;
     return cell;
 }
@@ -102,7 +94,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UITableViewCell *cell = sender;
     NSIndexPath *myIndexPath = [self.tableView indexPathForCell:cell];
-    College *collegeToPass = self->colleges[myIndexPath.row];
+    College *collegeToPass = self->likedColleges[myIndexPath.row];
     DetailsViewController *detailVC = [segue destinationViewController];
     detailVC.college = collegeToPass;
 }

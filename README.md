@@ -138,22 +138,13 @@ In the first week of the start of the project, I plan on implementing the sign u
 ## Schema 
 *
 ### Models
-#### Parse User
 
-   | Property      | Type     | Description |
-   | ------------- | -------- | ------------|
-   | objectId      | String   | unique id for the user post (default field) |
-   | username      | String   | username chosen by user during signup |
-   | image         | File     | image that user uploads for profile picture|
-   | email         | String   | email used by the user during signup |
-   | likes         | Array    | contains names of colleges liked by the user to keep track of liked colleges in the details view|
-   | comments      | Dictionary  | comments made by the user under a college|
-   
+### View Data Model
 #### College
    
    | Property      | Type        | Description |
    | ------------- | ----------- | ------------|
-   | college name  | String      | name of the college |
+   | name  | String      | name of the college |
    | comments      | Dictionary  | comments made by the user under a college|  
    | image         | String      | link to the college's photo| 
    | details       | String      | contains a short description about the college|
@@ -165,22 +156,50 @@ In the first week of the start of the project, I plan on implementing the sign u
    
 #### CollegeNews 
 
+    | Property       | Type     | Description |
+    | -------------  | -------- | ------------|
+    | title          | String   | title of the news article|
+    | newsDescription| String   | description of the news|
+    | imageUrl       | String   | url to the image presented on the cover of the articel|
+    
+### Data Model (Parse)
+   
+#### Parse User
+
    | Property      | Type     | Description |
    | ------------- | -------- | ------------|
-   | title          | String   | title of the news article |
-   | newsDescription| String   | description of the news |
-   | imageUrl       | String     | url to the image presented on the cover of the articel|
+   | objectId      | String   | unique id for the user post (default field) |
+   | username      | String   | username chosen by user during signup |
+   | image         | File     | image that user uploads for profile picture|
+   | email         | String   | email used by the user during signup |
    
 #### Parse College Object (Stored on parse for the like view)
 
    | Property      | Type     | Description |
    | ------------- | -------- | ------------|
+   | author        | pointer  | it points to the user that uploaded the college to parse|
    | name          | String   | name of the college |
    | city          | String   | city where the college college is based|
    | website       | String   | website link of the college|
    | details       | String   | contains a short description about the college|
-   | userID        | String   | the user's username is stored in a the college object when the user likes a college|
-   | comments      | Dictionary  | comments made by the user under a college|
+   | longDetails   | String   | a long description of the college |
+   | longtuide     | double   | longitudinal location of the college |
+   | latitude     | double   | latitudinal location of the college |
+   | rigor score   | Double      | the score give to the college by the API|
+   | distance      | Double      | the college's distance from the user|
+   
+###Comments
+   | Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | comment       | String   | comment made by the user|
+   | author        | Pointer  | points to the user who made the comment|
+   | college       | String   | name of the college|
+   | profile image | file     | profile image of the user|
+   | username      | string   | username displayed in comment cell|
+   
+###Relation Tables In Parse 
+* LikesRelations: It is a relation talbe that connects the users likes to the Colleges class in parse. There is no college object repetition in the Colleges class. A college object can be liked and matched to mutiple users at the same time.
+* MatchesRelations: is a relation table that connects the users matches to Colleges class in parse. 
   
 ### Networking
 * Login;

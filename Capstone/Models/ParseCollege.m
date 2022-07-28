@@ -23,10 +23,10 @@
 @dynamic distance;
 
 + (nonnull NSString *)parseClassName {
-    return @"Likes";
+    return @"Colleges";
 }
 
-+ (void)postUserComment: (College * _Nullable )college withCompletion: (PFBooleanResultBlock  _Nullable)completion {
++ (ParseCollege *)postCollege:(College * _Nullable )college withCompletion: (PFBooleanResultBlock  _Nullable)completion {
     ParseCollege *collegeToParse = [ParseCollege new];
     PFUser *current = [PFUser currentUser];
     collegeToParse.author = current;
@@ -41,5 +41,6 @@
     collegeToParse.rigorScore = college.rigorScore;
     collegeToParse.distance = college.distance;
     [collegeToParse saveInBackgroundWithBlock: completion];
+    return collegeToParse;
 }
 @end
