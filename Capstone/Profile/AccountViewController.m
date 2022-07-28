@@ -21,8 +21,9 @@
 @end
 
 @implementation AccountViewController {
-    NSArray<College *> *colleges;
     NSMutableArray<ParseCollege *> *collegesFromQuery;
+    PFUser *currentUser;
+    PFRelation *matchesRelation;
 }
 
 - (void)viewDidLoad {
@@ -30,9 +31,10 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self setUser];
-    PFUser *current = [PFUser currentUser];
-    if (current[@"image"]) {
-        self.profileImage.file = current[@"image"];
+    self->currentUser = [PFUser currentUser];
+    self->matchesRelation = [currentUser relationForKey:@"matches"];
+    if (self->currentUser[@"image"]) {
+        self.profileImage.file = self->currentUser[@"image"];
         [self.profileImage loadInBackground];
     }
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -45,19 +47,11 @@
 }
 
 - (void)getMatchedColleges {
-    self->collegesFromQuery = [[NSMutableArray alloc] init];
-    PFQuery *query = [PFQuery queryWithClassName:@"MatchesRelations"];
-    [query includeKey:@"author"];
-    [query includeKey:@"matchedCollege"];
+    PFQuery *query = [self->matchesRelation query];
     [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *colleges, NSError *error) {
         if (colleges != nil) {
-            for (MatchesRelations *match in colleges) {
-                if (match.author.username == [PFUser currentUser].username) {
-                    [self->collegesFromQuery addObject:match.matchedCollege];
-                }
-            }
-            self->colleges = self->collegesFromQuery;
+            self->collegesFromQuery = colleges;
             [self.tableView reloadData];
         } else {
             NSLog(@"%@", error.localizedDescription);
@@ -79,22 +73,22 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self->colleges.count;
+    return self->collegesFromQuery.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MatchCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MatchCell"];
-    College *college = self->colleges[indexPath.row];
+    College *college = self->collegesFromQuery[indexPath.row];
     cell.college = college;
     return cell;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([[segue identifier] isEqualToString:@"detailSegueForDetailsView"]) {
-        if (self->colleges != nil) {
+        if (self->collegesFromQuery != nil) {
             UITableViewCell *cell = sender;
             NSIndexPath *myIndexPath = [self.tableView indexPathForCell:cell];
-            College *collegeToPass = self->colleges[myIndexPath.row];
+            College *collegeToPass = self->collegesFromQuery[myIndexPath.row];
             DetailsViewController *detailVC = [segue destinationViewController];
             detailVC.college = collegeToPass;
         }

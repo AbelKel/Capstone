@@ -32,9 +32,9 @@
     NSString *zipcode;
     NSArray<College *> *collegeBasedOnSize;
     NSArray<College *> *collegesBasedOnFunding;
-    NSArray<MatchesRelations *> *allColleges;
-    NSMutableArray<NSString *> *allCollegeNames;
-    NSMutableArray<ParseCollege *> *allCollegeFromParse;
+    PFUser *currentUser;
+    PFRelation *matchesRelation;
+    ParseCollege *collegeFromParse;
 }
 
 - (void)viewDidLoad {
@@ -43,8 +43,8 @@
     self->initailCollegeList = [[NSArray alloc] init];
     self->collegeBasedOnSize = [[NSArray alloc] init];
     self->collegesBasedOnFunding = [[NSArray alloc] init];
-    self->allCollegeNames = [[NSMutableArray alloc] init];
-    self->allCollegeFromParse = [[NSMutableArray alloc] init];
+    self->currentUser = [PFUser currentUser];
+    self->matchesRelation = [self->currentUser relationForKey:@"matches"];
 }
 
 - (void)fetchData {
@@ -118,58 +118,37 @@
 //TODO: start thinking about intersection of chatacteristics
 - (void)filter {
     double convertedScore = 50*(1-(([self->satScore doubleValue])/1600))+0.1;
+    NSSortDescriptor *sortingBasedOnDistance = [[NSSortDescriptor alloc] initWithKey:@"distance" ascending:NO];
+    self->initailCollegeList = [self->initailCollegeList sortedArrayUsingDescriptors:@[sortingBasedOnDistance]];
     for (College *college in self->initailCollegeList) {
-        if (((college.rigorScore) <= convertedScore) && (college.distance <= [self.distanceInMiles.text doubleValue])) {
+        if (self->filteredList.count == 3) {
+            break;
+        } else if (((college.rigorScore) <= convertedScore) && (college.distance <= [self.distanceInMiles.text doubleValue] && ![self->filteredList containsObject:college])) {
             [self->filteredList addObject:college];
-        } else if ([self->city isEqual:college.location] && ![self->filteredList containsObject:college.location]) {
+        } else if ([self->city isEqual:college.location] && ![self->filteredList containsObject:college]) {
             [self->filteredList addObject:college];
         }
     }
-    NSSortDescriptor *sortingBasedOnDistance = [[NSSortDescriptor alloc] initWithKey:@"distance" ascending:YES];
-    self->filteredList = [self->filteredList sortedArrayUsingDescriptors:@[sortingBasedOnDistance]];
     [self getCollegesInParse];
 }
 
 - (void)getCollegesInParse {
-    PFQuery *query = [PFQuery queryWithClassName:@"MatchesRelations"];
-    [query includeKey:@"matchedCollege"];
-    [query includeKey:@"author"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *colleges, NSError *error) {
-        if (colleges != nil) {
-            self->allColleges = colleges;
-            for (MatchesRelations *relations in self->allColleges) {
-                [self->allCollegeFromParse addObject:relations.matchedCollege];
-            }
+    PFQuery *query = [PFQuery queryWithClassName:@"Colleges"];
+    for (College *college in self->filteredList) {
+        [query whereKey:@"name" equalTo:college.name];
+        NSInteger collegeMatches = [query countObjects];
+        if (collegeMatches == 1) {
+            [query findObjectsInBackgroundWithBlock:^(NSArray *colleges, NSError *error) {
+                self->collegeFromParse = [colleges objectAtIndex:0];
+                [self->matchesRelation addObject:self->collegeFromParse];
+                [self->currentUser saveInBackground];
+            }];
+            collegeMatches = 0;
         } else {
-            NSLog(@"%@", error.localizedDescription);
-        }
-        [self uploadCollegesToParse];
-    }];
-    
-}
-
-- (void)uploadCollegesToParse {
-    if (self->filteredList != nil) {
-        for (ParseCollege *college in self->allCollegeFromParse) {
-            [self->allCollegeNames addObject:college.name];
-        }
-        for (College *collegeInFilteredList in self->filteredList) {
-            if (![self->allCollegeNames containsObject:collegeInFilteredList.name]) {
-                ParseCollege *current = [ParseCollege postCollege:collegeInFilteredList withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-                }];
-                [MatchesRelations postUserMatches:collegeInFilteredList forParseCollege:current withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-                }];
-            }
-        }
-        for (MatchesRelations *college in self->allColleges) {
-            for (College *collegeInFilteredList in self->filteredList) {
-                ParseCollege *collegeInParse = college.matchedCollege;
-
-                if ([collegeInParse.name isEqual:collegeInFilteredList.name]) {
-                    [MatchesRelations postUserMatches:collegeInFilteredList forParseCollege:collegeInParse withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-                    }];
-                }
-            }
+            ParseCollege *currentCollege = [ParseCollege postCollege:college withCompletion:^(BOOL succeeded, NSError * _Nullable error) {}];
+            [currentCollege save];
+            [self->matchesRelation addObject:currentCollege];
+            [self->currentUser saveInBackground];
         }
     }
 }
