@@ -10,7 +10,6 @@
 #import "AccountViewController.h"
 #import "ParseCollege.h"
 #import <Parse/Parse.h>
-#import "MatchesRelations.h"
 
 @interface MatchViewController ()
 
@@ -116,7 +115,7 @@
  - parameters to consider (college.location == self.city) &&
  - college.distance < 1000
 */
-//TODO: start thinking about intersection of chatacteristics
+//TODO: I will be adding a boolean value for college size & funding to make the filtering accurate in the next PR
 - (void)filter {
     int maxNumberOfMatches = 10;
     double convertedScore = 50*(1-(([self->satScore doubleValue])/1600))+0.1;
@@ -140,7 +139,8 @@
 }
 
 - (void)getCollegesInParse:(NSTimer *)timer {
-    if (indexInArray < self->filteredList.count-1) {
+    int indexCorrection = 1;
+    if (indexInArray < self->filteredList.count-indexCorrection) {
         PFQuery *query = [PFQuery queryWithClassName:@"Colleges"];
         College *college = [self->filteredList objectAtIndex:indexInArray];
         [query whereKey:@"name" equalTo:college.name];
