@@ -37,7 +37,7 @@
     return sharedManager;
 }
 
-- (void)fetchCollegeNews:(NSString *)collegeWebsite getArrayOfColelgeNews:(void(^)(NSArray *collegeNews, NSError *error))completion {
+- (void)fetchCollegeNews:(NSString *)collegeWebsite getArrayOfCollegeNews:(void(^)(NSArray *collegeNews, NSError *error))completion {
     NSString *stringURLForCollegeNews = @"https://newsapi.org/v2/everything?apiKey=7f0d9c3ee4ac401e8d6a714629947c61&domains=";
     stringURLForCollegeNews = [stringURLForCollegeNews stringByAppendingString:collegeWebsite];
     NSURL *url = [NSURL URLWithString:stringURLForCollegeNews];
