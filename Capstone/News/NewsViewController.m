@@ -9,6 +9,7 @@
 #import "NewsCell.h"
 #import "APIManager.h"
 #import "ParseCollege.h"
+#import "NewsDetailsViewController.h"
 
 @interface NewsViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -47,7 +48,7 @@
             NSString* collegeSite;
             for (ParseCollege *college in colleges) {
                 collegeSite = [college.website substringFromIndex:indexOftheFirstFourCharactersToRemoveFromLink];
-                self->websitesToGetNewsFrom = [NSString stringWithFormat:@"%@,", collegeSite];
+                self->websitesToGetNewsFrom = [self->websitesToGetNewsFrom stringByAppendingString:[NSString stringWithFormat:@"%@,", collegeSite]];
             }
             [self getArticles:self->websitesToGetNewsFrom];
         } else {
@@ -74,5 +75,13 @@
     CollegeNews *collegeNews = self->collegeArticles[indexPath.row];
     cell.collegeNews = collegeNews;
     return cell;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    UITableViewCell *cell = sender;
+    NSIndexPath *myIndexPath = [self.tableView indexPathForCell:cell];
+    CollegeNews *collegeToPass = self->collegeArticles[myIndexPath.row];
+    NewsDetailsViewController *newsVC = [segue destinationViewController];
+    newsVC.collegeNews = collegeToPass;
 }
 @end

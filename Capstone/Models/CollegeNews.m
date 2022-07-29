@@ -12,6 +12,10 @@
         self.title = dictionary[@"title"];
         self.newsDescription = dictionary[@"description"];
         self.imageUrl = dictionary[@"urlToImage"];
+        self.url = dictionary[@"url"];
+        self.content = dictionary[@"content"];
+        self.articleAuthorName = dictionary[@"author"];
+        self.publicationDate = dictionary[@"publishedAt"];
     }
     return self;
 }
