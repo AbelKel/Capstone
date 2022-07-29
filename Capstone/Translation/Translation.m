@@ -10,12 +10,6 @@
 
 @implementation Translation
 
-+ (void)translateText:(NSString *)text {
-    [Translation translate:text translatedText:^(NSString *text, NSError *error) {
-        [Translation translatedText:text];
-    }];
-}
-
 + (void)translate:(NSString *)text translatedText:(void(^)(NSString *text, NSError *error))completion {
     MLKTranslatorOptions *options =
             [[MLKTranslatorOptions alloc] initWithSourceLanguage:MLKTranslateLanguageEnglish
