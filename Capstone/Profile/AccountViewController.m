@@ -11,7 +11,7 @@
 #import <FBSDKCoreKit/FBSDKProfile.h>
 #import "MatchCell.h"
 #import "MatchViewController.h"
-#import "MatchesRelations.h"
+#import "ParseCollege.h"
 #import "DetailsViewController.h"
 
 @interface AccountViewController () <UITableViewDelegate, UITableViewDataSource>
@@ -52,6 +52,7 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *colleges, NSError *error) {
         if (colleges != nil) {
             self->collegesFromQuery = colleges;
+            [self.refreshControl endRefreshing];
             [self.tableView reloadData];
         } else {
             NSLog(@"%@", error.localizedDescription);
