@@ -35,6 +35,7 @@
     PFUser *currentUser;
     PFRelation *matchesRelation;
     ParseCollege *collegeFromParse;
+    int indexInArray;
 }
 
 - (void)viewDidLoad {
@@ -117,11 +118,12 @@
 */
 //TODO: start thinking about intersection of chatacteristics
 - (void)filter {
+    int maxNumberOfMatches = 10;
     double convertedScore = 50*(1-(([self->satScore doubleValue])/1600))+0.1;
     NSSortDescriptor *sortingBasedOnDistance = [[NSSortDescriptor alloc] initWithKey:@"distance" ascending:NO];
     self->initailCollegeList = [self->initailCollegeList sortedArrayUsingDescriptors:@[sortingBasedOnDistance]];
     for (College *college in self->initailCollegeList) {
-        if (self->filteredList.count == 3) {
+        if (self->filteredList.count == maxNumberOfMatches) {
             break;
         } else if (((college.rigorScore) <= convertedScore) && (college.distance <= [self.distanceInMiles.text doubleValue] && ![self->filteredList containsObject:college])) {
             [self->filteredList addObject:college];
@@ -129,12 +131,18 @@
             [self->filteredList addObject:college];
         }
     }
-    [self getCollegesInParse];
+    [self constantBackoff];
 }
 
-- (void)getCollegesInParse {
-    PFQuery *query = [PFQuery queryWithClassName:@"Colleges"];
-    for (College *college in self->filteredList) {
+- (void)constantBackoff {
+    int constantBackoffTimeInterval = 3.0;
+    [NSTimer scheduledTimerWithTimeInterval:constantBackoffTimeInterval target:self selector:@selector(getCollegesInParse:) userInfo:nil repeats:YES];
+}
+
+- (void)getCollegesInParse:(NSTimer *)timer {
+    if (indexInArray < self->filteredList.count-1) {
+        PFQuery *query = [PFQuery queryWithClassName:@"Colleges"];
+        College *college = [self->filteredList objectAtIndex:indexInArray];
         [query whereKey:@"name" equalTo:college.name];
         NSInteger collegeMatches = [query countObjects];
         if (collegeMatches == 1) {
@@ -150,6 +158,9 @@
             [self->matchesRelation addObject:currentCollege];
             [self->currentUser saveInBackground];
         }
+        indexInArray++;
+    } else {
+        [timer invalidate];
     }
 }
 @end
