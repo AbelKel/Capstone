@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Translate : NSObject
 
-+ (void)translate:(NSString *)text translatedText:(void(^)(NSString *text, NSError *error))completion;
++ (void)translateText:(NSString *)inputText;
 
 @end
 

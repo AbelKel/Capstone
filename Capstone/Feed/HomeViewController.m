@@ -11,6 +11,7 @@
 #import "APIManager.h"
 #import "College.h"
 #import "AutocorrectFunctions.h"
+#import "Translate.h"
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 
 @interface HomeViewController ()<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
@@ -39,6 +40,7 @@
     [self.tableView insertSubview:self.refreshControl atIndex:0];
     [self getCollegesForSegmentControl];
     [self.activityIndicator startAnimating];
+    [Translate translateText:@"It works"];
 }
 
 - (IBAction)segmentControl:(id)sender {

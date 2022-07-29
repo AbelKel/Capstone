@@ -9,9 +9,10 @@
 
 @implementation Translate
 
-+ (void)translateText:(NSString *)text {
-    [Translate translate:text translatedText:^(NSString *text, NSError *error) {
-        
++ (void)translateText:(NSString *)inputText {
+    __block NSString *translatedText;
+    [Translate translate:inputText translatedText:^(NSString *text, NSError *error) {
+        translatedText = text;
     }];
 }
 
