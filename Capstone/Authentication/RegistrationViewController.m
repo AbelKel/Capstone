@@ -27,7 +27,6 @@
         if (error != nil) {
             NSLog(@"Error: %@", error.localizedDescription);
         } else {
-            NSLog(@"User registered successfully");
             [self performSegueToLogin];
         }
     }];
