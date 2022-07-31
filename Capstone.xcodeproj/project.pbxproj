@@ -16,6 +16,7 @@
 		D92D11C52880E663000BB730 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D92D11C42880E663000BB730 /* MapKit.framework */; };
 		D92D11C9288119D9000BB730 /* AutocorrectFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = D92D11C8288119D9000BB730 /* AutocorrectFunctions.m */; };
 		D937304E288E30DF00979E57 /* MatchesRelations.m in Sources */ = {isa = PBXBuildFile; fileRef = D937304D288E30DF00979E57 /* MatchesRelations.m */; };
+		D93D12C62897321100610C9F /* NewsDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D93D12C52897321100610C9F /* NewsDetailsViewController.m */; };
 		D945E1D328718497005FFE04 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D945E1D228718497005FFE04 /* AppDelegate.m */; };
 		D945E1D628718497005FFE04 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D945E1D528718497005FFE04 /* SceneDelegate.m */; };
 		D945E1DC28718497005FFE04 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D945E1DA28718497005FFE04 /* Main.storyboard */; };
@@ -80,6 +81,8 @@
 		D92D11C8288119D9000BB730 /* AutocorrectFunctions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutocorrectFunctions.m; sourceTree = "<group>"; };
 		D937304C288E30DF00979E57 /* MatchesRelations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchesRelations.h; sourceTree = "<group>"; };
 		D937304D288E30DF00979E57 /* MatchesRelations.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchesRelations.m; sourceTree = "<group>"; };
+		D93D12C42897321100610C9F /* NewsDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsDetailsViewController.h; sourceTree = "<group>"; };
+		D93D12C52897321100610C9F /* NewsDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsDetailsViewController.m; sourceTree = "<group>"; };
 		D945E1CE28718497005FFE04 /* Capstone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Capstone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D945E1D128718497005FFE04 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D945E1D228718497005FFE04 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -352,6 +355,8 @@
 				D91B185E2877B02B00FA423B /* NewsCell.m */,
 				D91B185A28779E2E00FA423B /* NewsViewController.h */,
 				D91B185B28779E2E00FA423B /* NewsViewController.m */,
+				D93D12C42897321100610C9F /* NewsDetailsViewController.h */,
+				D93D12C52897321100610C9F /* NewsDetailsViewController.m */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -615,6 +620,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D93D12C62897321100610C9F /* NewsDetailsViewController.m in Sources */,
 				D97A1FAC287B8609004B8893 /* CollegeNews.m in Sources */,
 				D953928F287E327D00207CC6 /* CommentCell.m in Sources */,
 				D97795B4287E9340003F9A45 /* LikeViewController.m in Sources */,
