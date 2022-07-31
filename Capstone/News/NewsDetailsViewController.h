@@ -4,6 +4,7 @@
 //
 //  Created by Abel Kelbessa on 7/31/22.
 //
+
 #import "CollegeNews.h"
 #import <UIKit/UIKit.h>
 
