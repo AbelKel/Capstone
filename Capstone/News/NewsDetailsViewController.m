@@ -2,7 +2,7 @@
 //  NewsDetailsViewController.m
 //  Capstone
 //
-//  Created by Abel Kelbessa on 7/29/22.
+//  Created by Abel Kelbessa on 7/31/22.
 //
 
 #import "NewsDetailsViewController.h"
