@@ -51,6 +51,7 @@
     tapGesture.numberOfTapsRequired = 2;
     [self.detailsCollegeImage setUserInteractionEnabled:YES];
     [self.detailsCollegeImage addGestureRecognizer:tapGesture];
+    [Translate textToTranslate:@"hello"];
     [self allCollegesFromParse];
     [self getComments];
 }

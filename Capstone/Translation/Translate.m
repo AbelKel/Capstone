@@ -41,8 +41,9 @@
           if (error != nil || translatedText == nil) {
             return;
           } else {
-                completion(translatedText, nil);
-              
+              dispatch_async(dispatch_get_main_queue(), ^{
+                 completion(translatedText, nil);
+              });
           }
         }];
     }
