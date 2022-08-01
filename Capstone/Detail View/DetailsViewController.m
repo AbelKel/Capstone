@@ -40,8 +40,7 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [[Translate shared] textToTranslate:self.college.name];
-    self.detailsCollegeName.text = [Translate returnMyWord];
+    self.detailsCollegeName.text = self.college.name;
     self.detailsCollegeDetails.text = self.college.details;
     self.detailsCollegeLocation.text = self.college.location;
     NSURL *url = [NSURL URLWithString:self.college.image];

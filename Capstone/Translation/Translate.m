@@ -10,23 +10,12 @@
 @import MLKit;
 
 @implementation Translate
-
-+ (instancetype)shared {
-    static Translate *sharedManager = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedManager = [[self alloc] init];
-    });
-    return sharedManager;
-}
-
-- (void)textToTranslate:(NSString *)description {
++ (NSString *)textToTranslate:(NSString *)description {
+    __block NSString *myTranslatedText;
     [Translate translate:description translatedText:^(NSString * _Nonnull text, NSError * _Nonnull error) {
+        myTranslatedText = text;
     }];
-}
-
-+ (NSString *)returnMyWord:(NSString *)word {
-    return word;
+    return myTranslatedText;
 }
 
 + (void)translate:(NSString *)text translatedText:(void(^)(NSString *text, NSError *error))completion {
@@ -52,8 +41,8 @@
           if (error != nil || translatedText == nil) {
             return;
           } else {
-//                completion(translatedText, nil);
-              [Translate returnMyWord:translatedText];
+                completion(translatedText, nil);
+              
           }
         }];
     }
