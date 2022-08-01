@@ -58,6 +58,17 @@
     [self performSegueWithIdentifier:@"moreDetails" sender:self];
 }
 
+- (IBAction)didTapDirectionsToCollege:(id)sender {
+    CLLocationCoordinate2D coordinate = [self getLocation];
+    CLLocationCoordinate2D start = {coordinate.latitude, coordinate.longitude};
+    CLLocationCoordinate2D destination = {[self.college.lat doubleValue], [self.college.longtuide doubleValue]};
+
+    NSString *googleMapsURLString = [NSString stringWithFormat:@"http://maps.google.com/?saddr=%1.6f,%1.6f&daddr=%1.6f,%1.6f",
+                                     start.latitude, start.longitude, destination.latitude, destination.longitude];
+
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:googleMapsURLString]];
+}
+
 - (IBAction)didTapOnGoToWebsite:(id)sender {
     NSString *https = @"https://";
     NSString *urlString = [https stringByAppendingString:self.college.website];
@@ -152,6 +163,20 @@
     College *collegeToPass = self.college;
     LongDetailsViewController *longDVC = [segue destinationViewController];
     longDVC.college = collegeToPass;
+}
+
+- (CLLocationCoordinate2D)getLocation {
+    self->locationManager = [[CLLocationManager alloc] init];
+    self->locationManager.delegate = self;
+    self->locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self->locationManager.distanceFilter = kCLDistanceFilterNone;
+    if (([self->locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])) {
+        [self->locationManager requestWhenInUseAuthorization];
+    }
+    [self->locationManager startUpdatingLocation];
+    CLLocation *location = [self->locationManager location];
+    CLLocationCoordinate2D coordinate = [location coordinate];
+    return coordinate;
 }
 @end
 
