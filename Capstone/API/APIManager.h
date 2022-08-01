@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setSchoolSizePreference:(NSString *)schoolSize;
 - (void)setSchoolType:(NSString *)schoolType;
 + (instancetype)shared;
-- (void)fetchCollegeNews: (void(^)(NSArray *collegeNews, NSError *error))completion;
+- (void)fetchCollegeNews:(NSString *)collegeWebsite getArrayOfCollegeNews:(void(^)(NSArray *collegeNews, NSError *error))completion;
 - (void)fetchCollegesBasedOnFilterPreference:(NSString *)stringURL getArrayOfColleges:(void(^)(NSArray *colleges, NSError *error))completion;
 - (void)queryAPIs:(void(^)(NSArray *colleges, NSArray *colleges1, NSError *error))completion;
 - (void)fetchCollegeForSegment:(NSString *)segmentNumber getColleges:(void(^)(NSArray *colleges, NSError *error))completion;
