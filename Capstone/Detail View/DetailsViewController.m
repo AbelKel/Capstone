@@ -59,13 +59,11 @@
 }
 
 - (IBAction)didTapDirectionsToCollege:(id)sender {
-    CLLocationCoordinate2D coordinate = [self getLocation];
-    CLLocationCoordinate2D start = {coordinate.latitude, coordinate.longitude};
+    CLLocationCoordinate2D coordinateOfCurrentLocation = [self getLocation];
+    CLLocationCoordinate2D start = {coordinateOfCurrentLocation.latitude, coordinateOfCurrentLocation.longitude};
     CLLocationCoordinate2D destination = {[self.college.lat doubleValue], [self.college.longtuide doubleValue]};
-
     NSString *googleMapsURLString = [NSString stringWithFormat:@"http://maps.google.com/?saddr=%1.6f,%1.6f&daddr=%1.6f,%1.6f",
                                      start.latitude, start.longitude, destination.latitude, destination.longitude];
-
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:googleMapsURLString]];
 }
 
