@@ -11,7 +11,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Translate : NSObject
 
-+ (void)translateText:(NSString *)inputText;
++ (instancetype)shared;
+- (void)textToTranslate:(NSString *)description;
++ (NSString *)returnMyWord;
+@property (nonatomic, strong) NSString *text;
 
 @end
 

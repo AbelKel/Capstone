@@ -13,6 +13,7 @@
 #import "LongDetailsViewController.h"
 #import "Comment.h"
 #import "ParseCollege.h"
+#import "Translate.h"
 
 @interface DetailsViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIImageView *detailsCollegeImage;
@@ -39,7 +40,8 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.detailsCollegeName.text = self.college.name;;
+    [[Translate shared] textToTranslate:self.college.name];
+    self.detailsCollegeName.text = [Translate returnMyWord];
     self.detailsCollegeDetails.text = self.college.details;
     self.detailsCollegeLocation.text = self.college.location;
     NSURL *url = [NSURL URLWithString:self.college.image];

@@ -32,6 +32,7 @@
 		D9539283287CC1E800207CC6 /* MatchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9539282287CC1E800207CC6 /* MatchCell.m */; };
 		D9539289287E181A00207CC6 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9539288287E181A00207CC6 /* SettingsTableViewController.m */; };
 		D953928F287E327D00207CC6 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D953928E287E327D00207CC6 /* CommentCell.m */; };
+		D96C0F512897428800957F2F /* LanguageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D96C0F502897428800957F2F /* LanguageTableViewController.m */; };
 		D97795B4287E9340003F9A45 /* LikeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D97795B3287E9340003F9A45 /* LikeViewController.m */; };
 		D97795B8287E936F003F9A45 /* LikeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D97795B7287E936F003F9A45 /* LikeCell.m */; };
 		D9784FA3287404C90056DD78 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9784FA2287404C90056DD78 /* HomeViewController.m */; };
@@ -110,6 +111,8 @@
 		D9539288287E181A00207CC6 /* SettingsTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
 		D953928D287E327D00207CC6 /* CommentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
 		D953928E287E327D00207CC6 /* CommentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
+		D96C0F4F2897428800957F2F /* LanguageTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LanguageTableViewController.h; sourceTree = "<group>"; };
+		D96C0F502897428800957F2F /* LanguageTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LanguageTableViewController.m; sourceTree = "<group>"; };
 		D97795B2287E9340003F9A45 /* LikeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LikeViewController.h; sourceTree = "<group>"; };
 		D97795B3287E9340003F9A45 /* LikeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LikeViewController.m; sourceTree = "<group>"; };
 		D97795B6287E936F003F9A45 /* LikeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LikeCell.h; sourceTree = "<group>"; };
@@ -243,6 +246,8 @@
 			children = (
 				D93D12C9289733A800610C9F /* Translate.h */,
 				D93D12CA289733A800610C9F /* Translate.m */,
+				D96C0F4F2897428800957F2F /* LanguageTableViewController.h */,
+				D96C0F502897428800957F2F /* LanguageTableViewController.m */,
 			);
 			path = Translation;
 			sourceTree = "<group>";
@@ -402,6 +407,7 @@
 				D945E1CB28718497005FFE04 /* Frameworks */,
 				D945E1CC28718497005FFE04 /* Resources */,
 				1F5F63CF61C1575D4C6F66D3 /* [CP] Embed Pods Frameworks */,
+				2C5A6E825C670EC0818F0E14 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -440,6 +446,7 @@
 				D945E1F028718498005FFE04 /* Frameworks */,
 				D945E1F128718498005FFE04 /* Resources */,
 				CAD5357E3EDEF1351C618527 /* [CP] Embed Pods Frameworks */,
+				12241E951C8A2525008704A3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -521,6 +528,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		12241E951C8A2525008704A3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Capstone-CapstoneUITests/Pods-Capstone-CapstoneUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Capstone-CapstoneUITests/Pods-Capstone-CapstoneUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Capstone-CapstoneUITests/Pods-Capstone-CapstoneUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		1F5F63CF61C1575D4C6F66D3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -536,6 +560,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Capstone/Pods-Capstone-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2C5A6E825C670EC0818F0E14 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Capstone/Pods-Capstone-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Capstone/Pods-Capstone-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Capstone/Pods-Capstone-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8A81F802A1E44AD8568766B2 /* [CP] Check Pods Manifest.lock */ = {
@@ -642,6 +683,7 @@
 				D91B18552877944500FA423B /* College.m in Sources */,
 				D945E1E428718497005FFE04 /* main.m in Sources */,
 				D9F6FA692887EAFB009AF63A /* LongDetailsViewController.m in Sources */,
+				D96C0F512897428800957F2F /* LanguageTableViewController.m in Sources */,
 				D9784FAA2874B1190056DD78 /* HomeCell.m in Sources */,
 				D945E1D628718497005FFE04 /* SceneDelegate.m in Sources */,
 				D91B185C28779E2E00FA423B /* NewsViewController.m in Sources */,

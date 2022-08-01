@@ -8,7 +8,7 @@
 #import "AccountViewController.h"
 #import <Parse/Parse.h>
 
-@interface SettingsTableViewController ()
+@interface SettingsTableViewController ()<UITableViewDelegate, UITableViewDataSource>
 @end
 
 @implementation SettingsTableViewController

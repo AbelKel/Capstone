@@ -6,18 +6,31 @@
 //
 
 #import "Translate.h"
+#import "DetailsViewController.h"
 @import MLKit;
 
 @implementation Translate
 
-+ (void)translateText:(NSString *)inputText {
-    __block NSString *translatedText;
-    [Translate translate:inputText translatedText:^(NSString *text, NSError *error) {
-        translatedText = text;
++ (instancetype)shared {
+    static Translate *sharedManager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedManager = [[self alloc] init];
+    });
+    return sharedManager;
+}
+
+- (void)textToTranslate:(NSString *)description {
+    [Translate translate:description translatedText:^(NSString * _Nonnull text, NSError * _Nonnull error) {
     }];
 }
 
++ (NSString *)returnMyWord:(NSString *)word {
+    return word;
+}
+
 + (void)translate:(NSString *)text translatedText:(void(^)(NSString *text, NSError *error))completion {
+    __block bool flag;
     MLKTranslatorOptions *options =
             [[MLKTranslatorOptions alloc] initWithSourceLanguage:MLKTranslateLanguageEnglish
                                                   targetLanguage:MLKTranslateLanguageGerman];
@@ -31,14 +44,18 @@
       if (error != nil) {
         return;
       } else {
-          [englishGermanTranslator translateText:text completion:^(NSString *_Nullable translatedText, NSError *_Nullable error) {
-            if (error != nil || translatedText == nil) {
-              return;
-            } else {
-                completion(translatedText, nil);
-            }
-          }];
+          flag = true;
       }
     }];
+    if (flag) {
+        [englishGermanTranslator translateText:text completion:^(NSString *_Nullable translatedText, NSError *_Nullable error) {
+          if (error != nil || translatedText == nil) {
+            return;
+          } else {
+//                completion(translatedText, nil);
+              [Translate returnMyWord:translatedText];
+          }
+        }];
+    }
 }
 @end
