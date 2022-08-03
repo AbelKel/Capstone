@@ -9,9 +9,14 @@
 /* Begin PBXBuildFile section */
 		281C5E823F6D5C2D3C6B0C8A /* Pods_CapstoneTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC90A25362ACDC45A2D613D /* Pods_CapstoneTests.framework */; };
 		7BC22ADB76F500494C3E16C6 /* Pods_Capstone_CapstoneUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 511C5CEE66DA1C120E7C5E58 /* Pods_Capstone_CapstoneUITests.framework */; };
+		C41ECF507BA328EADDE500D7 /* Pods_Capstone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F7413D8AFD3D6D22A971FA /* Pods_Capstone.framework */; };
 		D91B18552877944500FA423B /* College.m in Sources */ = {isa = PBXBuildFile; fileRef = D91B18542877944500FA423B /* College.m */; };
 		D91B185C28779E2E00FA423B /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D91B185B28779E2E00FA423B /* NewsViewController.m */; };
 		D91B185F2877B02B00FA423B /* NewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D91B185E2877B02B00FA423B /* NewsCell.m */; };
+		D92989BA2898AE3C00CDD783 /* FriendRequestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D92989B92898AE3C00CDD783 /* FriendRequestsViewController.m */; };
+		D92989BD2898B31800CDD783 /* FriendRequestsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D92989BC2898B31800CDD783 /* FriendRequestsViewCell.m */; };
+		D92989C02898C53E00CDD783 /* FriendDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D92989BF2898C53E00CDD783 /* FriendDetailsViewController.m */; };
+		D92989C32898CEDF00CDD783 /* FriendMatchesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D92989C22898CEDF00CDD783 /* FriendMatchesCell.m */; };
 		D92D11C52880E663000BB730 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D92D11C42880E663000BB730 /* MapKit.framework */; };
 		D92D11C9288119D9000BB730 /* AutocorrectFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = D92D11C8288119D9000BB730 /* AutocorrectFunctions.m */; };
 		D93D12C62897321100610C9F /* NewsDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D93D12C52897321100610C9F /* NewsDetailsViewController.m */; };
@@ -74,6 +79,14 @@
 		D91B185B28779E2E00FA423B /* NewsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
 		D91B185D2877B02B00FA423B /* NewsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsCell.h; sourceTree = "<group>"; };
 		D91B185E2877B02B00FA423B /* NewsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsCell.m; sourceTree = "<group>"; };
+		D92989B82898AE3C00CDD783 /* FriendRequestsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendRequestsViewController.h; sourceTree = "<group>"; };
+		D92989B92898AE3C00CDD783 /* FriendRequestsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendRequestsViewController.m; sourceTree = "<group>"; };
+		D92989BB2898B31800CDD783 /* FriendRequestsViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendRequestsViewCell.h; sourceTree = "<group>"; };
+		D92989BC2898B31800CDD783 /* FriendRequestsViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendRequestsViewCell.m; sourceTree = "<group>"; };
+		D92989BE2898C53E00CDD783 /* FriendDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendDetailsViewController.h; sourceTree = "<group>"; };
+		D92989BF2898C53E00CDD783 /* FriendDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendDetailsViewController.m; sourceTree = "<group>"; };
+		D92989C12898CEDF00CDD783 /* FriendMatchesCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendMatchesCell.h; sourceTree = "<group>"; };
+		D92989C22898CEDF00CDD783 /* FriendMatchesCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendMatchesCell.m; sourceTree = "<group>"; };
 		D92D11C42880E663000BB730 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D92D11C7288119D9000BB730 /* AutocorrectFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutocorrectFunctions.h; sourceTree = "<group>"; };
 		D92D11C8288119D9000BB730 /* AutocorrectFunctions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutocorrectFunctions.m; sourceTree = "<group>"; };
@@ -141,6 +154,7 @@
 			files = (
 				D98A9C3F28870E3D009D4C74 /* CoreLocation.framework in Frameworks */,
 				D92D11C52880E663000BB730 /* MapKit.framework in Frameworks */,
+				C41ECF507BA328EADDE500D7 /* Pods_Capstone.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,6 +236,21 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		D92989B72898AE0600CDD783 /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				D92989B82898AE3C00CDD783 /* FriendRequestsViewController.h */,
+				D92989B92898AE3C00CDD783 /* FriendRequestsViewController.m */,
+				D92989BB2898B31800CDD783 /* FriendRequestsViewCell.h */,
+				D92989BC2898B31800CDD783 /* FriendRequestsViewCell.m */,
+				D92989BE2898C53E00CDD783 /* FriendDetailsViewController.h */,
+				D92989BF2898C53E00CDD783 /* FriendDetailsViewController.m */,
+				D92989C12898CEDF00CDD783 /* FriendMatchesCell.h */,
+				D92989C22898CEDF00CDD783 /* FriendMatchesCell.m */,
+			);
+			path = Friends;
+			sourceTree = "<group>";
+		};
 		D92D11C62880EBCC000BB730 /* Autocorrect */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,6 +285,7 @@
 		D945E1D028718497005FFE04 /* Capstone */ = {
 			isa = PBXGroup;
 			children = (
+				D92989B72898AE0600CDD783 /* Friends */,
 				D92D11C62880EBCC000BB730 /* Autocorrect */,
 				D97795B5287E9347003F9A45 /* Like View */,
 				D9539290287E56EB00207CC6 /* Settings View */,
@@ -617,9 +647,11 @@
 				D97A1FAC287B8609004B8893 /* CollegeNews.m in Sources */,
 				D953928F287E327D00207CC6 /* CommentCell.m in Sources */,
 				D97795B4287E9340003F9A45 /* LikeViewController.m in Sources */,
+				D92989BA2898AE3C00CDD783 /* FriendRequestsViewController.m in Sources */,
 				D92D11C9288119D9000BB730 /* AutocorrectFunctions.m in Sources */,
 				D945E1D328718497005FFE04 /* AppDelegate.m in Sources */,
 				D9784FB0287507150056DD78 /* DetailsViewController.m in Sources */,
+				D92989C32898CEDF00CDD783 /* FriendMatchesCell.m in Sources */,
 				D9F6FA6C2889EDBE009AF63A /* Comment.m in Sources */,
 				D9900A8E288B513000BFFB20 /* ParseCollege.m in Sources */,
 				D9539283287CC1E800207CC6 /* MatchCell.m in Sources */,
@@ -630,8 +662,10 @@
 				D945E1D628718497005FFE04 /* SceneDelegate.m in Sources */,
 				D91B185C28779E2E00FA423B /* NewsViewController.m in Sources */,
 				D97A1FAF287BC277004B8893 /* MatchViewController.m in Sources */,
+				D92989BD2898B31800CDD783 /* FriendRequestsViewCell.m in Sources */,
 				D945E20D287188F6005FFE04 /* AccountViewController.m in Sources */,
 				D9784FAD2874B5F90056DD78 /* APIManager.m in Sources */,
+				D92989C02898C53E00CDD783 /* FriendDetailsViewController.m in Sources */,
 				D97795B8287E936F003F9A45 /* LikeCell.m in Sources */,
 				D91B185F2877B02B00FA423B /* NewsCell.m in Sources */,
 				D9539289287E181A00207CC6 /* SettingsTableViewController.m in Sources */,
