@@ -14,7 +14,7 @@
 #import "Comment.h"
 #import "ParseCollege.h"
 
-@interface DetailsViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface DetailsViewController () <UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *detailsCollegeImage;
 @property (weak, nonatomic) IBOutlet UILabel *detailsCollegeName;
 @property (weak, nonatomic) IBOutlet UILabel *detailsCollegeLocation;
@@ -33,6 +33,7 @@
     NSString *iconName;
     ParseCollege *collegeFromParse;
     NSInteger likedCollegeMatches;
+    CLLocationManager *locationManager;
 }
 
 - (void)viewDidLoad {
@@ -45,6 +46,8 @@
     NSURL *url = [NSURL URLWithString:self.college.image];
     [self.detailsCollegeImage setImageWithURL:url];
     self->currentUser = [PFUser currentUser];
+    self->locationManager = [[CLLocationManager alloc] init];
+    self->locationManager.delegate = self;
     self->likeRelation = [self->currentUser relationForKey:@"likes"];
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
     tapGesture.numberOfTapsRequired = 2;
@@ -56,6 +59,15 @@
 
 - (void)handleDoubleTap:(UITapGestureRecognizer *)sender {
     [self performSegueWithIdentifier:@"moreDetails" sender:self];
+}
+
+- (IBAction)didTapDirectionsToCollege:(id)sender {
+    CLLocationCoordinate2D coordinateOfCurrentLocation = [self getLocation];
+    CLLocationCoordinate2D startCoordindate = {coordinateOfCurrentLocation.latitude, coordinateOfCurrentLocation.longitude};
+    CLLocationCoordinate2D destination = {[self.college.lat doubleValue], [self.college.longtuide doubleValue]};
+    NSString *googleMapsURLString = [NSString stringWithFormat:@"http://maps.google.com/?saddr=%1.6f,%1.6f&daddr=%1.6f,%1.6f",
+                                     startCoordindate.latitude, startCoordindate.longitude, destination.latitude, destination.longitude];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:googleMapsURLString]];
 }
 
 - (IBAction)didTapOnGoToWebsite:(id)sender {
@@ -152,6 +164,18 @@
     College *collegeToPass = self.college;
     LongDetailsViewController *longDVC = [segue destinationViewController];
     longDVC.college = collegeToPass;
+}
+
+- (CLLocationCoordinate2D)getLocation {
+    self->locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self->locationManager.distanceFilter = kCLDistanceFilterNone;
+    if (([self->locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])) {
+        [self->locationManager requestWhenInUseAuthorization];
+    }
+    [self->locationManager startUpdatingLocation];
+    CLLocation *location = [self->locationManager location];
+    CLLocationCoordinate2D coordinate = [location coordinate];
+    return coordinate;
 }
 @end
 
