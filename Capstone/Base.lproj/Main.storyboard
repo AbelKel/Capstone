@@ -908,12 +908,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="ageLabel" destination="ovT-7q-yeG" id="74m-Vc-jvY"/>
-                        <outlet property="highSchoolLabel" destination="1HW-EC-FsH" id="Ijv-ok-YEg"/>
+                        <outlet property="ageLabel" destination="ovT-7q-yeG" id="KFh-Gd-dRy"/>
+                        <outlet property="highSchoolLabel" destination="1HW-EC-FsH" id="ZAX-Dr-MFH"/>
                         <outlet property="profileImage" destination="2oj-6a-L4r" id="NO5-FH-NRp"/>
-                        <outlet property="profileName" destination="o4p-k1-UiE" id="xSM-9s-rt3"/>
+                        <outlet property="profileName" destination="o4p-k1-UiE" id="OP9-7k-BYn"/>
                         <outlet property="tableView" destination="24k-WG-DLj" id="tfy-Ts-RLf"/>
-                        <outlet property="takeSurveyButton" destination="NxC-hD-sl7" id="LB4-vE-xdC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KAD-6G-ot1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1308,14 +1307,14 @@
                             <tableViewSection headerTitle="About" id="zEK-fs-vHD">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="aut-24-wOP">
-                                        <rect key="frame" x="0.0" y="184.5" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="184.5" width="414" height="43"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aut-24-wOP" id="GSO-8G-97a">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wmx-7q-L7l">
-                                                    <rect key="frame" x="33" y="11" width="46" height="21.5"/>
+                                                    <rect key="frame" x="33" y="11" width="46" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>

@@ -33,6 +33,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self->currentUser = [PFUser currentUser];
+    [self setUser];
     if (self->currentUser == nil) {
         [self loginWithFacebook];
     }
@@ -51,7 +52,6 @@
 }
 
 - (void)loginWithFacebook {
-    [self setUser];
     dispatch_async(dispatch_get_main_queue(), ^{
     [FBSDKProfile loadCurrentProfileWithCompletion:^(FBSDKProfile * _Nullable profile, NSError * _Nullable error) {
     if(profile) {
