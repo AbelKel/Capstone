@@ -14,10 +14,11 @@
 #import "ParseCollege.h"
 #import "DetailsViewController.h"
 
-@interface AccountViewController () <UITableViewDelegate, UITableViewDataSource, MatchViewControllerDelegate>
+@interface AccountViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *profileName;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UIButton *takeSurveyButton;
+@property (weak, nonatomic) IBOutlet UILabel *ageLabel;
+@property (weak, nonatomic) IBOutlet UILabel *highSchoolLabel;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @end
 
@@ -31,16 +32,44 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [self setUser];
     self->currentUser = [PFUser currentUser];
-    self->matchesRelation = [currentUser relationForKey:@"matches"];
+    if (self->currentUser == nil) {
+        [self loginWithFacebook];
+    }
     if (self->currentUser[@"image"]) {
         self.profileImage.file = self->currentUser[@"image"];
         [self.profileImage loadInBackground];
     }
+    if (self->currentUser[@"age"] != nil && self->currentUser[@"highSchool"] != nil) {
+    self.ageLabel.text = self->currentUser[@"age"];
+    self.highSchoolLabel.text = self->currentUser[@"highSchool"];
+    }
+    self->matchesRelation = [currentUser relationForKey:@"matches"];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(getMatchedColleges) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
+}
+
+- (void)loginWithFacebook {
+    [self setUser];
+    dispatch_async(dispatch_get_main_queue(), ^{
+    [FBSDKProfile loadCurrentProfileWithCompletion:^(FBSDKProfile * _Nullable profile, NSError * _Nullable error) {
+    if(profile) {
+        NSString *lastnameWithSpace = [@" " stringByAppendingString:profile.lastName];
+        NSString *fullName = [profile.firstName stringByAppendingString:lastnameWithSpace];
+        self.profileName.text = fullName;
+        NSURL *url = [profile imageURLForPictureMode:FBSDKProfilePictureModeSquare size:CGSizeMake(0, 0)];
+        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
+        self.profileImage.image = image;
+    }
+    }];
+    });
+    NSString *facebookLoginAlertTilte = @"Create an account";
+    NSString *facebookLoginAlertMessage = @"Please create an account to have access to matching, news, and likes.";
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:facebookLoginAlertTilte message:facebookLoginAlertMessage preferredStyle:(UIAlertControllerStyleAlert)];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){}];
+    [alert addAction:okAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -67,17 +96,15 @@
         LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginView"];
         self.view.window.rootViewController = loginViewController;
     }];
+    if (self->currentUser == nil) {
+        FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
+        [loginManager logOut];
+    }
 }
 
 -(void)setUser {
     PFUser *username = [PFUser currentUser];
     self.profileName.text = username.username;
-}
-
-- (void)didMatchColleges:(BOOL)hide {
-    if (hide) {
-        self.takeSurveyButton.hidden = YES;
-    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -100,9 +127,6 @@
             DetailsViewController *detailVC = [segue destinationViewController];
             detailVC.college = collegeToPass;
         }
-    } else if ([[segue identifier] isEqualToString:@"matchView"]) {
-        MatchViewController *matchVC = [segue destinationViewController];
-        matchVC.delegate = self;
     }
 }
 @end
