@@ -42,6 +42,7 @@
 		D9900A8E288B513000BFFB20 /* ParseCollege.m in Sources */ = {isa = PBXBuildFile; fileRef = D9900A8D288B513000BFFB20 /* ParseCollege.m */; };
 		D9F6FA692887EAFB009AF63A /* LongDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9F6FA682887EAFB009AF63A /* LongDetailsViewController.m */; };
 		D9F6FA6C2889EDBE009AF63A /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = D9F6FA6B2889EDBE009AF63A /* Comment.m */; };
+		F7BDBE92FCDB03354568E985 /* Pods_Capstone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F7413D8AFD3D6D22A971FA /* Pods_Capstone.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -141,6 +142,7 @@
 			files = (
 				D98A9C3F28870E3D009D4C74 /* CoreLocation.framework in Frameworks */,
 				D92D11C52880E663000BB730 /* MapKit.framework in Frameworks */,
+				F7BDBE92FCDB03354568E985 /* Pods_Capstone.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -811,12 +813,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = N92FN682VQ;
+				DEVELOPMENT_TEAM = 8P98385QWU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Capstone/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Need camera access to take pictures";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Application wants to use your location";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Application wants to use your location";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "This application requires location services to work";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This application requires location services to work";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Need library access to upload images";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -828,7 +830,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.AbelKel.Capstone;
+				PRODUCT_BUNDLE_IDENTIFIER = com.AbelKel.FindMyCollege;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -843,12 +845,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = N92FN682VQ;
+				DEVELOPMENT_TEAM = 8P98385QWU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Capstone/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Need camera access to take pictures";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Application wants to use your location";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Application wants to use your location";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "This application requires location services to work";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This application requires location services to work";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Need library access to upload images";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -860,7 +862,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.AbelKel.Capstone;
+				PRODUCT_BUNDLE_IDENTIFIER = com.AbelKel.FindMyCollege;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
