@@ -9,7 +9,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol MatchViewControllerDelegate <NSObject>
+
+- (void)didMatchColleges:(BOOL)hide;
+
+@end
+
 @interface MatchViewController : UIViewController
+
+@property (nonatomic, readwrite, weak) id<MatchViewControllerDelegate> delegate;
 
 @end
 
