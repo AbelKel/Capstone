@@ -13,6 +13,7 @@
 		D91B18552877944500FA423B /* College.m in Sources */ = {isa = PBXBuildFile; fileRef = D91B18542877944500FA423B /* College.m */; };
 		D91B185C28779E2E00FA423B /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D91B185B28779E2E00FA423B /* NewsViewController.m */; };
 		D91B185F2877B02B00FA423B /* NewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D91B185E2877B02B00FA423B /* NewsCell.m */; };
+		D9286DB6289C368B00571EEA /* LangaugeSelectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9286DB5289C368B00571EEA /* LangaugeSelectionTableViewController.m */; };
 		D92D11C52880E663000BB730 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D92D11C42880E663000BB730 /* MapKit.framework */; };
 		D92D11C9288119D9000BB730 /* AutocorrectFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = D92D11C8288119D9000BB730 /* AutocorrectFunctions.m */; };
 		D93D12C62897321100610C9F /* NewsDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D93D12C52897321100610C9F /* NewsDetailsViewController.m */; };
@@ -76,6 +77,8 @@
 		D91B185B28779E2E00FA423B /* NewsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
 		D91B185D2877B02B00FA423B /* NewsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsCell.h; sourceTree = "<group>"; };
 		D91B185E2877B02B00FA423B /* NewsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsCell.m; sourceTree = "<group>"; };
+		D9286DB4289C368B00571EEA /* LangaugeSelectionTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LangaugeSelectionTableViewController.h; sourceTree = "<group>"; };
+		D9286DB5289C368B00571EEA /* LangaugeSelectionTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LangaugeSelectionTableViewController.m; sourceTree = "<group>"; };
 		D92D11C42880E663000BB730 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D92D11C7288119D9000BB730 /* AutocorrectFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutocorrectFunctions.h; sourceTree = "<group>"; };
 		D92D11C8288119D9000BB730 /* AutocorrectFunctions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutocorrectFunctions.m; sourceTree = "<group>"; };
@@ -328,6 +331,8 @@
 			children = (
 				D95891DC289886C100D6E5D4 /* Translate.h */,
 				D95891DD289886C100D6E5D4 /* Translate.m */,
+				D9286DB4289C368B00571EEA /* LangaugeSelectionTableViewController.h */,
+				D9286DB5289C368B00571EEA /* LangaugeSelectionTableViewController.m */,
 			);
 			path = "Translating ";
 			sourceTree = "<group>";
@@ -664,6 +669,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9286DB6289C368B00571EEA /* LangaugeSelectionTableViewController.m in Sources */,
 				D95891DE289886C100D6E5D4 /* Translate.m in Sources */,
 				D93D12C62897321100610C9F /* NewsDetailsViewController.m in Sources */,
 				D97A1FAC287B8609004B8893 /* CollegeNews.m in Sources */,
@@ -863,7 +869,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8P98385QWU;
+				DEVELOPMENT_TEAM = N92FN682VQ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Capstone/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Need camera access to take pictures";
@@ -895,7 +901,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8P98385QWU;
+				DEVELOPMENT_TEAM = N92FN682VQ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Capstone/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Need camera access to take pictures";
