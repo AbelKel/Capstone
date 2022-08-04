@@ -7,6 +7,8 @@
 #import <parse/Parse.h>
 #import "RegistrationViewController.h"
 @interface RegistrationViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *ageTextField;
+@property (weak, nonatomic) IBOutlet UITextField *highSchoolTextField;
 @property (weak, nonatomic) IBOutlet UITextField *usernameRegistrationField;
 @property (weak, nonatomic) IBOutlet UITextField *emailRegistration;
 @property (weak, nonatomic) IBOutlet UITextField *passwordRegistration;
@@ -23,6 +25,8 @@
     newUser.username = self.usernameRegistrationField.text;
     newUser.email = self.emailRegistration.text;
     newUser.password = self.passwordRegistration.text;
+    newUser[@"age"] = self.ageTextField.text;
+    newUser[@"highSchool"] = self.highSchoolTextField.text;
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
         if (error != nil) {
             NSLog(@"Error: %@", error.localizedDescription);
@@ -34,6 +38,14 @@
 
 - (IBAction)didRegisterButton:(id)sender {
     [self registerUser];
+}
+
+- (IBAction)tapOnBlankSpace:(id)sender {
+    [self.view endEditing:true];
+}
+
+- (IBAction)didTapCancelRegistration:(id)sender {
+    [self dismissViewControllerAnimated:true completion:nil];
 }
 
 - (void)performSegueToLogin {
