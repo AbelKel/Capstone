@@ -48,6 +48,7 @@
                     }
                 }];
             });
+        
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Create an account!" message:@"Please create an account to have access to matching, news, and likes." preferredStyle:(UIAlertControllerStyleAlert)];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){}];
         [alert addAction:okAction];
