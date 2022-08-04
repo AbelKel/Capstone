@@ -31,21 +31,21 @@ In the first week of the start of the project, I plan on implementing the sign u
 ### 1. User Stories (Required and Optional)
 
 **Required Must-have Stories**
- * User can login using Facebook account **[Complete]**
- * User can search for a college **[Complete]**
- * User can like/save a college **[Complete]**
- * User can comment under a specific college **[Complete with need for improvement]**
- * Filter college by location **[In Progress]**
- * User can view academic rigor on a scale of 1 - 10 
- * User can see the ranks of colleges in top 10, top 20, etc **[Currently can see the top 20]**
- * User can fill out survey of college preferences during registration **[In Progress]**
+ * User can login using Facebook account **[Completed]**
+ * User can search for a college **[Completed]**
+ * User can like/save a college **[Completed]**
+ * User can comment under a specific college **[Completed]**
+ * Filter college by location **[Completed]**
+ * User can view academic rigor on a scale of 1 - 10 **[Completed]**
+ * User can see the ranks of colleges in top 10, top 20, etc **[Completed]**
+ * User can fill out survey of college preferences during registration **[Completed]**
  
 **Optional Nice-to-have Stories**
 
-* Find links to different colleges’ websites **[links need to redirect]**
-* User can see photos of college campuses
-* User can add a college (if it does not exist)
-* User can follow a specific college for news or any updates (News API) **[Made significant progress]**
+* Find links to different colleges’ websites **[Completed]**
+* Translation into different languages **[Completed]**
+* User can follow a specific college for news or any updates (News API)/Recommended News **[Completed]**
+* Get directions to a college **[Completed]**
 
 
 ### 2. Screen Archetypes
@@ -153,7 +153,7 @@ In the first week of the start of the project, I plan on implementing the sign u
    | latitude      | String      | latitudinal location of the college |
    | rigor score   | Double      | the score give to the college by the API|
    | distance      | Double      | the college's distance from the user|
-   
+ 
 #### CollegeNews 
 
     | Property       | Type     | Description |
@@ -161,9 +161,12 @@ In the first week of the start of the project, I plan on implementing the sign u
     | title          | String   | title of the news article|
     | newsDescription| String   | description of the news|
     | imageUrl       | String   | url to the image presented on the cover of the articel|
+    | url            | String   | url to the news article |
+    | content        | String   | a longer description of the news article |
+    | articleAuthorName | String | name of the author of the article |
+    | publicationDate | String | date the artilce was published on |
     
 ### Data Model (Parse)
-   
 #### Parse User
 
    | Property      | Type     | Description |
@@ -172,6 +175,10 @@ In the first week of the start of the project, I plan on implementing the sign u
    | username      | String   | username chosen by user during signup |
    | image         | File     | image that user uploads for profile picture|
    | email         | String   | email used by the user during signup |
+   | likes         | Relation(college)| all colleges that a user has liked |
+   | mathces       | Relation(college)|all colleges that a user has been matched with |
+   | language       | String      | default language assinged to the user during registration|
+   | newLanguage       | String      | user's picked language |
    
 #### Parse College Object (Stored on parse for the like view)
 
@@ -189,6 +196,7 @@ In the first week of the start of the project, I plan on implementing the sign u
    | distance      | Double      | the college's distance from the user|
    
 ###Comments
+
    | Property      | Type     | Description |
    | ------------- | -------- | ------------|
    | comment       | String   | comment made by the user|
@@ -196,10 +204,6 @@ In the first week of the start of the project, I plan on implementing the sign u
    | college       | String   | name of the college|
    | profile image | file     | profile image of the user|
    | username      | string   | username displayed in comment cell|
-   
-###Relation Tables In Parse 
-* LikesRelations: It is a relation talbe that connects the users likes to the Colleges class in parse. There is no college object repetition in the Colleges class. A college object can be liked and matched to mutiple users at the same time.
-* MatchesRelations: is a relation table that connects the users matches to Colleges class in parse. 
   
 ### Networking
 * Login;

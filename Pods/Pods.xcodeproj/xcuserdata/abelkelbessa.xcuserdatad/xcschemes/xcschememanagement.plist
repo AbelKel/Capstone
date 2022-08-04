@@ -61,7 +61,7 @@
 		<key>GTMSessionFetcher.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>15</integer>
+			<integer>17</integer>
 		</dict>
 		<key>GoogleDataTransport.xcscheme</key>
 		<dict>
@@ -71,7 +71,7 @@
 		<key>GoogleDataTransport.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>22</integer>
+			<integer>23</integer>
 		</dict>
 		<key>GoogleMLKit.xcscheme</key>
 		<dict>
@@ -81,7 +81,7 @@
 		<key>GoogleMLKit.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>16</integer>
+			<integer>24</integer>
 		</dict>
 		<key>GoogleToolboxForMac.xcscheme</key>
 		<dict>
@@ -91,7 +91,7 @@
 		<key>GoogleToolboxForMac.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>21</integer>
+			<integer>26</integer>
 		</dict>
 		<key>GoogleUtilities.xcscheme</key>
 		<dict>
@@ -101,7 +101,7 @@
 		<key>GoogleUtilities.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>27</integer>
+			<integer>22</integer>
 		</dict>
 		<key>GoogleUtilitiesComponents.xcscheme</key>
 		<dict>
@@ -111,7 +111,7 @@
 		<key>GoogleUtilitiesComponents.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>17</integer>
+			<integer>14</integer>
 		</dict>
 		<key>MLKitCommon.xcscheme</key>
 		<dict>
@@ -121,7 +121,7 @@
 		<key>MLKitCommon.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>23</integer>
+			<integer>25</integer>
 		</dict>
 		<key>MLKitNaturalLanguage.xcscheme</key>
 		<dict>
@@ -131,7 +131,7 @@
 		<key>MLKitNaturalLanguage.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>26</integer>
+			<integer>27</integer>
 		</dict>
 		<key>MLKitTranslate-MLKitTranslate_resource.xcscheme</key>
 		<dict>
@@ -141,7 +141,7 @@
 		<key>MLKitTranslate-MLKitTranslate_resource.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>19</integer>
+			<integer>20</integer>
 		</dict>
 		<key>MLKitTranslate.xcscheme</key>
 		<dict>
@@ -151,7 +151,7 @@
 		<key>MLKitTranslate.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>20</integer>
+			<integer>19</integer>
 		</dict>
 		<key>Parse-Parse.xcscheme</key>
 		<dict>
@@ -203,7 +203,7 @@
 		<key>PromisesObjC.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>25</integer>
+			<integer>28</integer>
 		</dict>
 		<key>Protobuf.xcscheme</key>
 		<dict>
@@ -213,7 +213,7 @@
 		<key>Protobuf.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>18</integer>
+			<integer>16</integer>
 		</dict>
 		<key>SSZipArchive.xcscheme</key>
 		<dict>
@@ -223,7 +223,7 @@
 		<key>SSZipArchive.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>24</integer>
+			<integer>18</integer>
 		</dict>
 		<key>TTTAttributedLabel.xcscheme</key>
 		<dict>
@@ -240,7 +240,7 @@
 		<key>nanopb.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>28</integer>
+			<integer>21</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
