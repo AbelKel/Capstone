@@ -23,6 +23,7 @@
     newUser.username = self.usernameRegistrationField.text;
     newUser.email = self.emailRegistration.text;
     newUser.password = self.passwordRegistration.text;
+    newUser[@"Language"] = @"English";
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
         if (error != nil) {
             NSLog(@"Error: %@", error.localizedDescription);

@@ -43,6 +43,10 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    if (self->currentUser[@"image"]) {
+        self.profileImage.file = self->currentUser[@"image"];
+        [self.profileImage loadInBackground];
+    }
     [self getMatchedColleges];
 }
 

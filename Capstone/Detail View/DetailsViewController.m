@@ -12,6 +12,7 @@
 #import "LikeViewController.h"
 #import "LongDetailsViewController.h"
 #import "Comment.h"
+#import "Translate.h"
 #import "ParseCollege.h"
 
 @interface DetailsViewController () <UITableViewDelegate, UITableViewDataSource>
@@ -39,9 +40,15 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.detailsCollegeName.text = self.college.name;;
-    self.detailsCollegeDetails.text = self.college.details;
-    self.detailsCollegeLocation.text = self.college.location;
+    [Translate textToTranslate:self.college.name forText:^(NSString * _Nonnull text, NSError * _Nonnull error) {
+        self.detailsCollegeName.text = text;
+    }];
+    [Translate textToTranslate:self.college.details forText:^(NSString * _Nonnull text, NSError * _Nonnull error) {
+        self.detailsCollegeDetails.text = text;
+    }];
+    [Translate textToTranslate:self.college.location forText:^(NSString * _Nonnull text, NSError * _Nonnull error) {
+        self.detailsCollegeLocation.text = text;
+    }];
     NSURL *url = [NSURL URLWithString:self.college.image];
     [self.detailsCollegeImage setImageWithURL:url];
     self->currentUser = [PFUser currentUser];

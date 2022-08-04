@@ -9,43 +9,58 @@
 @import MLKit;
 
 @implementation Translate
-+ (NSString *)textToTranslate:(NSString *)description {
-   __block NSString *myTranslatedText;
-   [Translate translate:description translatedText:^(NSString * _Nonnull text, NSError * _Nonnull error) {
-       myTranslatedText = text;
-   }];
-   return myTranslatedText;
++ (void)textToTranslate:(NSString *)description forText:(void(^)(NSString *text, NSError *error))completion {
+       [Translate translate:description translatedText:^(NSString * _Nonnull text, NSError * _Nonnull error) {
+          completion(text, nil);
+       }];
 }
 
 + (void)translate:(NSString *)text translatedText:(void(^)(NSString *text, NSError *error))completion {
-   __block bool flag;
+    MLKTranslateLanguage initalLanguage;
+    MLKTranslateLanguage changeLanguage;
+    PFUser *currentUser = [PFUser currentUser];
+    if ([currentUser[@"Language"] isEqual:@"English"]) {
+        initalLanguage = MLKTranslateLanguageEnglish;
+    } else if ([currentUser[@"Language"] isEqual:@"German"]) {
+        initalLanguage = MLKTranslateLanguageGerman;
+    } else if ([currentUser[@"Language"] isEqual:@"Spanish"]) {
+        initalLanguage = MLKTranslateLanguageSpanish;
+    } else if ([currentUser[@"Language"] isEqual:@"Arabic"]){
+        initalLanguage = MLKTranslateLanguageArabic;
+    }
+    
+    if ([currentUser[@"newLanguage"] isEqual:@"English"]) {
+        changeLanguage = MLKTranslateLanguageEnglish;
+    } else if ([currentUser[@"newLanguage"] isEqual:@"German"]) {
+        changeLanguage = MLKTranslateLanguageGerman;
+    } else if ([currentUser[@"newLanguage"] isEqual:@"Spanish"]) {
+        changeLanguage = MLKTranslateLanguageSpanish;
+    } else if ([currentUser[@"newLanguage"] isEqual:@"Arabic"]) {
+        changeLanguage = MLKTranslateLanguageArabic;
+    }
    MLKTranslatorOptions *options =
-           [[MLKTranslatorOptions alloc] initWithSourceLanguage:MLKTranslateLanguageEnglish
-                                                 targetLanguage:MLKTranslateLanguageGerman];
+           [[MLKTranslatorOptions alloc] initWithSourceLanguage:initalLanguage
+                                                 targetLanguage:changeLanguage];
    MLKTranslator *englishGermanTranslator =
            [MLKTranslator translatorWithOptions:options];
    MLKModelDownloadConditions *conditions =
        [[MLKModelDownloadConditions alloc] initWithAllowsCellularAccess:NO
                                             allowsBackgroundDownloading:YES];
-   [englishGermanTranslator downloadModelIfNeededWithConditions:conditions
-                                                     completion:^(NSError *_Nullable error) {
-     if (error != nil) {
-       return;
-     } else {
-         flag = true;
-     }
-   }];
-   if (flag) {
-       [englishGermanTranslator translateText:text completion:^(NSString *_Nullable translatedText, NSError *_Nullable error) {
-         if (error != nil || translatedText == nil) {
+       [englishGermanTranslator downloadModelIfNeededWithConditions:conditions
+                                                         completion:^(NSError *_Nullable error) {
+         if (error != nil) {
            return;
          } else {
-             dispatch_async(dispatch_get_main_queue(), ^{
-                completion(translatedText, nil);
-             });
+             [englishGermanTranslator translateText:text completion:^(NSString *_Nullable translatedText, NSError *_Nullable error) {
+               if (error != nil || translatedText == nil) {
+                 return;
+               } else {
+                      completion(translatedText, nil);
+                   };
+               
+             }];
          }
        }];
-   }
 }
 @end
 
