@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		281C5E823F6D5C2D3C6B0C8A /* Pods_CapstoneTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC90A25362ACDC45A2D613D /* Pods_CapstoneTests.framework */; };
+		44D97B18ECF51C808B098D4B /* Pods_Capstone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F7413D8AFD3D6D22A971FA /* Pods_Capstone.framework */; };
 		7BC22ADB76F500494C3E16C6 /* Pods_Capstone_CapstoneUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 511C5CEE66DA1C120E7C5E58 /* Pods_Capstone_CapstoneUITests.framework */; };
 		D91B18552877944500FA423B /* College.m in Sources */ = {isa = PBXBuildFile; fileRef = D91B18542877944500FA423B /* College.m */; };
 		D91B185C28779E2E00FA423B /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D91B185B28779E2E00FA423B /* NewsViewController.m */; };
@@ -141,6 +142,7 @@
 			files = (
 				D98A9C3F28870E3D009D4C74 /* CoreLocation.framework in Frameworks */,
 				D92D11C52880E663000BB730 /* MapKit.framework in Frameworks */,
+				44D97B18ECF51C808B098D4B /* Pods_Capstone.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

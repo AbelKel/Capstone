@@ -14,9 +14,10 @@
 #import "ParseCollege.h"
 #import "DetailsViewController.h"
 
-@interface AccountViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface AccountViewController () <UITableViewDelegate, UITableViewDataSource, MatchViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *profileName;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIButton *takeSurveyButton;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @end
 
@@ -73,6 +74,12 @@
     self.profileName.text = username.username;
 }
 
+- (void)didMatchColleges:(BOOL)hide {
+    if (hide) {
+        self.takeSurveyButton.hidden = YES;
+    }
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self->collegesFromQuery.count;
 }
@@ -93,6 +100,9 @@
             DetailsViewController *detailVC = [segue destinationViewController];
             detailVC.college = collegeToPass;
         }
+    } else if ([[segue identifier] isEqualToString:@"matchView"]) {
+        MatchViewController *matchVC = [segue destinationViewController];
+        matchVC.delegate = self;
     }
 }
 @end
