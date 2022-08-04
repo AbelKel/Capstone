@@ -19,6 +19,7 @@
     MLKTranslateLanguage initalLanguage;
     MLKTranslateLanguage changeLanguage;
     PFUser *currentUser = [PFUser currentUser];
+    
     if ([currentUser[@"Language"] isEqual:@"English"]) {
         initalLanguage = MLKTranslateLanguageEnglish;
     }
