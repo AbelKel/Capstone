@@ -32,6 +32,25 @@
     self.tableView.dataSource = self;
     [self setUser];
     self->currentUser = [PFUser currentUser];
+    if (self->currentUser == nil) {
+        [self setUser];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [FBSDKProfile loadCurrentProfileWithCompletion:^(FBSDKProfile * _Nullable profile, NSError * _Nullable error) {
+                    if(profile) {
+                        NSString *lastnameWithSpace = [@" " stringByAppendingString:profile.lastName];
+                        NSString *fullName = [profile.firstName stringByAppendingString:lastnameWithSpace];
+                        self.profileName.text = fullName;
+                        NSURL *url = [profile imageURLForPictureMode:FBSDKProfilePictureModeSquare size:CGSizeMake(0, 0)];
+                        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
+                        self.profileImage.image = image;
+                    }
+                }];
+            });
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Create an account!" message:@"Please create an account to have access to matching, news, and likes." preferredStyle:(UIAlertControllerStyleAlert)];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){}];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
     self->matchesRelation = [currentUser relationForKey:@"matches"];
     if (self->currentUser[@"image"]) {
         self.profileImage.file = self->currentUser[@"image"];
@@ -66,6 +85,10 @@
         LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginView"];
         self.view.window.rootViewController = loginViewController;
     }];
+    if (self->currentUser == nil) {
+        FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
+        [loginManager logOut];
+    }
 }
 
 -(void)setUser {
