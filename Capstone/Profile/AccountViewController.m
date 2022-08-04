@@ -30,8 +30,8 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [self setUser];
     self->currentUser = [PFUser currentUser];
+    
     if (self->currentUser == nil) {
         [self setUser];
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -51,11 +51,13 @@
         [alert addAction:okAction];
         [self presentViewController:alert animated:YES completion:nil];
     }
-    self->matchesRelation = [currentUser relationForKey:@"matches"];
+    
+    [self setUser];
     if (self->currentUser[@"image"]) {
         self.profileImage.file = self->currentUser[@"image"];
         [self.profileImage loadInBackground];
     }
+    self->matchesRelation = [currentUser relationForKey:@"matches"];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(getMatchedColleges) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
