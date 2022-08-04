@@ -6,6 +6,7 @@
 //
 
 #import "LongDetailsViewController.h"
+#import "Translate.h"
 
 @interface LongDetailsViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *longDescription;
@@ -15,7 +16,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.longDescription.text = self.college.detailsLong;
+    [Translate textToTranslate:self.college.detailsLong forText:^(NSString * _Nonnull text, NSError * _Nonnull error) {
+        self.longDescription.text = text;
+    }];
 }
 
 @end
