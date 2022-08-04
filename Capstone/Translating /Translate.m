@@ -21,12 +21,6 @@
     PFUser *currentUser = [PFUser currentUser];
     if ([currentUser[@"Language"] isEqual:@"English"]) {
         initalLanguage = MLKTranslateLanguageEnglish;
-    } else if ([currentUser[@"Language"] isEqual:@"German"]) {
-        initalLanguage = MLKTranslateLanguageGerman;
-    } else if ([currentUser[@"Language"] isEqual:@"Spanish"]) {
-        initalLanguage = MLKTranslateLanguageSpanish;
-    } else if ([currentUser[@"Language"] isEqual:@"Arabic"]){
-        initalLanguage = MLKTranslateLanguageArabic;
     }
     
     if ([currentUser[@"newLanguage"] isEqual:@"English"]) {

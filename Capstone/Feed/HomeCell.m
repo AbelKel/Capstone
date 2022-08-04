@@ -9,6 +9,7 @@
 #import "College.h"
 #import "HomeViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import "Translate.h"
 
 @implementation HomeCell
 
@@ -20,9 +21,15 @@
     float const animationDuration = 1.f;
     float const animationDelay = 0.f;
     float const animationFadeInInterval = 2.f;
-    self.homeCollegeName.text = college.name;
-    self.homeCollegeDetails.text = college.details;
-    self.homeCollegeLocation.text = college.location;
+    [Translate textToTranslate:college.name forText:^(NSString * _Nonnull text, NSError * _Nonnull error) {
+        self.homeCollegeName.text = text;
+    }];
+    [Translate textToTranslate:college.details forText:^(NSString * _Nonnull text, NSError * _Nonnull error) {
+        self.homeCollegeDetails.text = text;
+    }];
+    [Translate textToTranslate:college.location forText:^(NSString * _Nonnull text, NSError * _Nonnull error) {
+        self.homeCollegeLocation.text = text;
+    }];
     NSURL *url = [NSURL URLWithString:college.image];
     [self.homeCellImage setImageWithURL:url];
     [self.homeCollegeName setAlpha:animationDelay];
