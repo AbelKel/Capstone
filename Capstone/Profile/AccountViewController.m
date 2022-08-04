@@ -33,43 +33,43 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self->currentUser = [PFUser currentUser];
-    
     if (self->currentUser == nil) {
-        [self setUser];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [FBSDKProfile loadCurrentProfileWithCompletion:^(FBSDKProfile * _Nullable profile, NSError * _Nullable error) {
-                    if(profile) {
-                        NSString *lastnameWithSpace = [@" " stringByAppendingString:profile.lastName];
-                        NSString *fullName = [profile.firstName stringByAppendingString:lastnameWithSpace];
-                        self.profileName.text = fullName;
-                        NSURL *url = [profile imageURLForPictureMode:FBSDKProfilePictureModeSquare size:CGSizeMake(0, 0)];
-                        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
-                        self.profileImage.image = image;
-                    }
-                }];
-            });
-        
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Create an account!" message:@"Please create an account to have access to matching, news, and likes." preferredStyle:(UIAlertControllerStyleAlert)];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){}];
-        [alert addAction:okAction];
-        [self presentViewController:alert animated:YES completion:nil];
+        [self loginWithFacebook];
     }
-    
-    [self setUser];
     if (self->currentUser[@"image"]) {
         self.profileImage.file = self->currentUser[@"image"];
         [self.profileImage loadInBackground];
     }
-    
     if (self->currentUser[@"age"] != nil && self->currentUser[@"highSchool"] != nil) {
     self.ageLabel.text = self->currentUser[@"age"];
     self.highSchoolLabel.text = self->currentUser[@"highSchool"];
     }
-    
     self->matchesRelation = [currentUser relationForKey:@"matches"];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(getMatchedColleges) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
+}
+
+- (void)loginWithFacebook {
+    [self setUser];
+    dispatch_async(dispatch_get_main_queue(), ^{
+    [FBSDKProfile loadCurrentProfileWithCompletion:^(FBSDKProfile * _Nullable profile, NSError * _Nullable error) {
+    if(profile) {
+        NSString *lastnameWithSpace = [@" " stringByAppendingString:profile.lastName];
+        NSString *fullName = [profile.firstName stringByAppendingString:lastnameWithSpace];
+        self.profileName.text = fullName;
+        NSURL *url = [profile imageURLForPictureMode:FBSDKProfilePictureModeSquare size:CGSizeMake(0, 0)];
+        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
+        self.profileImage.image = image;
+    }
+    }];
+    });
+    NSString *facebookLoginAlertTilte = @"Create an account";
+    NSString *facebookLoginAlertMessage = @"Please create an account to have access to matching, news, and likes.";
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:facebookLoginAlertTilte message:facebookLoginAlertMessage preferredStyle:(UIAlertControllerStyleAlert)];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){}];
+    [alert addAction:okAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
