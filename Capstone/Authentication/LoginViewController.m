@@ -47,6 +47,9 @@
     }];
 }
 
+- (IBAction)didTapOnBlankSpace:(id)sender {
+    [self.view endEditing:true];
+}
 
 #pragma mark - FBSDKLoginButton
 - (void)loginButton:(FBSDKLoginButton * _Nonnull)loginButton didCompleteWithResult:(FBSDKLoginManagerLoginResult * _Nullable)result error:(NSError * _Nullable)error {

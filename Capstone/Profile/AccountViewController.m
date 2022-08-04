@@ -17,6 +17,8 @@
 @interface AccountViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *profileName;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UILabel *ageLabel;
+@property (weak, nonatomic) IBOutlet UILabel *highSchoolLabel;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @end
 
@@ -57,6 +59,12 @@
         self.profileImage.file = self->currentUser[@"image"];
         [self.profileImage loadInBackground];
     }
+    
+    if (self->currentUser[@"age"] != nil && self->currentUser[@"highSchool"] != nil) {
+    self.ageLabel.text = self->currentUser[@"age"];
+    self.highSchoolLabel.text = self->currentUser[@"highSchool"];
+    }
+    
     self->matchesRelation = [currentUser relationForKey:@"matches"];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(getMatchedColleges) forControlEvents:UIControlEventValueChanged];
