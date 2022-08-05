@@ -75,6 +75,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="MkG-mh-ANp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="51" id="0Ud-K4-CZM"/>
                             <constraint firstItem="P3k-ca-aut" firstAttribute="top" secondItem="Cyg-BH-UPp" secondAttribute="bottom" constant="20" id="B4h-eu-8tM"/>
@@ -104,6 +105,9 @@
                             <constraint firstItem="h7F-7U-ObT" firstAttribute="top" secondItem="ffJ-MQ-auY" secondAttribute="bottom" constant="91" id="oHT-ya-iL9"/>
                             <constraint firstItem="Cyg-BH-UPp" firstAttribute="top" secondItem="rfA-Iy-IXX" secondAttribute="bottom" constant="87" id="slS-Sj-hhf"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="DiP-Rr-fCs" appends="YES" id="E5d-ql-NyI"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="t2D-6o-G5M"/>
                     <connections>
@@ -115,6 +119,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="DiP-Rr-fCs">
+                    <connections>
+                        <action selector="didTapOnBlankSpace:" destination="BYZ-38-t0r" id="Tjy-NX-FbJ"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="131.8840579710145" y="114.50892857142857"/>
         </scene>
@@ -1084,12 +1093,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="1OQ-mV-1ag"/>
                     <connections>
-                        <outlet property="cancelFriendRequest" destination="ryj-U4-WQe" id="Ls0-2k-GbF"/>
-                        <outlet property="friends" destination="5si-jS-6zs" id="RA6-15-SZD"/>
-                        <outlet property="sendFriendRequest" destination="TDY-pG-xCX" id="h6B-AD-Kja"/>
+                        <outlet property="cancelFriendRequestButton" destination="ryj-U4-WQe" id="PP5-68-8Ig"/>
+                        <outlet property="friendsButton" destination="5si-jS-6zs" id="DqH-dH-0Ur"/>
+                        <outlet property="sendFriendRequestButton" destination="TDY-pG-xCX" id="HBS-8i-TfR"/>
                         <outlet property="tableView" destination="nDM-HZ-dFF" id="Br0-xH-oe0"/>
                         <outlet property="userImage" destination="3HE-Ss-mZs" id="EZx-er-Noe"/>
-                        <outlet property="username" destination="Lqo-tI-Xou" id="MWU-Qq-Eog"/>
+                        <outlet property="usernameLabel" destination="Lqo-tI-Xou" id="kBq-OH-inR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="puY-HK-jyA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1484,14 +1493,14 @@
                             <tableViewSection headerTitle="About" id="zEK-fs-vHD">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="aut-24-wOP">
-                                        <rect key="frame" x="0.0" y="184.5" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="184.5" width="414" height="43"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aut-24-wOP" id="GSO-8G-97a">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wmx-7q-L7l">
-                                                    <rect key="frame" x="33" y="11" width="46" height="21.5"/>
+                                                    <rect key="frame" x="33" y="11" width="46" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
