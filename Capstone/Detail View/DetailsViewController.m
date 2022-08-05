@@ -49,6 +49,7 @@
     [Translate textToTranslate:self.college.location translatedTextBlock:^(NSString * _Nonnull text) {
         self.detailsCollegeLocation.text = text;
     }];
+    NSLog(@"%@", self.detailsCollegeName.text);
     NSURL *url = [NSURL URLWithString:self.college.image];
     [self.detailsCollegeImage setImageWithURL:url];
     self->currentUser = [PFUser currentUser];
