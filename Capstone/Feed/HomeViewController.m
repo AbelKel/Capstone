@@ -17,8 +17,8 @@
 @interface HomeViewController ()<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-@property (weak, nonatomic) IBOutlet UIButton *location;
-@property (weak, nonatomic) IBOutlet UIButton *rigor;
+@property (weak, nonatomic) IBOutlet UIButton *locationButton;
+@property (weak, nonatomic) IBOutlet UIButton *rigorButton;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControlHome;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
@@ -45,11 +45,11 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [Translate textToTranslate:@"Location" forText:^(NSString * _Nonnull text, NSError * _Nonnull error) {
-        [self.location setTitle:text forState:UIControlStateNormal];
+    [Translate textToTranslate:@"Location" translatedTextBlock:^(NSString * _Nonnull text) {
+        [self.locationButton setTitle:text forState:UIControlStateNormal];
     }];
-    [Translate textToTranslate:@"Rigor" forText:^(NSString * _Nonnull text, NSError * _Nonnull error) {
-        [self.rigor setTitle:text forState:UIControlStateNormal];
+    [Translate textToTranslate:@"Rigor" translatedTextBlock:^(NSString * _Nonnull text) {
+        [self.rigorButton setTitle:text forState:UIControlStateNormal];
     }];
 }
 

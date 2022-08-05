@@ -18,13 +18,13 @@
 }
 
 - (void)setCollege:(College *)college {
-    [Translate textToTranslate:college.name forText:^(NSString * _Nonnull text, NSError * _Nonnull error) {
+    [Translate textToTranslate:self.college.name translatedTextBlock:^(NSString * _Nonnull text) {
         self.likedCollegeName.text = text;
     }];
-    [Translate textToTranslate:college.location forText:^(NSString * _Nonnull text, NSError * _Nonnull error) {
-        self.likedCollegeLocation.text = text;
+    [Translate textToTranslate:self.college.location translatedTextBlock:^(NSString * _Nonnull text) {
+        self.likedCollegeDescription.text = text;
     }];
-    [Translate textToTranslate:college.details forText:^(NSString * _Nonnull text, NSError * _Nonnull error) {
+    [Translate textToTranslate:self.college.details translatedTextBlock:^(NSString * _Nonnull text) {
         self.likedCollegeDescription.text = text;
     }];
     NSURL *url = [NSURL URLWithString:college.image];

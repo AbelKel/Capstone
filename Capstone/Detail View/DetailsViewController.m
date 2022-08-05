@@ -40,13 +40,13 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [Translate textToTranslate:self.college.name forText:^(NSString * _Nonnull text, NSError * _Nonnull error) {
+    [Translate textToTranslate:self.college.name translatedTextBlock:^(NSString * _Nonnull text) {
         self.detailsCollegeName.text = text;
     }];
-    [Translate textToTranslate:self.college.details forText:^(NSString * _Nonnull text, NSError * _Nonnull error) {
+    [Translate textToTranslate:self.college.details translatedTextBlock:^(NSString * _Nonnull text) {
         self.detailsCollegeDetails.text = text;
     }];
-    [Translate textToTranslate:self.college.location forText:^(NSString * _Nonnull text, NSError * _Nonnull error) {
+    [Translate textToTranslate:self.college.location translatedTextBlock:^(NSString * _Nonnull text) {
         self.detailsCollegeLocation.text = text;
     }];
     NSURL *url = [NSURL URLWithString:self.college.image];
