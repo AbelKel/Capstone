@@ -75,6 +75,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="MkG-mh-ANp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="51" id="0Ud-K4-CZM"/>
                             <constraint firstItem="P3k-ca-aut" firstAttribute="top" secondItem="Cyg-BH-UPp" secondAttribute="bottom" constant="20" id="B4h-eu-8tM"/>
@@ -104,6 +105,9 @@
                             <constraint firstItem="h7F-7U-ObT" firstAttribute="top" secondItem="ffJ-MQ-auY" secondAttribute="bottom" constant="91" id="oHT-ya-iL9"/>
                             <constraint firstItem="Cyg-BH-UPp" firstAttribute="top" secondItem="rfA-Iy-IXX" secondAttribute="bottom" constant="87" id="slS-Sj-hhf"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="g5X-Sq-eFx" appends="YES" id="6zb-01-Fn4"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="t2D-6o-G5M"/>
                     <connections>
@@ -115,6 +119,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="g5X-Sq-eFx">
+                    <connections>
+                        <action selector="onTap:" destination="BYZ-38-t0r" id="5Ev-UH-wvy"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="131.8840579710145" y="114.50892857142857"/>
         </scene>
@@ -495,6 +504,7 @@
                         <outlet property="detailsCollegeImage" destination="Zki-Rc-IEb" id="fxw-p6-63a"/>
                         <outlet property="detailsCollegeLocation" destination="cMo-Ub-p21" id="V2U-PJ-hTF"/>
                         <outlet property="detailsCollegeName" destination="Ovk-X1-Ydn" id="4xs-lX-Nh6"/>
+                        <outlet property="goToWebsiteButton" destination="g4Q-u7-GbL" id="QQy-4a-2Tn"/>
                         <outlet property="likeCollege" destination="v6S-Y4-wYn" id="l2e-3b-BYI"/>
                         <outlet property="tableView" destination="Wk6-in-egS" id="oax-q4-q7i"/>
                         <segue destination="job-Dy-nwJ" kind="show" identifier="moreDetails" id="vMg-e8-UP1"/>
@@ -876,9 +886,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="matchedCollegesLabel" destination="wxA-bo-aYa" id="LCk-rA-BIU"/>
                         <outlet property="profileImage" destination="2oj-6a-L4r" id="NO5-FH-NRp"/>
                         <outlet property="profileName" destination="o4p-k1-UiE" id="xSM-9s-rt3"/>
                         <outlet property="tableView" destination="24k-WG-DLj" id="tfy-Ts-RLf"/>
+                        <outlet property="takeSurveyButton" destination="NxC-hD-sl7" id="tKQ-oI-oWB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KAD-6G-ot1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1662,7 +1674,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="e5a-Bl-J8B"/>
+        <segue reference="o3Y-YI-sGd"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.forward" catalog="system" width="128" height="98"/>

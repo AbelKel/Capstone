@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *likeCollege;
 @property (weak, nonatomic) IBOutlet UITextView *commentTextField;
 @property (weak, nonatomic) IBOutlet UIButton *commentButton;
+@property (weak, nonatomic) IBOutlet UIButton *goToWebsiteButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
 
@@ -49,7 +50,12 @@
     [Translate textToTranslate:self.college.location translatedTextBlock:^(NSString * _Nonnull text) {
         self.detailsCollegeLocation.text = text;
     }];
-    NSLog(@"%@", self.detailsCollegeName.text);
+    [Translate textToTranslate:@"Comment" translatedTextBlock:^(NSString * _Nonnull text) {
+        [self.commentButton setTitle:text forState:UIControlStateNormal];
+    }];
+    [Translate textToTranslate:@"Go To Website" translatedTextBlock:^(NSString * _Nonnull text) {
+        [self.goToWebsiteButton setTitle:text forState:UIControlStateNormal];
+    }];
     NSURL *url = [NSURL URLWithString:self.college.image];
     [self.detailsCollegeImage setImageWithURL:url];
     self->currentUser = [PFUser currentUser];
