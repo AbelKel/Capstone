@@ -9,6 +9,7 @@
 #import "College.h"
 #import "HomeViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import "Translate.h"
 
 @implementation HomeCell
 
@@ -16,15 +17,24 @@
     [super awakeFromNib];
 }
 
--(void)setCollege:(College *)college {
+- (void)setCollege:(College *)college {
     float const animationDuration = 1.f;
     float const animationDelay = 0.f;
     float const animationFadeInInterval = 2.f;
-    self.homeCollegeName.text = college.name;
-    self.homeCollegeDetails.text = college.details;
-    self.homeCollegeLocation.text = college.location;
+    
+    [Translate textToTranslate:college.name translatedTextBlock:^(NSString * _Nonnull text) {
+        self.homeCollegeName.text = text;
+    }];
+    [Translate textToTranslate:college.details translatedTextBlock:^(NSString * _Nonnull text) {
+        self.homeCollegeDetails.text = text;
+    }];
+    [Translate textToTranslate:college.location translatedTextBlock:^(NSString * _Nonnull text) {
+        self.homeCollegeLocation.text = text;
+    }];
+
     NSURL *url = [NSURL URLWithString:college.image];
     [self.homeCellImage setImageWithURL:url];
+    
     [self.homeCollegeName setAlpha:animationDelay];
     [self.homeCollegeDetails setAlpha:animationDelay];
     [self.homeCollegeLocation setAlpha:animationDelay];
@@ -42,6 +52,7 @@
             [self.homeCellImage setAlpha:animationDuration];
         } completion:nil];
     }];
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

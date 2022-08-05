@@ -12,6 +12,7 @@
 #import "LikeViewController.h"
 #import "LongDetailsViewController.h"
 #import "Comment.h"
+#import "Translate.h"
 #import "ParseCollege.h"
 
 @interface DetailsViewController () <UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate>
@@ -22,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *likeCollege;
 @property (weak, nonatomic) IBOutlet UITextView *commentTextField;
 @property (weak, nonatomic) IBOutlet UIButton *commentButton;
+@property (weak, nonatomic) IBOutlet UIButton *goToWebsiteButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
 
@@ -40,9 +42,21 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.detailsCollegeName.text = self.college.name;;
-    self.detailsCollegeDetails.text = self.college.details;
-    self.detailsCollegeLocation.text = self.college.location;
+    [Translate textToTranslate:self.college.name translatedTextBlock:^(NSString * _Nonnull text) {
+        self.detailsCollegeName.text = text;
+    }];
+    [Translate textToTranslate:self.college.details translatedTextBlock:^(NSString * _Nonnull text) {
+        self.detailsCollegeDetails.text = text;
+    }];
+    [Translate textToTranslate:self.college.location translatedTextBlock:^(NSString * _Nonnull text) {
+        self.detailsCollegeLocation.text = text;
+    }];
+    [Translate textToTranslate:@"Comment" translatedTextBlock:^(NSString * _Nonnull text) {
+        [self.commentButton setTitle:text forState:UIControlStateNormal];
+    }];
+    [Translate textToTranslate:@"Go To Website" translatedTextBlock:^(NSString * _Nonnull text) {
+        [self.goToWebsiteButton setTitle:text forState:UIControlStateNormal];
+    }];
     NSURL *url = [NSURL URLWithString:self.college.image];
     [self.detailsCollegeImage setImageWithURL:url];
     self->currentUser = [PFUser currentUser];

@@ -12,6 +12,7 @@ target 'Capstone' do
   pod 'TTTAttributedLabel'
   pod 'Parse/UI'
   pod 'DZNEmptyDataSet'
+  pod 'GoogleMLKit/Translate', '3.1.0'
 
   target 'CapstoneTests' do
     inherit! :search_paths
