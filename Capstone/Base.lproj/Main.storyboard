@@ -204,9 +204,9 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="homeCellImage" destination="d3L-f4-UJb" id="ALs-5Q-deo"/>
-                                            <outlet property="homeCollegeDetails" destination="Kgf-pk-uKI" id="x7v-4d-vkY"/>
-                                            <outlet property="homeCollegeLocation" destination="20r-pb-VSQ" id="cVH-ph-uaF"/>
-                                            <outlet property="homeCollegeName" destination="w8F-SE-ccu" id="0FD-Sa-czK"/>
+                                            <outlet property="homeCollegeDetails" destination="Kgf-pk-uKI" id="LEp-9L-hrX"/>
+                                            <outlet property="homeCollegeLocation" destination="20r-pb-VSQ" id="zHn-bM-NBV"/>
+                                            <outlet property="homeCollegeName" destination="w8F-SE-ccu" id="wj2-QH-rhj"/>
                                             <segue destination="Mjy-ux-gnc" kind="show" id="e5a-Bl-J8B"/>
                                         </connections>
                                     </tableViewCell>
@@ -1240,20 +1240,20 @@
                             <tableViewSection headerTitle="Language" id="zEK-fs-vHD">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="aut-24-wOP">
-                                        <rect key="frame" x="0.0" y="142" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="142" width="414" height="43"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aut-24-wOP" id="GSO-8G-97a">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Language" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wmx-7q-L7l">
-                                                    <rect key="frame" x="33" y="11" width="139" height="21.5"/>
+                                                    <rect key="frame" x="33" y="11" width="139" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n12-RE-uFx">
-                                                    <rect key="frame" x="310" y="6.5" width="74" height="31"/>
+                                                    <rect key="frame" x="310" y="6" width="74" height="31"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="31" id="Oom-K2-mFO"/>
                                                     </constraints>
@@ -1278,14 +1278,14 @@
                             <tableViewSection headerTitle="About" id="DWG-0i-NuW">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="pD6-tI-Qw0">
-                                        <rect key="frame" x="0.0" y="235.5" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="235" width="414" height="43"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pD6-tI-Qw0" id="R6v-x6-LeU">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="anN-7G-2kI">
-                                                    <rect key="frame" x="33" y="11" width="46" height="21.5"/>
+                                                    <rect key="frame" x="33" y="11" width="46" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>

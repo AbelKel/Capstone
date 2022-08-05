@@ -11,9 +11,9 @@
 @implementation Translate
 + (void)textToTranslate:(NSString *)inputText translatedTextBlock:(void(^)(NSString *text))textBlock {
    [Translate translate:inputText translatedText:^(NSString * _Nonnull text, NSError * _Nonnull error) {
-       dispatch_get_main_queue(), ^{
+//       dispatch_get_main_queue(), ^{
            textBlock(text);
-       };
+//       };
    }];
 }
 
@@ -28,7 +28,7 @@
         ARABIC
     } LanguageEnum;
     
-    LanguageEnum selectedLanguage;
+    LanguageEnum selectedLanguage = ENGLISH;
     PFUser *currentUser = [PFUser currentUser];
     NSString *languageSelected = currentUser[@"newLanguage"];
     
@@ -38,7 +38,7 @@
         selectedLanguage = ((LanguageEnum)1);
     } else if ([languageSelected isEqual:@"Spanish"]) {
         selectedLanguage = ((LanguageEnum)2);
-    } else {
+    } else if ([languageSelected isEqual:@"Arabic"]){
         selectedLanguage = ((LanguageEnum)3);
     }
     
