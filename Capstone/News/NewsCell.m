@@ -6,10 +6,15 @@
 //
 #import "NewsCell.h"
 #import "UIImageView+AFNetworking.h"
+#import "Translate.h"
 @implementation NewsCell
 - (void)setCollegeNews:(CollegeNews *)collegeNews {
-    self.NewsTitle.text = collegeNews.title;
-    self.NewsDescription.text = collegeNews.newsDescription;
+    [Translate textToTranslate:collegeNews.title translatedTextBlock:^(NSString * _Nonnull text) {
+        self.NewsTitle.text = text;
+    }];
+    [Translate textToTranslate:collegeNews.newsDescription translatedTextBlock:^(NSString * _Nonnull text) {
+        self.NewsDescription.text = text;
+    }];
     NSURL *url = [NSURL URLWithString:collegeNews.imageUrl];
     [self.NewsImage setImageWithURL:url];
 }

@@ -5,6 +5,7 @@
 //  Created by Abel Kelbessa on 7/12/22.
 //
 #import "LikeCell.h"
+#import "Translate.h"
 #import "UIImageView+AFNetworking.h"
 
 @implementation LikeCell
@@ -17,9 +18,15 @@
 }
 
 - (void)setCollege:(College *)college {
-    self.likedCollegeName.text = college.name;
-    self.likedCollegeLocation.text = college.location;
-    self.likedCollegeDescription.text = college.details;
+    [Translate textToTranslate:college.name translatedTextBlock:^(NSString * _Nonnull text) {
+        self.likedCollegeName.text = text;
+    }];
+    [Translate textToTranslate:college.location translatedTextBlock:^(NSString * _Nonnull text) {
+        self.likedCollegeLocation.text = text;
+    }];
+    [Translate textToTranslate:college.details translatedTextBlock:^(NSString * _Nonnull text) {
+        self.likedCollegeDescription.text = text;
+    }];
     NSURL *url = [NSURL URLWithString:college.image];
     [self.likedCollegeImage setImageWithURL:url];
     NSLog(@"%@", college.details);

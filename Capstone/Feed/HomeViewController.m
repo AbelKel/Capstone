@@ -12,10 +12,13 @@
 #import "College.h"
 #import "AutocorrectFunctions.h"
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
+#import "Translate.h"
 
 @interface HomeViewController ()<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (weak, nonatomic) IBOutlet UIButton *locationButton;
+@property (weak, nonatomic) IBOutlet UIButton *rigorButton;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControlHome;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
@@ -39,6 +42,15 @@
     [self.tableView insertSubview:self.refreshControl atIndex:0];
     [self getCollegesForSegmentControl];
     [self.activityIndicator startAnimating];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [Translate textToTranslate:@"Location" translatedTextBlock:^(NSString * _Nonnull text) {
+        [self.locationButton setTitle:text forState:UIControlStateNormal];
+    }];
+    [Translate textToTranslate:@"Rigor" translatedTextBlock:^(NSString * _Nonnull text) {
+        [self.rigorButton setTitle:text forState:UIControlStateNormal];
+    }];
 }
 
 - (IBAction)segmentControl:(id)sender {
