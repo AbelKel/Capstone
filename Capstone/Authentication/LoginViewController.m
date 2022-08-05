@@ -35,6 +35,10 @@
     [self performSegueWithIdentifier:@"homeSegue" sender:self];
 }
 
+- (IBAction)didTapOnBlankSpace:(id)sender {
+    [self.view endEditing:true];
+}
+
 - (void)loginUser {
     NSString *username = self.usernameLogin.text;
     NSString *password = self.passwordLogin.text;

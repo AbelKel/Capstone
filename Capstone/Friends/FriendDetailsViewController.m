@@ -12,18 +12,18 @@
 #import "DetailsViewController.h"
  
 @interface FriendDetailsViewController ()<UITableViewDelegate, UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet UILabel *username;
-@property (weak, nonatomic) IBOutlet UIButton *sendFriendRequest;
-@property (weak, nonatomic) IBOutlet UIButton *cancelFriendRequest;
+@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
+@property (weak, nonatomic) IBOutlet UIButton *sendFriendRequestButton;
+@property (weak, nonatomic) IBOutlet UIButton *cancelFriendRequestButton;
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;
-@property (weak, nonatomic) IBOutlet UIButton *friends;
+@property (weak, nonatomic) IBOutlet UIButton *friendsButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
  
 @implementation FriendDetailsViewController {
-    NSArray *usersMatchedColleges;
-    NSMutableArray *friends;
-    NSMutableArray *localFriends;
+    NSArray<ParseCollege *> *usersMatchedColleges;
+    NSMutableArray<NSString *> *friends;
+    NSMutableArray<NSString *> *localFriends;
     PFRelation *matchesRelation;
     PFUser *currentUser;
 }
@@ -31,25 +31,24 @@
 - (void)viewDidLoad {
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.username.text = self.user.username;
-    self->localFriends = [[NSMutableArray alloc] init];
+    self.usernameLabel.text = self.user.username;
     self->currentUser = [PFUser currentUser];
     self->localFriends = currentUser[@"friends"];
-    self.friends.hidden = YES;
-    self.tableView.hidden = YES;
-    [self requestStatusChecker];
+    [self requestStatusChecker:nil];
     [self getUserImage];
     [self getUsersMatches];
 }
  
 - (void)getUserImage {
     PFFileObject *userProfileImage = self.user[@"image"];
-    [userProfileImage getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
-        if (!error) {
-            UIImage *image = [UIImage imageWithData:imageData];
-            self.userImage.image = image;
-        }
-    }];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [userProfileImage getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+            if (!error) {
+                UIImage *image = [UIImage imageWithData:imageData];
+                self.userImage.image = image;
+            }
+        }];
+    });
 }
  
 - (void)getUsersMatches {
@@ -66,20 +65,14 @@
 }
  
 - (IBAction)didTapSendFriendRequest:(id)sender {
-    self.sendFriendRequest.hidden = YES;
-    self.cancelFriendRequest.hidden = NO;
-    self.friends.hidden = NO;
-    self.tableView.hidden = NO;
+    [self requestStatusChecker:true];
     [self->localFriends addObject:self.user.objectId];
     self->currentUser[@"friends"] = [NSMutableArray arrayWithArray:self->localFriends];
     [self->currentUser saveInBackground];
 }
  
 - (IBAction)didTapCancelRequest:(id)sender {
-    self.friends.hidden = YES;
-    self.sendFriendRequest.hidden = NO;
-    self.cancelFriendRequest.hidden = YES;
-    self.tableView.hidden = YES;
+    [self requestStatusChecker:false];
     if (self->localFriends != nil) {
         [self->localFriends removeObject:self.user.objectId];
         self->currentUser[@"friends"] = [NSMutableArray arrayWithArray:self->localFriends];
@@ -87,22 +80,36 @@
     }
 }
  
-- (void)requestStatusChecker {
-    self->friends = self->currentUser[@"friends"];
-    if (self->friends != nil) {
-        if ([self->friends containsObject:self.user.objectId]) {
-            self.friends.hidden = NO;
-            self.tableView.hidden = NO;
-            self.sendFriendRequest.hidden = YES;
-            self.cancelFriendRequest.hidden = NO;
-        } else {
-            self.sendFriendRequest.hidden = NO;
-            self.cancelFriendRequest.hidden = YES;
-            self.tableView.hidden = YES;
-        }
+- (void)requestStatusChecker:(BOOL)changeStatus {
+    if (changeStatus) {
+        self.sendFriendRequestButton.hidden = YES;
+        self.cancelFriendRequestButton.hidden = NO;
+        self.friendsButton.hidden = NO;
+        self.tableView.hidden = NO;
+    } else if (!changeStatus){
+        self.friendsButton.hidden = YES;
+        self.sendFriendRequestButton.hidden = NO;
+        self.cancelFriendRequestButton.hidden = YES;
+        self.tableView.hidden = YES;
     } else {
-        self.sendFriendRequest.hidden = NO;
-        self.cancelFriendRequest.hidden = YES;
+    self.friendsButton.hidden = YES;
+    self.tableView.hidden = YES;
+    self->friends = self->currentUser[@"friends"];
+        if (self->friends != nil) {
+            if ([self->friends containsObject:self.user.objectId]) {
+                self.friendsButton.hidden = NO;
+                self.tableView.hidden = NO;
+                self.sendFriendRequestButton.hidden = YES;
+                self.cancelFriendRequestButton.hidden = NO;
+            } else {
+                self.sendFriendRequestButton.hidden = NO;
+                self.cancelFriendRequestButton.hidden = YES;
+                self.tableView.hidden = YES;
+            }
+        } else {
+            self.sendFriendRequestButton.hidden = NO;
+            self.cancelFriendRequestButton.hidden = YES;
+        }
     }
 }
  
