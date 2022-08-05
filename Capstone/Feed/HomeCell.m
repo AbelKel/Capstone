@@ -21,13 +21,13 @@
     float const animationDuration = 1.f;
     float const animationDelay = 0.f;
     float const animationFadeInInterval = 2.f;
-    [Translate textToTranslate:college.name forText:^(NSString * _Nonnull text, NSError * _Nonnull error) {
+    [Translate textToTranslate:self.college.name translatedTextBlock:^(NSString * _Nonnull text) {
         self.homeCollegeName.text = text;
     }];
-    [Translate textToTranslate:college.details forText:^(NSString * _Nonnull text, NSError * _Nonnull error) {
+    [Translate textToTranslate:self.college.details translatedTextBlock:^(NSString * _Nonnull text) {
         self.homeCollegeDetails.text = text;
     }];
-    [Translate textToTranslate:college.location forText:^(NSString * _Nonnull text, NSError * _Nonnull error) {
+    [Translate textToTranslate:self.college.location translatedTextBlock:^(NSString * _Nonnull text) {
         self.homeCollegeLocation.text = text;
     }];
     NSURL *url = [NSURL URLWithString:college.image];

@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [Translate textToTranslate:self.college.detailsLong forText:^(NSString * _Nonnull text, NSError * _Nonnull error) {
+    [Translate textToTranslate:self.college.detailsLong translatedTextBlock:^(NSString * _Nonnull text) {
         self.longDescription.text = text;
     }];
 }
