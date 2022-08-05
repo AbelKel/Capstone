@@ -7,6 +7,7 @@
 
 #import "MatchCell.h"
 #import "UIImageView+AFNetworking.h"
+#import "Translate.h"
 
 @implementation MatchCell
 - (void)awakeFromNib {
@@ -18,7 +19,9 @@
 }
 
 - (void)setCollege:(College *)college {
-    self.collegeName.text = college.name;
+    [Translate textToTranslate:college.name translatedTextBlock:^(NSString * _Nonnull text) {
+        self.collegeName.text = text;
+    }];
     NSURL *url = [NSURL URLWithString:college.image];
     [self.macthedCollegeImage setImageWithURL:url];
 }

@@ -7,6 +7,7 @@
 
 #import "NewsDetailsViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import "Translate.h"
 
 @interface NewsDetailsViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *articleAuthorName;
@@ -19,6 +20,12 @@
 @implementation NewsDetailsViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [Translate textToTranslate:self.collegeNews.title translatedTextBlock:^(NSString * _Nonnull text) {
+        self.headline.text = text;
+    }];
+    [Translate textToTranslate:self.collegeNews.newsDescription translatedTextBlock:^(NSString * _Nonnull text) {
+        self.newsDescription.text = text;
+    }];
     self.headline.text = self.collegeNews.title;
     self.newsDescription.text = self.collegeNews.newsDescription;
     self.publicationDate.text = self.collegeNews.publicationDate;

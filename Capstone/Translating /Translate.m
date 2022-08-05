@@ -11,15 +11,15 @@
 @implementation Translate
 + (void)textToTranslate:(NSString *)inputText translatedTextBlock:(void(^)(NSString *text))textBlock {
    [Translate translate:inputText translatedText:^(NSString * _Nonnull text, NSError * _Nonnull error) {
-//       dispatch_get_main_queue(), ^{
+       dispatch_async(dispatch_get_main_queue(), ^{
            textBlock(text);
-//       };
+       });
    }];
 }
 
 + (void)translate:(NSString *)text translatedText:(void(^)(NSString *text, NSError *error))completion {
     MLKTranslateLanguage initalLanguage = MLKTranslateLanguageEnglish;
-    MLKTranslateLanguage changeLanguage;
+    MLKTranslateLanguage changeLanguage = MLKTranslateLanguageEnglish;
     
     typedef enum {
         ENGLISH = 0,
@@ -51,6 +51,7 @@
             break;
         case SPANISH:
             changeLanguage = MLKTranslateLanguageSpanish;
+            break;
         case ARABIC:
             changeLanguage = MLKTranslateLanguageArabic;
             break;

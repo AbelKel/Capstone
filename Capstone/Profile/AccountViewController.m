@@ -13,10 +13,13 @@
 #import "MatchViewController.h"
 #import "ParseCollege.h"
 #import "DetailsViewController.h"
+#import "Translate.h"
 
 @interface AccountViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *profileName;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIButton *takeSurveyButton;
+@property (weak, nonatomic) IBOutlet UILabel *matchedCollegesLabel;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @end
 
@@ -33,16 +36,18 @@
     [self setUser];
     self->currentUser = [PFUser currentUser];
     self->matchesRelation = [currentUser relationForKey:@"matches"];
-    if (self->currentUser[@"image"]) {
-        self.profileImage.file = self->currentUser[@"image"];
-        [self.profileImage loadInBackground];
-    }
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(getMatchedColleges) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    [Translate textToTranslate:@"Take the Survey" translatedTextBlock:^(NSString * _Nonnull text) {
+        [self.takeSurveyButton setTitle:text forState:UIControlStateNormal];
+    }];
+    [Translate textToTranslate:@"Matched Colleges" translatedTextBlock:^(NSString * _Nonnull text) {
+        self.matchedCollegesLabel.text = text;
+    }];
     if (self->currentUser[@"image"]) {
         self.profileImage.file = self->currentUser[@"image"];
         [self.profileImage loadInBackground];
