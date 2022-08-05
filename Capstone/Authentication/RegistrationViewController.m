@@ -36,12 +36,12 @@
     }];
 }
 
-- (IBAction)didRegisterButton:(id)sender {
-    [self registerUser];
+- (IBAction)onTap:(id)sender {
+    [self.view endEditing:true];
 }
 
-- (IBAction)tapOnBlankSpace:(id)sender {
-    [self.view endEditing:true];
+- (IBAction)didRegisterButton:(id)sender {
+    [self registerUser];
 }
 
 - (IBAction)didTapCancelRegistration:(id)sender {
