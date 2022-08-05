@@ -1024,8 +1024,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="collegeImage" destination="u0n-Ig-u77" id="yK5-y7-yNe"/>
-                                            <outlet property="collegeName" destination="ylh-AD-LkT" id="lXC-Eo-jkM"/>
+                                            <outlet property="collegeImageView" destination="u0n-Ig-u77" id="Kk1-b8-X9m"/>
+                                            <outlet property="collegeNameLabel" destination="ylh-AD-LkT" id="ad0-YB-ba1"/>
                                             <segue destination="Mjy-ux-gnc" kind="show" id="FYt-UL-nf0"/>
                                         </connections>
                                     </tableViewCell>
@@ -1493,14 +1493,14 @@
                             <tableViewSection headerTitle="About" id="zEK-fs-vHD">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="aut-24-wOP">
-                                        <rect key="frame" x="0.0" y="184.5" width="414" height="43"/>
+                                        <rect key="frame" x="0.0" y="184.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aut-24-wOP" id="GSO-8G-97a">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wmx-7q-L7l">
-                                                    <rect key="frame" x="33" y="11" width="46" height="21"/>
+                                                    <rect key="frame" x="33" y="11" width="46" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>

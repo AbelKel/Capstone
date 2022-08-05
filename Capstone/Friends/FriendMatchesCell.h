@@ -10,9 +10,9 @@
 NS_ASSUME_NONNULL_BEGIN
  
 @interface FriendMatchesCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *collegeImage;
+@property (weak, nonatomic) IBOutlet UIImageView *collegeImageView;
 @property (nonatomic, strong) ParseCollege *college;
-@property (weak, nonatomic) IBOutlet UILabel *collegeName;
+@property (weak, nonatomic) IBOutlet UILabel *collegeNameLabel;
 @end
  
 NS_ASSUME_NONNULL_END

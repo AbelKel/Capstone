@@ -10,13 +10,14 @@
 #import "FriendDetailsViewController.h"
 #import "ParseCollege.h"
 #import <Parse/Parse.h>
+#import "APIManager.h"
 
 @interface FriendRequestsViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
 
-@implementation FriendRequestsViewController{
+@implementation FriendRequestsViewController {
     NSMutableArray<PFUser *> *usersFromParse;
     NSMutableArray<PFUser *> *suggestedUsers;
     NSMutableArray<ParseCollege *> *userLikedColleges;
@@ -48,13 +49,9 @@
 
 - (void)getCurrentUserLikes {
     PFUser *currentUser = [PFUser currentUser];
-    PFRelation *relation = [currentUser relationForKey:@"likes"];
-    PFQuery *query = [relation query];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *colleges, NSError *error) {
-        if (colleges != nil) {
+    [[APIManager shared] getLikedColleges:currentUser forColleges:^(NSArray * _Nonnull colleges, NSError * _Nonnull error) {
+        if (error == nil) {
             self->userLikedColleges = colleges;
-        } else {
-            NSLog(@"%@", error.localizedDescription);
         }
     }];
     [self suggestions];
@@ -69,8 +66,8 @@
 - (void)getPreferredUsers:(NSTimer *)timer {
     if (allUsersFromParseIndex < self->usersFromParse.count) {
         PFUser *currentUser = [self->usersFromParse objectAtIndex:allUsersFromParseIndex];
-        PFRelation *relation = [currentUser relationForKey:@"likes"];
-        PFQuery *query = [relation query];
+        PFRelation *usersLikedRelation = [currentUser relationForKey:@"likes"];
+        PFQuery *query = [usersLikedRelation query];
         [query findObjectsInBackgroundWithBlock:^(NSArray *colleges, NSError *error) {
             NSMutableArray *myColleges = [[NSMutableArray alloc] init];
             for (ParseCollege *college in colleges) {

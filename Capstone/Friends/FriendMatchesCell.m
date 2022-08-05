@@ -9,9 +9,9 @@
  
 @implementation FriendMatchesCell
 - (void)setCollege:(ParseCollege *)college {
-    self.collegeName.text = college.name;
+    self.collegeNameLabel.text = college.name;
     NSURL *url = [NSURL URLWithString:college.image];
-    [self.collegeImage setImageWithURL:url];
+    [self.collegeImageView setImageWithURL:url];
 }
  
 - (void)awakeFromNib {

@@ -9,6 +9,7 @@
 #import "APIManager.h"
 #import "College.h"
 #import "AFNetworking.h"
+#import <Parse/Parse.h>
 
 @implementation APIManager {
     NSString *stringURLForSizeOfColleges;
@@ -107,5 +108,17 @@
             completion(self.collegesBasedonFunding, self.collegesBasedonSize, nil);
         });
     });
+}
+
+- (void)getLikedColleges:(PFUser *)user forColleges:(void(^)(NSArray *colleges, NSError *error))completion {
+    PFRelation *relation = [user relationForKey:@"likes"];
+    PFQuery *query = [relation query];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *collegesBasedOnLikes, NSError *error) {
+        if (collegesBasedOnLikes != nil) {
+            completion(collegesBasedOnLikes, nil);
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
 }
 @end
