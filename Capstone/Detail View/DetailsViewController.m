@@ -42,6 +42,7 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+
     [Translate textToTranslate:self.college.name translatedTextBlock:^(NSString * _Nonnull text) {
         self.detailsCollegeName.text = text;
     }];

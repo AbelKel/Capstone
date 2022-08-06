@@ -35,10 +35,11 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self->currentUser = [PFUser currentUser];
     if (self->currentUser == nil) {
         [self loginWithFacebook];
     }
-    self->currentUser = [PFUser currentUser];
+    [self setUser];
     if (self->currentUser[@"age"] != nil && self->currentUser[@"highSchool"] != nil) {
     self.ageLabel.text = self->currentUser[@"age"];
     self.highSchoolLabel.text = self->currentUser[@"highSchool"];
