@@ -12,7 +12,7 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
-@interface LoginViewController ()<RegistrationViewControllerDelegate>
+@interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameLogin;
 @property (weak, nonatomic) IBOutlet UITextField *passwordLogin;
 @property (weak, nonatomic) IBOutlet UIView *fbLogin;
@@ -71,14 +71,5 @@
 
 - (IBAction)didRegisterButton:(id)sender {
     [self performSegueWithIdentifier:@"regSegue" sender:self];
-}
-
-#pragma mark - Navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if([[segue identifier] isEqualToString:@"regSegue"]){
-        UINavigationController *navigationController = [segue destinationViewController];
-        RegistrationViewController *regVC = (RegistrationViewController*)navigationController.topViewController;
-        regVC.delegate = self;
-    }
 }
 @end

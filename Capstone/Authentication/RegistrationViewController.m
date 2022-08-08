@@ -27,13 +27,22 @@
     newUser.password = self.passwordRegistration.text;
     newUser[@"age"] = self.ageTextField.text;
     newUser[@"highSchool"] = self.highSchoolTextField.text;
-    [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
-        if (error != nil) {
-            NSLog(@"Error: %@", error.localizedDescription);
-        } else {
-            [self performSegueToLogin];
-        }
-    }];
+    if ([self.passwordRegistration.text isEqual:self.passwordRegistrationConfirm.text]) {
+        [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
+            if (error != nil) {
+                NSLog(@"Error: %@", error.localizedDescription);
+            } else {
+                [self performSegueToLogin];
+            }
+        }];
+    } else {
+        NSString *facebookLoginAlertTilte = @"Passwords do not match!";
+        NSString *facebookLoginAlertMessage = @"Please make sure both your passwords match.";
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:facebookLoginAlertTilte message:facebookLoginAlertMessage preferredStyle:(UIAlertControllerStyleAlert)];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){}];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
 }
 
 - (IBAction)onTap:(id)sender {

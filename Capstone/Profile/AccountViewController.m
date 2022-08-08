@@ -50,16 +50,16 @@
 - (void)loginWithFacebook {
     [self setUser];
     dispatch_async(dispatch_get_main_queue(), ^{
-    [FBSDKProfile loadCurrentProfileWithCompletion:^(FBSDKProfile * _Nullable profile, NSError * _Nullable error) {
-    if(profile) {
-        NSString *lastnameWithSpace = [@" " stringByAppendingString:profile.lastName];
-        NSString *fullName = [profile.firstName stringByAppendingString:lastnameWithSpace];
-        self.profileName.text = fullName;
-        NSURL *url = [profile imageURLForPictureMode:FBSDKProfilePictureModeSquare size:CGSizeMake(0, 0)];
-        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
-        self.profileImage.image = image;
-    }
-    }];
+        [FBSDKProfile loadCurrentProfileWithCompletion:^(FBSDKProfile * _Nullable profile, NSError * _Nullable error) {
+            if(profile) {
+                NSString *lastnameWithSpace = [@" " stringByAppendingString:profile.lastName];
+                NSString *fullName = [profile.firstName stringByAppendingString:lastnameWithSpace];
+                self.profileName.text = fullName;
+                NSURL *url = [profile imageURLForPictureMode:FBSDKProfilePictureModeSquare size:CGSizeMake(0, 0)];
+                UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
+                self.profileImage.image = image;
+            }
+        }];
     });
     NSString *facebookLoginAlertTilte = @"Create an account";
     NSString *facebookLoginAlertMessage = @"Please create an account to have access to matching, news, and likes.";
