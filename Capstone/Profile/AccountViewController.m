@@ -15,7 +15,7 @@
 #import "DetailsViewController.h"
 #import "Translate.h"
 
-@interface AccountViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface AccountViewController () <UITableViewDelegate, UITableViewDataSource, MatchViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *profileName;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *takeSurveyButton;
@@ -40,8 +40,8 @@
         [self loginWithFacebook];
     }
     [self setUser];
-    self->matchesRelation = [currentUser relationForKey:@"matches"];
     [self setImageBoarderSize];
+    self->matchesRelation = [currentUser relationForKey:@"matches"];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(getMatchedColleges) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
@@ -107,7 +107,7 @@
     }];
 }
 
--(void)setUser {
+- (void)setUser {
     PFUser *username = [PFUser currentUser];
     self.profileName.text = username.username;
     if (self->currentUser[@"age"] != nil && self->currentUser[@"highSchool"] != nil) {
@@ -116,6 +116,12 @@
     } else {
         self.ageLabel.hidden = YES;
         self.highSchoolLabel.hidden = YES;
+    }
+}
+
+- (void)didMatchColleges:(BOOL)hide {
+    if (hide) {
+        self.takeSurveyButton.hidden = YES;
     }
 }
 
@@ -139,6 +145,9 @@
             DetailsViewController *detailVC = [segue destinationViewController];
             detailVC.college = collegeToPass;
         }
+    } else if ([[segue identifier] isEqualToString:@"surveySegue"]) {
+        MatchViewController *matchVC = [segue destinationViewController];
+        matchVC.delegate = self;
     }
 }
 
