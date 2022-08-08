@@ -134,7 +134,7 @@
 }
 
 - (void)constantBackoff {
-    int constantBackoffTimeInterval = 3.0;
+    int constantBackoffTimeInterval = 0.3;
     [NSTimer scheduledTimerWithTimeInterval:constantBackoffTimeInterval target:self selector:@selector(getCollegesInParse:) userInfo:nil repeats:YES];
 }
 
