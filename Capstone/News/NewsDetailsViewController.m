@@ -28,7 +28,8 @@
     }];
     self.headline.text = self.collegeNews.title;
     self.newsDescription.text = self.collegeNews.newsDescription;
-    self.publicationDate.text = self.collegeNews.publicationDate;
+    int getCharactersUpTpIndex = 10;
+    self.publicationDate.text = [self.collegeNews.publicationDate substringToIndex:getCharactersUpTpIndex];
     self.articleAuthorName.text = self.collegeNews.articleAuthorName;
     NSURL *url = [NSURL URLWithString:self.collegeNews.imageUrl];
     [self.newsCoverImage setImageWithURL:url];
@@ -36,6 +37,10 @@
     tapGesture.numberOfTapsRequired = 2;
     [self.newsCoverImage setUserInteractionEnabled:YES];
     [self.newsCoverImage addGestureRecognizer:tapGesture];
+}
+
+- (IBAction)didTapReadMore:(id)sender {
+    [self handleDoubleTap:(UITapGestureRecognizer *)sender];
 }
 
 - (void)handleDoubleTap:(UITapGestureRecognizer *)sender {
