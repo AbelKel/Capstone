@@ -40,17 +40,11 @@
 
 - (void)getLikedColleges {
     PFUser *currentUser = [PFUser currentUser];
-    PFRelation *relation = [currentUser relationForKey:@"likes"];
-    PFQuery *query = [relation query];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *colleges, NSError *error) {
-        if (colleges != nil) {
-            self->likedColleges = colleges;
-            [self.activityIndicator stopAnimating];
-            [self.activityIndicator hidesWhenStopped];
-            [self.tableView reloadData];
-        } else {
-            NSLog(@"%@", error.localizedDescription);
-        }
+    [[APIManager shared] getLikedColleges:currentUser forColleges:^(NSArray * _Nonnull colleges, NSError * _Nonnull error) {
+        self->likedColleges = colleges;
+        [self.activityIndicator stopAnimating];
+        [self.activityIndicator hidesWhenStopped];
+        [self.tableView reloadData];
     }];
     [self->refreshControl endRefreshing];
 }

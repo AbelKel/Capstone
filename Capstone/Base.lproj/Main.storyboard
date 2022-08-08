@@ -1390,6 +1390,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please note that your SAT score is converted to match the rigor score of the colleges filtered. " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h2B-TE-lKW">
+                                <rect key="frame" x="54" y="593" width="293" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="293" id="kD7-HE-cTG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="2900" translatesAutoresizingMaskIntoConstraints="NO" id="gUK-vg-U0p">
                                 <rect key="frame" x="45" y="122.5" width="328" height="31"/>
                                 <constraints>
@@ -1408,6 +1417,7 @@
                             <constraint firstItem="gVX-gC-DWP" firstAttribute="leading" secondItem="4lt-EA-Bit" secondAttribute="leading" constant="45" id="20o-Rl-wHL"/>
                             <constraint firstItem="XaE-W6-e7e" firstAttribute="leading" secondItem="kmd-z6-YCm" secondAttribute="trailing" constant="14" id="6E9-71-MdV"/>
                             <constraint firstItem="oVa-Ki-14G" firstAttribute="leading" secondItem="ndQ-HJ-Vu9" secondAttribute="leading" id="8Sh-xF-bq1"/>
+                            <constraint firstItem="A8g-BU-mNR" firstAttribute="top" secondItem="h2B-TE-lKW" secondAttribute="bottom" constant="30" id="8Vz-kn-qHw"/>
                             <constraint firstItem="9Kb-gu-gJJ" firstAttribute="top" secondItem="A8g-BU-mNR" secondAttribute="bottom" constant="27" id="9Kc-c8-8Nm"/>
                             <constraint firstItem="pyU-Ne-NB9" firstAttribute="leading" secondItem="oVa-Ki-14G" secondAttribute="trailing" constant="8" symbolic="YES" id="AXA-01-yUJ"/>
                             <constraint firstItem="ndQ-HJ-Vu9" firstAttribute="leading" secondItem="kmd-z6-YCm" secondAttribute="leading" id="BZG-ig-1yi"/>
@@ -1444,8 +1454,10 @@
                             <constraint firstItem="4lt-EA-Bit" firstAttribute="trailing" secondItem="A8g-BU-mNR" secondAttribute="trailing" constant="61" id="sdQ-ix-Dac"/>
                             <constraint firstItem="dgx-1t-SOD" firstAttribute="top" secondItem="uyf-YM-Qc1" secondAttribute="bottom" constant="47" id="sxU-t5-93m"/>
                             <constraint firstItem="A8g-BU-mNR" firstAttribute="leading" secondItem="9Kb-gu-gJJ" secondAttribute="leading" id="toQ-YC-6Ir"/>
+                            <constraint firstItem="h2B-TE-lKW" firstAttribute="top" secondItem="kmd-z6-YCm" secondAttribute="bottom" constant="23.5" id="vr5-ak-DZO"/>
                             <constraint firstItem="X4t-u1-r5v" firstAttribute="top" secondItem="4lt-EA-Bit" secondAttribute="top" constant="7" id="xHL-V1-MLX"/>
                             <constraint firstItem="tec-Ob-pE2" firstAttribute="leading" secondItem="euD-vy-off" secondAttribute="trailing" constant="18" id="xxJ-pB-2kN"/>
+                            <constraint firstItem="h2B-TE-lKW" firstAttribute="leading" secondItem="A8g-BU-mNR" secondAttribute="leading" id="yAl-WM-L97"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="j8A-zE-LVk" appends="YES" id="6yI-Bp-EXa"/>
