@@ -21,7 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *detailsCollegeLocation;
 @property (weak, nonatomic) IBOutlet UILabel *detailsCollegeDetails;
 @property (weak, nonatomic) IBOutlet UIButton *likeCollege;
-@property (weak, nonatomic) IBOutlet UITextView *commentTextField;
+@property (weak, nonatomic) IBOutlet UITextField *commentTextField;
 @property (weak, nonatomic) IBOutlet UIButton *commentButton;
 @property (weak, nonatomic) IBOutlet UIButton *goToWebsiteButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -46,9 +46,13 @@
     [Translate textToTranslate:self.college.name translatedTextBlock:^(NSString * _Nonnull text) {
         self.detailsCollegeName.text = text;
     }];
-    [Translate textToTranslate:self.college.details translatedTextBlock:^(NSString * _Nonnull text) {
-        self.detailsCollegeDetails.text = text;
-    }];
+    if (self.college.details == nil) {
+        self.detailsCollegeDetails.text = @"This college does not have a description. Please go to their website to learn more.";
+    } else {
+        [Translate textToTranslate:self.college.details translatedTextBlock:^(NSString * _Nonnull text) {
+            self.detailsCollegeDetails.text = text;
+        }];
+    }
     [Translate textToTranslate:self.college.location translatedTextBlock:^(NSString * _Nonnull text) {
         self.detailsCollegeLocation.text = text;
     }];

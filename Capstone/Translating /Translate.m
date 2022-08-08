@@ -42,7 +42,7 @@
         selectedLanguage = ((LanguageEnum)3);
     }
     
-    switch(selectedLanguage){
+    switch(selectedLanguage) {
         case ENGLISH:
             changeLanguage = MLKTranslateLanguageEnglish;
             break;

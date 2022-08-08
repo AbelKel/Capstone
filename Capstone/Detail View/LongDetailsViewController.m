@@ -16,9 +16,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [Translate textToTranslate:self.college.detailsLong translatedTextBlock:^(NSString * _Nonnull text) {
-        self.longDescription.text = text;
-    }];
+    if (self.college.details == nil) {
+        self.longDescription.text = @"This college does not have a description. Please go to their website to learn more.";
+    } else {
+        [Translate textToTranslate:self.college.detailsLong translatedTextBlock:^(NSString * _Nonnull text) {
+            self.longDescription.text = text;
+        }];
+    }
 }
 
 @end
