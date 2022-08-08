@@ -46,13 +46,17 @@
     [Translate textToTranslate:self.college.name translatedTextBlock:^(NSString * _Nonnull text) {
         self.detailsCollegeName.text = text;
     }];
+    
+    NSString *textForBlankDescription;
     if (self.college.details == nil) {
-        self.detailsCollegeDetails.text = @"This college does not have a description. Please go to their website to learn more.";
+        textForBlankDescription = @"This college does not have a description. Please go to their website to learn more.";
     } else {
-        [Translate textToTranslate:self.college.details translatedTextBlock:^(NSString * _Nonnull text) {
-            self.detailsCollegeDetails.text = text;
-        }];
+        textForBlankDescription = self.college.details;
     }
+    [Translate textToTranslate:textForBlankDescription translatedTextBlock:^(NSString * _Nonnull text) {
+        self.detailsCollegeDetails.text = text;
+    }];
+    
     [Translate textToTranslate:self.college.location translatedTextBlock:^(NSString * _Nonnull text) {
         self.detailsCollegeLocation.text = text;
     }];

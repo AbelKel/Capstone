@@ -40,11 +40,8 @@
         [self loginWithFacebook];
     }
     [self setUser];
-    if (self->currentUser[@"age"] != nil && self->currentUser[@"highSchool"] != nil) {
-    self.ageLabel.text = self->currentUser[@"age"];
-    self.highSchoolLabel.text = self->currentUser[@"highSchool"];
-    }
     self->matchesRelation = [currentUser relationForKey:@"matches"];
+    [self setImageBoarderSize];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(getMatchedColleges) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
@@ -113,6 +110,13 @@
 -(void)setUser {
     PFUser *username = [PFUser currentUser];
     self.profileName.text = username.username;
+    if (self->currentUser[@"age"] != nil && self->currentUser[@"highSchool"] != nil) {
+        self.ageLabel.text = self->currentUser[@"age"];
+        self.highSchoolLabel.text = self->currentUser[@"highSchool"];
+    } else {
+        self.ageLabel.hidden = YES;
+        self.highSchoolLabel.hidden = YES;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -136,5 +140,12 @@
             detailVC.college = collegeToPass;
         }
     }
+}
+
+- (void)setImageBoarderSize {
+    double radius = 1.995;
+    self.profileImage.layer.cornerRadius = self.profileImage.frame.size.height/radius;
+    self.profileImage.layer.masksToBounds = YES;
+    self.profileImage.layer.borderWidth = 0;
 }
 @end
