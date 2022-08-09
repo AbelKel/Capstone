@@ -47,6 +47,8 @@
 		D9AED1E8289DD335009FAF84 /* FriendMatchesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9AED1E7289DD335009FAF84 /* FriendMatchesCell.m */; };
 		D9AED1EB289DD38C009FAF84 /* FriendRequestsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9AED1EA289DD38C009FAF84 /* FriendRequestsViewCell.m */; };
 		D9AED1EE289DD3D3009FAF84 /* FriendRequestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9AED1ED289DD3D3009FAF84 /* FriendRequestsViewController.m */; };
+		D9F6B90228A1D27D00C7255B /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9F6B90128A1D27D00C7255B /* CommentsViewController.m */; };
+		D9F6B90528A1D2E400C7255B /* DetailCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9F6B90428A1D2E400C7255B /* DetailCommentCell.m */; };
 		D9F6FA692887EAFB009AF63A /* LongDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9F6FA682887EAFB009AF63A /* LongDetailsViewController.m */; };
 		D9F6FA6C2889EDBE009AF63A /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = D9F6FA6B2889EDBE009AF63A /* Comment.m */; };
 /* End PBXBuildFile section */
@@ -144,6 +146,10 @@
 		D9AED1EA289DD38C009FAF84 /* FriendRequestsViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendRequestsViewCell.m; sourceTree = "<group>"; };
 		D9AED1EC289DD3D3009FAF84 /* FriendRequestsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendRequestsViewController.h; sourceTree = "<group>"; };
 		D9AED1ED289DD3D3009FAF84 /* FriendRequestsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendRequestsViewController.m; sourceTree = "<group>"; };
+		D9F6B90028A1D27C00C7255B /* CommentsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentsViewController.h; sourceTree = "<group>"; };
+		D9F6B90128A1D27D00C7255B /* CommentsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentsViewController.m; sourceTree = "<group>"; };
+		D9F6B90328A1D2E400C7255B /* DetailCommentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailCommentCell.h; sourceTree = "<group>"; };
+		D9F6B90428A1D2E400C7255B /* DetailCommentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailCommentCell.m; sourceTree = "<group>"; };
 		D9F6FA672887EAFB009AF63A /* LongDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LongDetailsViewController.h; sourceTree = "<group>"; };
 		D9F6FA682887EAFB009AF63A /* LongDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LongDetailsViewController.m; sourceTree = "<group>"; };
 		D9F6FA6A2889EDBE009AF63A /* Comment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
@@ -276,6 +282,7 @@
 		D945E1D028718497005FFE04 /* Capstone */ = {
 			isa = PBXGroup;
 			children = (
+				D9F6B8FC28A1CBE800C7255B /* All Comments */,
 				D9930B07289DD26E00CAAB95 /* AddFriends */,
 				D95891DB289886A000D6E5D4 /* Translating  */,
 				D92D11C62880EBCC000BB730 /* Autocorrect */,
@@ -409,6 +416,17 @@
 				D9AED1ED289DD3D3009FAF84 /* FriendRequestsViewController.m */,
 			);
 			path = AddFriends;
+			sourceTree = "<group>";
+		};
+		D9F6B8FC28A1CBE800C7255B /* All Comments */ = {
+			isa = PBXGroup;
+			children = (
+				D9F6B90028A1D27C00C7255B /* CommentsViewController.h */,
+				D9F6B90128A1D27D00C7255B /* CommentsViewController.m */,
+				D9F6B90328A1D2E400C7255B /* DetailCommentCell.h */,
+				D9F6B90428A1D2E400C7255B /* DetailCommentCell.m */,
+			);
+			path = "All Comments";
 			sourceTree = "<group>";
 		};
 		E3BD99B36C5AE25D9714456D /* Frameworks */ = {
@@ -721,11 +739,13 @@
 				D945E20D287188F6005FFE04 /* AccountViewController.m in Sources */,
 				D9784FAD2874B5F90056DD78 /* APIManager.m in Sources */,
 				D9AED1E5289DD2E0009FAF84 /* FriendDetailsViewController.m in Sources */,
+				D9F6B90228A1D27D00C7255B /* CommentsViewController.m in Sources */,
 				D97795B8287E936F003F9A45 /* LikeCell.m in Sources */,
 				D9AED1EB289DD38C009FAF84 /* FriendRequestsViewCell.m in Sources */,
 				D91B185F2877B02B00FA423B /* NewsCell.m in Sources */,
 				D9539289287E181A00207CC6 /* SettingsTableViewController.m in Sources */,
 				D945E20A287188C7005FFE04 /* LoginViewController.m in Sources */,
+				D9F6B90528A1D2E400C7255B /* DetailCommentCell.m in Sources */,
 				D94C5B872872B2E800BE7FDD /* RegistrationViewController.m in Sources */,
 				D9784FA3287404C90056DD78 /* HomeViewController.m in Sources */,
 			);

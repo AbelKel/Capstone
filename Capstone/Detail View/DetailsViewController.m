@@ -14,6 +14,7 @@
 #import "Comment.h"
 #import "Translate.h"
 #import "ParseCollege.h"
+#import "CommentsViewController.h"
 
 @interface DetailsViewController () <UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *detailsCollegeImage;
@@ -169,7 +170,8 @@
 - (IBAction)didTapComment:(id)sender {
     [Comment postUserComment:self.commentTextField.text underCollege:self.college.name withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
     }];
-    [self.tableView reloadData];
+    self.commentTextField.text = nil;
+    [self getComments];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -184,9 +186,14 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    College *collegeToPass = self.college;
-    LongDetailsViewController *longDVC = [segue destinationViewController];
-    longDVC.college = collegeToPass;
+    if([[segue identifier] isEqualToString:@"moreDetails"]) {
+        College *collegeToPass = self.college;
+        LongDetailsViewController *longDVC = [segue destinationViewController];
+        longDVC.college = collegeToPass;
+    } else {
+        CommentsViewController *commentVC = [segue destinationViewController];
+        commentVC.comments = self->comments;
+    }
 }
 
 - (CLLocationCoordinate2D)getLocation {

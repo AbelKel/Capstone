@@ -15,6 +15,7 @@
 @dynamic college;
 @dynamic image;
 @dynamic usernameForDisplaying;
+@dynamic vote;
 
 + (nonnull NSString *)parseClassName {
     return @"Comments";
@@ -26,6 +27,7 @@
     newComment.author = current;
     newComment.comment = comment;
     newComment.college = collegeName;
+    newComment.vote = 0;
     if (current[@"image"] != nil) {
         newComment.image = current[@"image"];
         [PFUser.currentUser saveInBackground];
