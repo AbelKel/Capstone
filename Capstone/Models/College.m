@@ -9,8 +9,18 @@
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import <Parse/Parse.h>
+#import "ParseCollege.h"
 
-@implementation College 
+@implementation College
++ (instancetype)shared {
+    static College *sharedManager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedManager = [[self alloc] init];
+    });
+    return sharedManager;
+}
+
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];
     if (self) {
@@ -57,5 +67,13 @@
         [colleges addObject:college];
     }
     return colleges;
+}
+
+- (BOOL)isEqualsToParseCollege:(College *)parseCollege {
+    if ([self.name isEqual:parseCollege.name]) {
+        return true;
+    } else {
+        return false;
+    }
 }
 @end
