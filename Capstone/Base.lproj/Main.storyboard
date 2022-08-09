@@ -95,7 +95,6 @@
                             <constraint firstItem="Cyg-BH-UPp" firstAttribute="leading" secondItem="P3k-ca-aut" secondAttribute="leading" id="RZ5-eE-qH5"/>
                             <constraint firstItem="nez-Vr-AWF" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="SDY-Wq-LBr"/>
                             <constraint firstItem="rfA-Iy-IXX" firstAttribute="trailing" secondItem="Cyg-BH-UPp" secondAttribute="trailing" id="Syf-uY-zr4"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="P3k-ca-aut" secondAttribute="bottom" constant="11" id="Uoj-L3-1EJ"/>
                             <constraint firstAttribute="bottom" secondItem="rfA-Iy-IXX" secondAttribute="bottom" constant="204" id="Wvg-5v-zIt"/>
                             <constraint firstItem="jwK-nR-rkl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Zwk-vt-pbE"/>
                             <constraint firstItem="MkG-mh-ANp" firstAttribute="trailing" secondItem="ffJ-MQ-auY" secondAttribute="trailing" id="aKB-uS-ylb"/>
@@ -567,12 +566,12 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gyT-am-es7">
-                                <rect key="frame" x="289" y="782" width="89" height="16"/>
+                                <rect key="frame" x="321" y="782" width="57" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="TR5-Wu-o8U"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="load more"/>
+                                <buttonConfiguration key="configuration" style="plain" title="more"/>
                                 <connections>
                                     <segue destination="Sze-IP-ZJ6" kind="show" id="OnD-4Z-LPh"/>
                                 </connections>
@@ -634,6 +633,7 @@
                         <outlet property="detailsCollegeName" destination="Ovk-X1-Ydn" id="4xs-lX-Nh6"/>
                         <outlet property="goToWebsiteButton" destination="g4Q-u7-GbL" id="QQy-4a-2Tn"/>
                         <outlet property="likeCollege" destination="v6S-Y4-wYn" id="l2e-3b-BYI"/>
+                        <outlet property="loadMoreCommentsButton" destination="gyT-am-es7" id="gJt-uU-hGC"/>
                         <outlet property="tableView" destination="Wk6-in-egS" id="oax-q4-q7i"/>
                         <segue destination="job-Dy-nwJ" kind="show" identifier="moreDetails" id="vMg-e8-UP1"/>
                     </connections>
@@ -1694,14 +1694,14 @@
                             <tableViewSection headerTitle="About" id="DWG-0i-NuW">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="pD6-tI-Qw0">
-                                        <rect key="frame" x="0.0" y="237" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="237" width="414" height="43"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pD6-tI-Qw0" id="R6v-x6-LeU">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="anN-7G-2kI">
-                                                    <rect key="frame" x="33" y="11" width="46" height="21.5"/>
+                                                    <rect key="frame" x="33" y="11" width="46" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -2032,7 +2032,8 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="CZY-Rm-Src">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.66085118208949734" green="0.8766702768080249" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="ODm-N0-0zx" kind="relationship" relationship="viewControllers" id="dRi-S0-O8G"/>
