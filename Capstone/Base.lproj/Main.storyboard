@@ -404,7 +404,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Comments" id="HMY-Ld-Lt4"/>
                     <connections>
-                        <outlet property="tableView1" destination="bhp-KB-1Lk" id="Xzz-Lh-CKV"/>
+                        <outlet property="commentTableView" destination="bhp-KB-1Lk" id="xSr-9z-3J1"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BAc-rh-YP3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -8,14 +8,14 @@
 #import "CommentsViewController.h"
 
 @interface CommentsViewController ()<UITableViewDelegate, UITableViewDataSource>
-@property (strong, nonatomic) IBOutlet UITableView *tableView1;
+@property (strong, nonatomic) IBOutlet UITableView *commentTableView;
 @end
 
 @implementation CommentsViewController
 
 - (void)viewDidLoad {
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
+    self.commentTableView.dataSource = self;
+    self.commentTableView.delegate = self;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
