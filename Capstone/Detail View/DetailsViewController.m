@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *commentButton;
 @property (weak, nonatomic) IBOutlet UIButton *goToWebsiteButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIButton *loadMoreCommentsButton;
 @end
 
 @implementation DetailsViewController {
@@ -121,12 +122,14 @@
     [query includeKey:@"author"];
     [query whereKey:@"college" equalTo:self.college.name];
     [query findObjectsInBackgroundWithBlock:^(NSArray *comments, NSError *error) {
-        if (comments != nil) {
-            self->comments = comments;
-            [self.tableView reloadData];
-        } else {
-            NSLog(@"%@", error.localizedDescription);
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (comments.count == 0) {
+                self.loadMoreCommentsButton.hidden = YES;
+            } else if (comments != nil) {
+                self->comments = comments;
+                [self.tableView reloadData];
+            }
+        });
     }];
 }
 
