@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol MatchViewControllerDelegate <NSObject>
 
-- (void)didMatchColleges:(BOOL)hide;
+- (void)doneWithMatchingColleges;
 
 @end
 
