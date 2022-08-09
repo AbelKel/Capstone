@@ -24,7 +24,13 @@
     [Translate textToTranslate:college.location translatedTextBlock:^(NSString * _Nonnull text) {
         self.likedCollegeLocation.text = text;
     }];
-    [Translate textToTranslate:college.details translatedTextBlock:^(NSString * _Nonnull text) {
+    NSString *textForBlankDescription;
+    if (college.details == nil) {
+        textForBlankDescription = @"This college does not have a description. Please go to their website to learn more.";
+    } else {
+        textForBlankDescription = college.details;
+    }
+    [Translate textToTranslate:textForBlankDescription translatedTextBlock:^(NSString * _Nonnull text) {
         self.likedCollegeDescription.text = text;
     }];
     NSURL *url = [NSURL URLWithString:college.image];
