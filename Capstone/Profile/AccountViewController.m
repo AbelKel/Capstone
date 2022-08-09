@@ -119,10 +119,8 @@
     }
 }
 
-- (void)didMatchColleges:(BOOL)hide {
-    if (hide) {
-        self.takeSurveyButton.hidden = YES;
-    }
+- (void)doneWithMatchingColleges {
+    self.takeSurveyButton.hidden = YES;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
