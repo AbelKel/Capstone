@@ -11,6 +11,7 @@
 #import "ParseCollege.h"
 #import <Parse/Parse.h>
 #import "APIManager.h"
+#import "College.h"
 
 @interface FriendRequestsViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
@@ -59,7 +60,7 @@
 
 - (void)suggestions {
     allUsersFromParseIndex = 0;
-    double constantDelay = 0.5;
+    double constantDelay = 0.3;
     [NSTimer scheduledTimerWithTimeInterval:constantDelay target:self selector:@selector(getPreferredUsers:) userInfo:nil repeats:YES];
 }
 
@@ -74,6 +75,7 @@
                 [myColleges addObject:college.name];
             }
             for (ParseCollege *college in self->userLikedColleges) {
+                NSLog(@"%@", [[College shared] isEqualsToParseCollege:college]);
                 if ([myColleges containsObject:college.name] && self->loggedInUser.username != currentUser.username) {
                     [self->suggestedUsers addObject:currentUser];
                 }
