@@ -23,8 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) Comment *comment;
 @property (weak, nonatomic) Comment *commentFromParse;
 @property (weak, nonatomic) PFUser *currentUser;
-@property (strong, nonatomic) NSMutableArray *upvotes;
-@property (strong, nonatomic) NSMutableArray *downvotes;
+@property (strong, nonatomic) NSMutableArray<NSString *> *upvotes;
+@property (strong, nonatomic) NSMutableArray<NSString *> *downvotes;
 @end
 
 NS_ASSUME_NONNULL_END
