@@ -45,6 +45,7 @@ In the first week of the start of the project, I plan on implementing the sign u
 * Find links to different colleges’ websites **[Completed]**
 * Users can add friends with similar likes **[Completed]**
 * Translation into different languages **[Completed]**
+* User can upvote or downvote a comment from the comment section **[Completed]**
 * User can follow a specific college for news or any updates (News API)/Recommended News **[Completed]**
 * Get directions to a college **[Completed]**
 
