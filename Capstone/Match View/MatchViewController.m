@@ -160,7 +160,7 @@
         }
         indexInArray++;
     } else {
-        [self.delegate didMatchColleges:true];
+        [self.delegate doneWithMatchingColleges];
         [timer invalidate];
     }
 }
