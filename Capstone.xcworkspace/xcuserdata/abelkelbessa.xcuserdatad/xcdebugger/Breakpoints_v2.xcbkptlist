@@ -1708,8 +1708,8 @@
             filePath = "Capstone/AddFriends/FriendRequestsViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
             landmarkName = "-fetchAllUsers"
             landmarkType = "7">
          </BreakpointContent>
@@ -1724,8 +1724,8 @@
             filePath = "Capstone/AddFriends/FriendRequestsViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
             landmarkName = "-fetchAllUsers"
             landmarkType = "7">
          </BreakpointContent>
@@ -2223,6 +2223,22 @@
             startingLineNumber = "88"
             endingLineNumber = "88"
             landmarkName = "-didTapDownVote:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5C529C27-D8EA-46AA-AE9C-8A3F4A9A396C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Capstone/AddFriends/FriendRequestsViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "-getPreferredUsers:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
