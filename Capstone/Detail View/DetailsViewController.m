@@ -14,6 +14,7 @@
 #import "Comment.h"
 #import "Translate.h"
 #import "ParseCollege.h"
+#import "CommentsViewController.h"
 
 @interface DetailsViewController () <UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *detailsCollegeImage;
@@ -25,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *commentButton;
 @property (weak, nonatomic) IBOutlet UIButton *goToWebsiteButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIButton *loadMoreCommentsButton;
 @end
 
 @implementation DetailsViewController {
@@ -120,12 +122,14 @@
     [query includeKey:@"author"];
     [query whereKey:@"college" equalTo:self.college.name];
     [query findObjectsInBackgroundWithBlock:^(NSArray *comments, NSError *error) {
-        if (comments != nil) {
-            self->comments = comments;
-            [self.tableView reloadData];
-        } else {
-            NSLog(@"%@", error.localizedDescription);
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (comments.count == 0) {
+                self.loadMoreCommentsButton.hidden = YES;
+            } else if (comments != nil) {
+                self->comments = comments;
+                [self.tableView reloadData];
+            }
+        });
     }];
 }
 
@@ -162,6 +166,10 @@
     [self.likeCollege setImage:[UIImage imageNamed:self->iconName]forState:UIControlStateNormal];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [self getComments];
+}
+
 - (IBAction)onTap:(id)sender {
     [self.view endEditing:true];
 }
@@ -169,7 +177,8 @@
 - (IBAction)didTapComment:(id)sender {
     [Comment postUserComment:self.commentTextField.text underCollege:self.college.name withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
     }];
-    [self.tableView reloadData];
+    self.commentTextField.text = nil;
+    [self getComments];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -184,9 +193,14 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    College *collegeToPass = self.college;
-    LongDetailsViewController *longDVC = [segue destinationViewController];
-    longDVC.college = collegeToPass;
+    if ([[segue identifier] isEqualToString:@"moreDetails"]) {
+        College *collegeToPass = self.college;
+        LongDetailsViewController *longDVC = [segue destinationViewController];
+        longDVC.college = collegeToPass;
+    } else {
+        CommentsViewController *commentVC = [segue destinationViewController];
+        commentVC.comments = self->comments;
+    }
 }
 
 - (CLLocationCoordinate2D)getLocation {

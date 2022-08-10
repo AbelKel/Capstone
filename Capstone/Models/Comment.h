@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *college;
 @property (nonatomic, strong) PFFileObject *image;
 @property (nonatomic, strong) NSString *usernameForDisplaying;
+@property (nonatomic) int vote;
 + (void)postUserComment: (NSString * _Nullable )comment underCollege: ( NSString * _Nullable )collegeName withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
 @end
