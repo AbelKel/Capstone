@@ -19,12 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *downvoteHeartButton;
 @property (weak, nonatomic) IBOutlet UILabel *counterLabel;
 @property (weak, nonatomic) IBOutlet PFImageView *userProfileImageView;
-@property (weak, nonatomic) NSString *commentObjectId;
 @property (weak, nonatomic) Comment *comment;
-@property (weak, nonatomic) Comment *commentFromParse;
-@property (weak, nonatomic) PFUser *currentUser;
-@property (strong, nonatomic) NSMutableArray<NSString *> *upvotes;
-@property (strong, nonatomic) NSMutableArray<NSString *> *downvotes;
 @end
 
 NS_ASSUME_NONNULL_END

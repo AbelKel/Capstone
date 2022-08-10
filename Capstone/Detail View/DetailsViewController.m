@@ -189,7 +189,7 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if([[segue identifier] isEqualToString:@"moreDetails"]) {
+    if ([[segue identifier] isEqualToString:@"moreDetails"]) {
         College *collegeToPass = self.college;
         LongDetailsViewController *longDVC = [segue destinationViewController];
         longDVC.college = collegeToPass;
