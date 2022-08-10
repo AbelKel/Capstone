@@ -166,6 +166,10 @@
     [self.likeCollege setImage:[UIImage imageNamed:self->iconName]forState:UIControlStateNormal];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [self getComments];
+}
+
 - (IBAction)onTap:(id)sender {
     [self.view endEditing:true];
 }
