@@ -68,6 +68,7 @@
     [Translate textToTranslate:@"Go To Website" translatedTextBlock:^(NSString * _Nonnull text) {
         [self.goToWebsiteButton setTitle:text forState:UIControlStateNormal];
     }];
+    
     NSURL *url = [NSURL URLWithString:self.college.image];
     [self.detailsCollegeImage setImageWithURL:url];
     self->currentUser = [PFUser currentUser];
