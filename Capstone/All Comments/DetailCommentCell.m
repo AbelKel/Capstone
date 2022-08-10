@@ -4,7 +4,7 @@
 //
 //  Created by Abel Kelbessa on 8/8/22.
 //
-
+#import "ParseCollege.h"
 #import "DetailCommentCell.h"
 
 @implementation DetailCommentCell {
@@ -51,53 +51,37 @@
 }
 
 - (IBAction)didTapUpvote:(id)sender {
-    PFQuery *query = [PFQuery queryWithClassName:@"Comments"];
-    [query whereKey:@"objectId" equalTo:self->commentObjectId];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *comments, NSError *error) {
-        if (comments != nil) {
-            self->commentFromParse = [comments objectAtIndex:0];
-            [self.downvoteHeartButton setImage:[UIImage imageNamed:@"arrow.down.heart.png"]forState:UIControlStateNormal];
-            [self.upvoteHeartButton setImage:[UIImage imageNamed:@"arrow.up.heart.fill.png"]forState:UIControlStateNormal];
-            self->upvotes = self->commentFromParse[@"upvoted"];
-            [self->upvotes addObject:self->currentUser.username];
-            self->commentFromParse[@"upvoted"] = [NSArray arrayWithArray:self->upvotes];
-            self->downvotes = self->commentFromParse[@"downvotedUsers"];
-            if ([self->downvotes containsObject:self->currentUser.username]) {
-                [self->downvotes removeObject:self->currentUser.username];
-                self->commentFromParse[@"downvotedUsers"] = [NSArray arrayWithArray:self->downvotes];
-            }
-            self->commentFromParse.vote++;
-            [self->commentFromParse saveInBackground];
-            [self counterUpdateForLabel];
-        } else {
-            NSLog(@"%@", error.localizedDescription);
-        }
-    }];
+    [self updateVoteInParse:self->commentFromParse forValue:true];
 }
 
 - (IBAction)didTapDownVote:(id)sender {
-    PFQuery *query = [PFQuery queryWithClassName:@"Comments"];
-    [query whereKey:@"objectId" equalTo:self->commentObjectId];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *comments, NSError *error) {
-        if (comments != nil) {
-            self->commentFromParse = [comments objectAtIndex:0];
-            [self.upvoteHeartButton setImage:[UIImage imageNamed:@"arrow.up.heart.png"] forState:UIControlStateNormal];
-            [self.downvoteHeartButton setImage:[UIImage imageNamed:@"arrow.down.heart.fill.png"] forState:UIControlStateNormal];
-            self->downvotes = self->commentFromParse[@"downvotedUsers"];
-            [self->downvotes addObject:self->currentUser.username];
+    [self updateVoteInParse:self->commentFromParse forValue:false];
+}
+
+- (void)updateVoteInParse:(Comment *)collegeFromParse forValue:(BOOL)upvote {
+    if (upvote == true) {
+        [self.downvoteHeartButton setImage:[UIImage imageNamed:@"arrow.down.heart.png"]forState:UIControlStateNormal];
+        [self.upvoteHeartButton setImage:[UIImage imageNamed:@"arrow.up.heart.fill.png"]forState:UIControlStateNormal];
+        [self->upvotes addObject:self->currentUser.username];
+        self->commentFromParse[@"upvoted"] = [NSArray arrayWithArray:self->upvotes];
+        if ([self->downvotes containsObject:self->currentUser.username]) {
+            [self->downvotes removeObject:self->currentUser.username];
             self->commentFromParse[@"downvotedUsers"] = [NSArray arrayWithArray:self->downvotes];
-            self->upvotes = self->commentFromParse[@"upvoted"];
-            if ([self->upvotes containsObject:self->currentUser.username]) {
-                [self->upvotes removeObject:self->currentUser.username];
-                self->commentFromParse[@"upvoted"] = [NSArray arrayWithArray:self->upvotes];
-            }
-            self->commentFromParse.vote--;
-            [self counterUpdateForLabel];
-            [self->commentFromParse saveInBackground];
-        } else {
-            NSLog(@"%@", error.localizedDescription);
         }
-    }];
+        self->commentFromParse.vote++;
+    } else {
+        [self.upvoteHeartButton setImage:[UIImage imageNamed:@"arrow.up.heart.png"] forState:UIControlStateNormal];
+        [self.downvoteHeartButton setImage:[UIImage imageNamed:@"arrow.down.heart.fill.png"] forState:UIControlStateNormal];
+        [self->downvotes addObject:self->currentUser.username];
+        self->commentFromParse[@"downvotedUsers"] = [NSArray arrayWithArray:self->downvotes];
+        if ([self->upvotes containsObject:self->currentUser.username]) {
+            [self->upvotes removeObject:self->currentUser.username];
+            self->commentFromParse[@"upvoted"] = [NSArray arrayWithArray:self->upvotes];
+        }
+        self->commentFromParse.vote--;
+    }
+    [self->commentFromParse saveInBackground];
+    [self counterUpdateForLabel];
 }
 
 - (void)counterUpdateForLabel {
