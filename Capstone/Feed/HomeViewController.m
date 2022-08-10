@@ -47,6 +47,14 @@
 - (void)viewDidAppear:(BOOL)animated {
     [Translate textToTranslate:@"Location" translatedTextBlock:^(NSString * _Nonnull text) {
         [self.locationButton setTitle:text forState:UIControlStateNormal];
+        if (text == nil) {
+            NSString *translationErrorAlertTilte = @"Cannot translate app!";
+            NSString *translationErrorAlertMessage = @"We are currently having issues translating the app to your selected language. Please check your internet connection.";
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:translationErrorAlertTilte message:translationErrorAlertMessage preferredStyle:(UIAlertControllerStyleAlert)];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){}];
+            [alert addAction:okAction];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
     }];
     [Translate textToTranslate:@"Rigor" translatedTextBlock:^(NSString * _Nonnull text) {
         [self.rigorButton setTitle:text forState:UIControlStateNormal];
