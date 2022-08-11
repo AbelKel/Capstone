@@ -1,7 +1,7 @@
-Original App Design Project - README Template
+Find My College Project - README Template
 ===
 
-# Rate My College
+# Find My College
 
 ## Table of Contents
 1. [Overview](#Overview)
@@ -12,9 +12,9 @@ Original App Design Project - README Template
 ## Overview
 ### Description
 
-One of the reasons I found this project appealing is that the college application process can often be complicated and finding a good fit college can be challenging. The app aims to help high school juniors and seniors easily find a good fit college. I aim to use CollegeAI API, Google Maps API, and databases such as JSON files. One of the core features of the project is the student to college matching process. This feature aims to minimize the number of hours students spend looking for a college that fits their personality and academic needs or aspirations.
+One of the reasons I found this project appealing is that the college application process can often be complicated and finding a good fit college can be challenging. The app aims to help high school juniors and seniors easily find a good fit college. I aim to use CollegeAI API, Google Maps, and databases such as JSON files. One of the core features of the project is the student to college matching process. This feature aims to minimize the number of hours students spend looking for a college that fits their personality and academic needs or aspirations.
 
-Rate My College is a college review and matching app for students applying to colleges. The first time a user launches the app, they will be prompted to complete a short survey in which they will answer a couple of questions to find a college they might be interested in. Afterwards, the user will be taken to a page where they can see their top 5/10 recommended choices.
+Find My College is a college review and matching app for students applying to colleges. Users who sign up on the app have the ability to like, comment, match with colleges. Additionally, they will be able to get directions to a college, go to websites, read news about the colleges, and see other users that have similar likes to them.
 
 In the first week of the start of the project, I plan on implementing the sign up page/ login with Facebook page, the opening survey, and integration of the APIs and databases.
 
@@ -31,14 +31,16 @@ In the first week of the start of the project, I plan on implementing the sign u
 ### 1. User Stories (Required and Optional)
 
 **Required Must-have Stories**
- * User can login using Facebook account **[Completed]**
+ * User can login using Facebook account. FB logged in users will be able to view and search for colleges. **[Completed]**
  * User can search for a college **[Completed]**
  * User can like/save a college **[Completed]**
  * User can comment under a specific college **[Completed]**
  * Filter college by location **[Completed]**
- * User can view academic rigor on a scale of 1 - 10 **[Completed]**
+ * User can view colleges based on academic rigor **[Completed]**
  * User can see the ranks of colleges in top 10, top 20, etc **[Completed]**
  * User can fill out survey of college preferences during registration **[Completed]**
+ * User's input in the search bar is autocorrected and autocompleted to make the process of searching for a college easier **[Completed]**
+ * Making Asynchronous group API calls using Grand Central Dispatch(GCD) to receive colleges from the API based on the users input in the survey **[Completed]**
  
 **Optional Nice-to-have Stories**
 
