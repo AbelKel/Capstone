@@ -20,6 +20,9 @@
 @implementation SettingsTableViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
     [Translate textToTranslate:@"Edit Profile Image" translatedTextBlock:^(NSString * _Nonnull text) {
         self.editProfileImageLabel.text = text;
     }];

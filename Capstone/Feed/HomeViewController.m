@@ -88,7 +88,10 @@
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    searchBar.text = self->correctWordToDisplayInSearchBar;
+    if (![searchBar.text isEqual:@""]) {
+        searchBar.text = self->correctWordToDisplayInSearchBar;
+    }
+    [self.view endEditing:true];
 }
 
 - (void)getCollegesForSegmentControl {

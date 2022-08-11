@@ -38,7 +38,7 @@
                                     <action selector="didTapLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CRx-KO-k5K"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rfA-Iy-IXX">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rfA-Iy-IXX">
                                 <rect key="frame" x="51" y="600" width="305" height="38"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
@@ -53,7 +53,7 @@
                                 <color key="textColor" systemColor="linkColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P3k-ca-aut">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P3k-ca-aut">
                                 <rect key="frame" x="51" y="766" width="305" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="31" id="d08-AF-wxA"/>
@@ -64,7 +64,7 @@
                                     <action selector="didRegisterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UOk-Jy-B1u"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cyg-BH-UPp">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Don't have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cyg-BH-UPp">
                                 <rect key="frame" x="51" y="725" width="305" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -96,7 +96,6 @@
                             <constraint firstItem="Cyg-BH-UPp" firstAttribute="leading" secondItem="P3k-ca-aut" secondAttribute="leading" id="RZ5-eE-qH5"/>
                             <constraint firstItem="nez-Vr-AWF" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="SDY-Wq-LBr"/>
                             <constraint firstItem="rfA-Iy-IXX" firstAttribute="trailing" secondItem="Cyg-BH-UPp" secondAttribute="trailing" id="Syf-uY-zr4"/>
-                            <constraint firstAttribute="bottom" secondItem="rfA-Iy-IXX" secondAttribute="bottom" constant="204" id="Wvg-5v-zIt"/>
                             <constraint firstItem="jwK-nR-rkl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Zwk-vt-pbE"/>
                             <constraint firstItem="MkG-mh-ANp" firstAttribute="trailing" secondItem="ffJ-MQ-auY" secondAttribute="trailing" id="aKB-uS-ylb"/>
                             <constraint firstItem="Cyg-BH-UPp" firstAttribute="trailing" secondItem="P3k-ca-aut" secondAttribute="trailing" id="cOe-bo-iUr"/>
@@ -160,6 +159,7 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d3L-f4-UJb">
                                                     <rect key="frame" x="10" y="11" width="115" height="182"/>
                                                     <color key="backgroundColor" red="0.39729952439999999" green="0.76053966589999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="182" id="JBQ-Oz-RBu"/>
                                                         <constraint firstAttribute="width" constant="115" id="uaF-n1-0a6"/>
@@ -183,9 +183,6 @@
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
-                                                    <connections>
-                                                        <outletCollection property="gestureRecognizers" destination="MDW-g0-C1F" appends="YES" id="2w7-Qn-ngP"/>
-                                                    </connections>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This college does not have a description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kgf-pk-uKI">
                                                     <rect key="frame" x="133" y="69" width="261" height="124"/>
@@ -296,11 +293,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5hd-4k-iBC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="MDW-g0-C1F">
-                    <connections>
-                        <action selector="onTap:" destination="fln-8b-2Ib" id="afl-Gi-G7F"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2428.985507246377" y="1775.8928571428571"/>
         </scene>
@@ -867,7 +859,7 @@
                     <navigationItem key="navigationItem" title="Suggested Friends" id="rbe-YZ-rzo"/>
                     <connections>
                         <outlet property="activityIndicator" destination="wAc-J1-kuw" id="Gv2-rT-Fzd"/>
-                        <outlet property="sugestedFriendsNav" destination="rbe-YZ-rzo" id="UQP-YG-Ar4"/>
+                        <outlet property="suggestedFriendsNavigationBar" destination="rbe-YZ-rzo" id="Wi4-94-MXe"/>
                         <outlet property="tableView" destination="xQ8-CB-UzN" id="a4R-O8-xZx"/>
                     </connections>
                 </viewController>
@@ -1390,10 +1382,13 @@
                     <navigationItem key="navigationItem" id="ngj-be-RHs"/>
                     <connections>
                         <outlet property="articleAuthorName" destination="Hte-wO-6kB" id="BI0-w5-OFq"/>
+                        <outlet property="authorPrefixLabel" destination="SzJ-L7-e2t" id="zdI-Br-MR6"/>
                         <outlet property="headline" destination="4Mh-PP-XgU" id="rYo-kI-Vdr"/>
                         <outlet property="newsCoverImage" destination="sJ2-2H-zWP" id="ao0-EG-1sH"/>
                         <outlet property="newsDescription" destination="Xus-Y9-yU1" id="RVs-cj-Ebg"/>
                         <outlet property="publicationDate" destination="Ub7-3f-RN9" id="2F6-wh-Pdg"/>
+                        <outlet property="publicationDatePrefix" destination="JDw-Y2-H64" id="VN9-F8-aiZ"/>
+                        <outlet property="readMoreButton" destination="vno-o3-RMK" id="sBM-gE-kT1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OTa-Nj-jQm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1709,14 +1704,14 @@
                             <tableViewSection headerTitle="About" id="DWG-0i-NuW">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="pD6-tI-Qw0">
-                                        <rect key="frame" x="0.0" y="237" width="414" height="43"/>
+                                        <rect key="frame" x="0.0" y="237" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pD6-tI-Qw0" id="R6v-x6-LeU">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="anN-7G-2kI">
-                                                    <rect key="frame" x="33" y="11" width="46" height="21"/>
+                                                    <rect key="frame" x="33" y="11" width="46" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -2322,7 +2317,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="anj-zQ-JVc"/>
+        <segue reference="e5a-Bl-J8B"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.down.heart" width="19.5" height="18.5"/>

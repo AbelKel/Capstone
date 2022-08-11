@@ -12,20 +12,34 @@
 @interface NewsDetailsViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *articleAuthorName;
 @property (weak, nonatomic) IBOutlet UILabel *publicationDate;
+@property (weak, nonatomic) IBOutlet UIButton *readMoreButton;
+@property (weak, nonatomic) IBOutlet UILabel *authorPrefixLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *newsCoverImage;
 @property (weak, nonatomic) IBOutlet UILabel *headline;
 @property (weak, nonatomic) IBOutlet UILabel *newsDescription;
+@property (weak, nonatomic) IBOutlet UILabel *publicationDatePrefix;
 @end
 
 @implementation NewsDetailsViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [Translate textToTranslate:self.collegeNews.title translatedTextBlock:^(NSString * _Nonnull text) {
         self.headline.text = text;
     }];
     [Translate textToTranslate:self.collegeNews.newsDescription translatedTextBlock:^(NSString * _Nonnull text) {
         self.newsDescription.text = text;
     }];
+    [Translate textToTranslate:@"Publication Date" translatedTextBlock:^(NSString * _Nonnull text) {
+        self.publicationDatePrefix.text = text;
+    }];
+    [Translate textToTranslate:@"Read More" translatedTextBlock:^(NSString * _Nonnull text) {
+        [self.readMoreButton setTitle:text forState:UIControlStateNormal];
+    }];
+    [Translate textToTranslate:@"By" translatedTextBlock:^(NSString * _Nonnull text) {
+        self.authorPrefixLabel.text = text;
+    }];
+    
     self.headline.text = self.collegeNews.title;
     self.newsDescription.text = self.collegeNews.newsDescription;
     int getCharactersUpTpIndex = 10;

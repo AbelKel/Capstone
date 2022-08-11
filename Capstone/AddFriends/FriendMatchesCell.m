@@ -6,10 +6,13 @@
 //
 #import "UIImageView+AFNetworking.h"
 #import "FriendMatchesCell.h"
+#import "Translate.h"
  
 @implementation FriendMatchesCell
 - (void)setCollege:(ParseCollege *)college {
-    self.collegeNameLabel.text = college.name;
+    [Translate textToTranslate:college.name translatedTextBlock:^(NSString * _Nonnull text) {
+        self.collegeNameLabel.text = text;
+    }];
     NSURL *url = [NSURL URLWithString:college.image];
     [self.collegeImageView setImageWithURL:url];
 }

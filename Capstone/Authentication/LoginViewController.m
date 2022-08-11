@@ -65,10 +65,6 @@
     }
 }
 
--(void)loginButtonDidLogOut:(FBSDKLoginButton *)loginButton {
-    NSLog(@"User logged out");
-}
-
 - (IBAction)didRegisterButton:(id)sender {
     [self performSegueWithIdentifier:@"regSegue" sender:self];
 }
