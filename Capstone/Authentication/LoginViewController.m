@@ -45,8 +45,6 @@
     [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
         if (error != nil) {
             NSLog(@"%@", error.localizedDescription);
-        } else {
-            NSLog(@"User logged in successfully");
         }
     }];
 }
