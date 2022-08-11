@@ -7,6 +7,7 @@
 
 #import "ParseCollege.h"
 #import <Parse/Parse.h>
+#import "College.h"
 
 @implementation ParseCollege
 
@@ -42,5 +43,22 @@
     collegeToParse.distance = college.distance;
     [collegeToParse saveInBackgroundWithBlock: completion];
     return collegeToParse;
+}
+
++ (BOOL)arrayContainsCollege:(NSArray *)collegesArray college:(ParseCollege *)college {
+    for (College *collegeInArray in collegesArray) {
+        if ([ParseCollege isEqualsToParseCollege:collegeInArray college:college]) {
+            return true;
+        }
+    }
+    return false;
+}
+
++ (BOOL)isEqualsToParseCollege:(ParseCollege *)parseCollege college:(ParseCollege *)college {
+    if ([college.name isEqual:parseCollege.name]) {
+        return true;
+    } else {
+        return false;
+    }
 }
 @end
