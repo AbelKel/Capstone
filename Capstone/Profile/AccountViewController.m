@@ -17,11 +17,13 @@
 
 @interface AccountViewController () <UITableViewDelegate, UITableViewDataSource, MatchViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *profileName;
+@property (weak, nonatomic) IBOutlet UINavigationItem *profileNavgation;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *takeSurveyButton;
 @property (weak, nonatomic) IBOutlet UILabel *matchedCollegesLabel;
 @property (weak, nonatomic) IBOutlet UILabel *ageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *highSchoolLabel;
+@property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @end
 
@@ -72,9 +74,23 @@
 - (void)viewDidAppear:(BOOL)animated {
     [Translate textToTranslate:@"Take the Survey" translatedTextBlock:^(NSString * _Nonnull text) {
         [self.takeSurveyButton setTitle:text forState:UIControlStateNormal];
+        if (text == nil) {
+            NSString *translationErrorAlertTilte = @"Cannot translate app!";
+            NSString *translationErrorAlertMessage = @"We are currently having issues translating the app to your selected language. Please check your internet connection.";
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:translationErrorAlertTilte message:translationErrorAlertMessage preferredStyle:(UIAlertControllerStyleAlert)];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){}];
+            [alert addAction:okAction];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+    }];
+    [Translate textToTranslate:@"Log out" translatedTextBlock:^(NSString * _Nonnull text) {
+        [self.logoutButton setTitle:text forState:UIControlStateNormal];
     }];
     [Translate textToTranslate:@"Matched Colleges" translatedTextBlock:^(NSString * _Nonnull text) {
         self.matchedCollegesLabel.text = text;
+    }];
+    [Translate textToTranslate:@"Profile" translatedTextBlock:^(NSString * _Nonnull text) {
+        self.profileNavgation.title = text;
     }];
     if (self->currentUser[@"image"]) {
         self.profileImage.file = self->currentUser[@"image"];

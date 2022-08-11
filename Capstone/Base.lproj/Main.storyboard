@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -286,6 +287,7 @@
                     <navigationItem key="navigationItem" title="Home" id="mot-JE-x7D"/>
                     <connections>
                         <outlet property="activityIndicator" destination="0bg-gP-0fm" id="qPQ-hk-srK"/>
+                        <outlet property="homeNav" destination="mot-JE-x7D" id="SWM-tT-qlA"/>
                         <outlet property="locationButton" destination="aM5-3F-Ck2" id="RtM-aH-3mG"/>
                         <outlet property="rigorButton" destination="NLV-TQ-GHo" id="cBp-Ea-xKy"/>
                         <outlet property="searchBar" destination="h1k-70-Et7" id="QPl-J1-qar"/>
@@ -404,6 +406,7 @@
                     <navigationItem key="navigationItem" title="Comments" id="HMY-Ld-Lt4"/>
                     <connections>
                         <outlet property="commentTableView" destination="bhp-KB-1Lk" id="xSr-9z-3J1"/>
+                        <outlet property="commentsNav" destination="HMY-Ld-Lt4" id="xEA-4V-Wv6"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BAc-rh-YP3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -631,9 +634,11 @@
                         <outlet property="detailsCollegeImage" destination="Zki-Rc-IEb" id="fxw-p6-63a"/>
                         <outlet property="detailsCollegeLocation" destination="cMo-Ub-p21" id="V2U-PJ-hTF"/>
                         <outlet property="detailsCollegeName" destination="Ovk-X1-Ydn" id="4xs-lX-Nh6"/>
+                        <outlet property="detailsNav" destination="A6P-gg-Ase" id="Ts9-Ny-wiT"/>
                         <outlet property="goToWebsiteButton" destination="g4Q-u7-GbL" id="QQy-4a-2Tn"/>
                         <outlet property="likeCollege" destination="v6S-Y4-wYn" id="l2e-3b-BYI"/>
                         <outlet property="loadMoreCommentsButton" destination="gyT-am-es7" id="gJt-uU-hGC"/>
+                        <outlet property="moreCommentsButton" destination="gyT-am-es7" id="AK7-qZ-tuf"/>
                         <outlet property="tableView" destination="Wk6-in-egS" id="oax-q4-q7i"/>
                         <segue destination="job-Dy-nwJ" kind="show" identifier="moreDetails" id="vMg-e8-UP1"/>
                     </connections>
@@ -689,6 +694,7 @@
                     <navigationItem key="navigationItem" title="Long Description" id="M3X-wd-VXI"/>
                     <connections>
                         <outlet property="longDescription" destination="gTL-Fo-d4z" id="HhA-mW-J7G"/>
+                        <outlet property="longDescriptionNav" destination="M3X-wd-VXI" id="Bll-Bj-5c5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SEA-sZ-HUJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -790,6 +796,7 @@
                     <navigationItem key="navigationItem" title="Likes" id="NCZ-YI-AgQ"/>
                     <connections>
                         <outlet property="activityIndicator" destination="3cs-Jr-Fw3" id="j2h-bZ-h5T"/>
+                        <outlet property="likesNav" destination="NCZ-YI-AgQ" id="jn1-QX-gWs"/>
                         <outlet property="tableView" destination="gN6-9r-6XX" id="7WV-vY-xhq"/>
                     </connections>
                 </viewController>
@@ -860,6 +867,7 @@
                     <navigationItem key="navigationItem" title="Suggested Friends" id="rbe-YZ-rzo"/>
                     <connections>
                         <outlet property="activityIndicator" destination="wAc-J1-kuw" id="Gv2-rT-Fzd"/>
+                        <outlet property="sugestedFriendsNav" destination="rbe-YZ-rzo" id="UQP-YG-Ar4"/>
                         <outlet property="tableView" destination="xQ8-CB-UzN" id="a4R-O8-xZx"/>
                     </connections>
                 </viewController>
@@ -954,6 +962,7 @@
                     <navigationItem key="navigationItem" title="News" id="nID-VU-ZfO"/>
                     <connections>
                         <outlet property="activityIndicator" destination="Qgc-DV-vwb" id="yUT-9U-y7Z"/>
+                        <outlet property="newsNavigation" destination="nID-VU-ZfO" id="v6O-kb-YBI"/>
                         <outlet property="tableView" destination="SLN-NW-QCI" id="GWK-ez-mLF"/>
                     </connections>
                 </viewController>
@@ -1109,9 +1118,11 @@
                     <connections>
                         <outlet property="ageLabel" destination="g2m-yZ-kVA" id="0ZD-90-NFv"/>
                         <outlet property="highSchoolLabel" destination="3LB-qt-VCj" id="tPx-jT-pa9"/>
+                        <outlet property="logoutButton" destination="7jJ-0b-EAp" id="8Uz-q2-RG7"/>
                         <outlet property="matchedCollegesLabel" destination="wxA-bo-aYa" id="LCk-rA-BIU"/>
                         <outlet property="profileImage" destination="2oj-6a-L4r" id="NO5-FH-NRp"/>
                         <outlet property="profileName" destination="o4p-k1-UiE" id="xSM-9s-rt3"/>
+                        <outlet property="profileNavgation" destination="jhR-0K-GaB" id="70q-HW-k32"/>
                         <outlet property="tableView" destination="24k-WG-DLj" id="tfy-Ts-RLf"/>
                         <outlet property="takeSurveyButton" destination="NxC-hD-sl7" id="tKQ-oI-oWB"/>
                     </connections>
@@ -1244,8 +1255,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="NtU-hQ-A2Y"/>
                     <connections>
+                        <outlet property="addFriendButton" destination="79R-eG-yYS" id="nXe-2W-faJ"/>
                         <outlet property="cancelFriendRequestButton" destination="52s-m6-fOd" id="r2M-s7-02g"/>
                         <outlet property="friendsButton" destination="dgY-GC-iPI" id="feh-de-7eb"/>
+                        <outlet property="matchedCollegeLabel" destination="Rd3-QX-rQ6" id="0dq-dj-hcA"/>
+                        <outlet property="removeFriendButton" destination="52s-m6-fOd" id="364-l9-QRX"/>
                         <outlet property="sendFriendRequestButton" destination="79R-eG-yYS" id="TKA-uJ-ukF"/>
                         <outlet property="tableView" destination="8LR-Jy-ah7" id="m46-GH-zRX"/>
                         <outlet property="userImage" destination="OpJ-Ez-kD5" id="rxL-Av-duw"/>
@@ -1596,6 +1610,7 @@
                         <outlet property="distanceInMiles" destination="pyU-Ne-NB9" id="uEK-8Y-OLS"/>
                         <outlet property="satLabel" destination="tec-Ob-pE2" id="4cK-XF-KED"/>
                         <outlet property="satSlider" destination="dgx-1t-SOD" id="tHx-OB-wYy"/>
+                        <outlet property="surveyNav" destination="mTi-rF-1Al" id="l6t-Mm-ei3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BH7-0o-Ufn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1723,6 +1738,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="NHT-IS-voQ"/>
+                    <connections>
+                        <outlet property="aboutLabel" destination="anN-7G-2kI" id="obi-nn-USr"/>
+                        <outlet property="changeLanLabel" destination="Wmx-7q-L7l" id="y2D-Ov-l1W"/>
+                        <outlet property="changeLanguageButton" destination="n12-RE-uFx" id="23o-oU-mJG"/>
+                        <outlet property="editProfileImageLabel" destination="jeD-35-ahj" id="v8c-cF-qWG"/>
+                        <outlet property="settingsNavItem" destination="NHT-IS-voQ" id="MVC-md-BgA"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8xH-aG-GLq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="Z6k-3x-ycV" userLabel="Exit" sceneMemberID="exit"/>
@@ -1749,9 +1771,9 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Lh-rq-5wX">
                                                     <rect key="frame" x="40" y="6" width="338" height="31.5"/>
-                                                    <color key="backgroundColor" red="0.033691215990000002" green="0.95201102910000002" blue="0.88200565389999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="backgroundColor" name="AccentColor"/>
                                                     <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" title="English"/>
+                                                    <buttonConfiguration key="configuration" style="filled" title="English"/>
                                                     <connections>
                                                         <action selector="didTapEnglishForNew:" destination="WKQ-1k-MpO" eventType="touchUpInside" id="uS0-3A-6g5"/>
                                                     </connections>
@@ -1774,9 +1796,9 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xir-tm-zGF">
                                                     <rect key="frame" x="41" y="6" width="338" height="31.5"/>
-                                                    <color key="backgroundColor" red="0.033691215990000002" green="0.95201102910000002" blue="0.88200565389999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="backgroundColor" name="AccentColor"/>
                                                     <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" title="Arabic"/>
+                                                    <buttonConfiguration key="configuration" style="filled" title="Arabic"/>
                                                     <connections>
                                                         <action selector="didTapArabicForNew:" destination="WKQ-1k-MpO" eventType="touchUpInside" id="iok-dl-hkn"/>
                                                     </connections>
@@ -1806,9 +1828,9 @@
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ohI-Ki-bMf">
                                                     <rect key="frame" x="38" y="6" width="341" height="31.5"/>
-                                                    <color key="backgroundColor" red="0.033691215990000002" green="0.95201102910000002" blue="0.88200565389999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="backgroundColor" name="AccentColor"/>
                                                     <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" title="German"/>
+                                                    <buttonConfiguration key="configuration" style="filled" title="German"/>
                                                     <connections>
                                                         <action selector="didTapGermanForNew:" destination="WKQ-1k-MpO" eventType="touchUpInside" id="DAJ-BN-JRL"/>
                                                     </connections>
@@ -1831,9 +1853,9 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d8S-Uj-2Lx">
                                                     <rect key="frame" x="40" y="6" width="338" height="31.5"/>
-                                                    <color key="backgroundColor" red="0.033691215990000002" green="0.95201102910000002" blue="0.88200565389999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="backgroundColor" name="AccentColor"/>
                                                     <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" title="Spanish"/>
+                                                    <buttonConfiguration key="configuration" style="filled" title="Spanish"/>
                                                     <connections>
                                                         <action selector="didTapSpanishForNew:" destination="WKQ-1k-MpO" eventType="touchUpInside" id="J6S-HR-RQm"/>
                                                     </connections>
@@ -1844,6 +1866,181 @@
                                                 <constraint firstItem="d8S-Uj-2Lx" firstAttribute="leading" secondItem="O2M-oN-Kz4" secondAttribute="leadingMargin" constant="20" id="fWm-MZ-7vF"/>
                                                 <constraint firstItem="d8S-Uj-2Lx" firstAttribute="centerY" secondItem="O2M-oN-Kz4" secondAttribute="centerY" id="qnc-l5-z0o"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="d8S-Uj-2Lx" secondAttribute="trailing" constant="16" id="tyt-Fc-VMm"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="aHo-dM-9fh">
+                                        <rect key="frame" x="0.0" y="218.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aHo-dM-9fh" id="6K6-sB-MiK">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0d3-Vf-Aki">
+                                                    <rect key="frame" x="40" y="6" width="338" height="31.5"/>
+                                                    <color key="backgroundColor" name="AccentColor"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="filled" title="Afrikaans"/>
+                                                    <connections>
+                                                        <action selector="didTapAfrikaans:" destination="WKQ-1k-MpO" eventType="touchUpInside" id="Nit-or-SWm"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="0d3-Vf-Aki" secondAttribute="trailing" constant="16" id="6Tg-f5-VNb"/>
+                                                <constraint firstItem="0d3-Vf-Aki" firstAttribute="leading" secondItem="6K6-sB-MiK" secondAttribute="leadingMargin" constant="20" id="JDD-8s-RYO"/>
+                                                <constraint firstItem="0d3-Vf-Aki" firstAttribute="top" secondItem="6K6-sB-MiK" secondAttribute="topMargin" constant="-5" id="LYz-Hn-01m"/>
+                                                <constraint firstItem="0d3-Vf-Aki" firstAttribute="centerY" secondItem="6K6-sB-MiK" secondAttribute="centerY" id="kib-nA-bvT"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="RNK-ea-JZB">
+                                        <rect key="frame" x="0.0" y="262" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RNK-ea-JZB" id="vd4-Mm-7aw">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zun-ty-hFN">
+                                                    <rect key="frame" x="40" y="6" width="338" height="31.5"/>
+                                                    <color key="backgroundColor" name="AccentColor"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="filled" title="Hindi"/>
+                                                    <connections>
+                                                        <action selector="didTapHindi:" destination="WKQ-1k-MpO" eventType="touchUpInside" id="6fd-tu-EMp"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="zun-ty-hFN" firstAttribute="top" secondItem="vd4-Mm-7aw" secondAttribute="topMargin" constant="-5" id="LWx-j6-WVg"/>
+                                                <constraint firstItem="zun-ty-hFN" firstAttribute="leading" secondItem="vd4-Mm-7aw" secondAttribute="leadingMargin" constant="20" id="oRp-Kw-gch"/>
+                                                <constraint firstItem="zun-ty-hFN" firstAttribute="centerY" secondItem="vd4-Mm-7aw" secondAttribute="centerY" id="sn7-9N-1Dn"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="zun-ty-hFN" secondAttribute="trailing" constant="16" id="w8A-qo-miG"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="86V-4g-ogN">
+                                        <rect key="frame" x="0.0" y="305.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="86V-4g-ogN" id="f8u-rP-cbX">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i8j-dd-KEf">
+                                                    <rect key="frame" x="40" y="6" width="338" height="31.5"/>
+                                                    <color key="backgroundColor" name="AccentColor"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="filled" title="Russian"/>
+                                                    <connections>
+                                                        <action selector="didTapRussian:" destination="WKQ-1k-MpO" eventType="touchUpInside" id="Kh7-hp-RQW"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="i8j-dd-KEf" firstAttribute="top" secondItem="f8u-rP-cbX" secondAttribute="topMargin" constant="-5" id="KVO-hF-icK"/>
+                                                <constraint firstItem="i8j-dd-KEf" firstAttribute="centerY" secondItem="f8u-rP-cbX" secondAttribute="centerY" id="ONd-CZ-CZW"/>
+                                                <constraint firstItem="i8j-dd-KEf" firstAttribute="leading" secondItem="f8u-rP-cbX" secondAttribute="leadingMargin" constant="20" id="PTr-Ix-gvs"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="i8j-dd-KEf" secondAttribute="trailing" constant="16" id="r8W-Ue-fnO"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="hf3-Df-ZGy">
+                                        <rect key="frame" x="0.0" y="349" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hf3-Df-ZGy" id="JbR-Mr-ZlC">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hNg-q4-5gV">
+                                                    <rect key="frame" x="40" y="6" width="338" height="31.5"/>
+                                                    <color key="backgroundColor" name="AccentColor"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="filled" title="Italian"/>
+                                                    <connections>
+                                                        <action selector="didTapItalian:" destination="WKQ-1k-MpO" eventType="touchUpInside" id="jUs-4c-oef"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="hNg-q4-5gV" firstAttribute="leading" secondItem="JbR-Mr-ZlC" secondAttribute="leadingMargin" constant="20" id="IJl-uA-tXQ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="hNg-q4-5gV" secondAttribute="trailing" constant="16" id="XI2-s8-R8c"/>
+                                                <constraint firstItem="hNg-q4-5gV" firstAttribute="centerY" secondItem="JbR-Mr-ZlC" secondAttribute="centerY" id="c0m-eH-ip4"/>
+                                                <constraint firstItem="hNg-q4-5gV" firstAttribute="top" secondItem="JbR-Mr-ZlC" secondAttribute="topMargin" constant="-5" id="qCz-X1-3C6"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="aN5-uf-Tpg">
+                                        <rect key="frame" x="0.0" y="392.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aN5-uf-Tpg" id="LAl-NV-HWF">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c40-Y6-UMC">
+                                                    <rect key="frame" x="40" y="6" width="338" height="31.5"/>
+                                                    <color key="backgroundColor" name="AccentColor"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="filled" title="Japanese"/>
+                                                    <connections>
+                                                        <action selector="didTapJapanese:" destination="WKQ-1k-MpO" eventType="touchUpInside" id="d1i-PG-lVg"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="c40-Y6-UMC" firstAttribute="centerY" secondItem="LAl-NV-HWF" secondAttribute="centerY" id="9sa-y9-gBK"/>
+                                                <constraint firstItem="c40-Y6-UMC" firstAttribute="leading" secondItem="LAl-NV-HWF" secondAttribute="leadingMargin" constant="20" id="DqI-4H-HYw"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="c40-Y6-UMC" secondAttribute="trailing" constant="16" id="Smh-rL-6wl"/>
+                                                <constraint firstItem="c40-Y6-UMC" firstAttribute="top" secondItem="LAl-NV-HWF" secondAttribute="topMargin" constant="-5" id="d3w-aK-Z0k"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="xcV-GA-Zvk">
+                                        <rect key="frame" x="0.0" y="436" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xcV-GA-Zvk" id="3bj-ZB-YQp">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FT3-HX-8rc">
+                                                    <rect key="frame" x="40" y="6" width="338" height="31.5"/>
+                                                    <color key="backgroundColor" name="AccentColor"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="filled" title="Chinese"/>
+                                                    <connections>
+                                                        <action selector="didTapChinese:" destination="WKQ-1k-MpO" eventType="touchUpInside" id="uDC-yC-g7u"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="FT3-HX-8rc" firstAttribute="leading" secondItem="3bj-ZB-YQp" secondAttribute="leadingMargin" constant="20" id="A8b-Qv-Orz"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="FT3-HX-8rc" secondAttribute="trailing" constant="16" id="kul-zW-3x3"/>
+                                                <constraint firstItem="FT3-HX-8rc" firstAttribute="centerY" secondItem="3bj-ZB-YQp" secondAttribute="centerY" id="pUF-3C-i2n"/>
+                                                <constraint firstItem="FT3-HX-8rc" firstAttribute="top" secondItem="3bj-ZB-YQp" secondAttribute="topMargin" constant="-5" id="yOE-EW-1Ys"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="fh7-Te-EyS">
+                                        <rect key="frame" x="0.0" y="479.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fh7-Te-EyS" id="Opa-WL-xcm">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IOW-hL-7xK">
+                                                    <rect key="frame" x="40" y="6" width="338" height="31.5"/>
+                                                    <color key="backgroundColor" name="AccentColor"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="filled" title="French"/>
+                                                    <connections>
+                                                        <action selector="didTapFrench:" destination="WKQ-1k-MpO" eventType="touchUpInside" id="aVK-2U-DTZ"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="IOW-hL-7xK" firstAttribute="centerY" secondItem="Opa-WL-xcm" secondAttribute="centerY" id="PqE-B8-bMj"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="IOW-hL-7xK" secondAttribute="trailing" constant="16" id="a8l-4g-L8Q"/>
+                                                <constraint firstItem="IOW-hL-7xK" firstAttribute="top" secondItem="Opa-WL-xcm" secondAttribute="topMargin" constant="-5" id="l0F-Lj-wpu"/>
+                                                <constraint firstItem="IOW-hL-7xK" firstAttribute="leading" secondItem="Opa-WL-xcm" secondAttribute="leadingMargin" constant="20" id="ldh-78-3FD"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -2125,7 +2322,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="e5a-Bl-J8B"/>
+        <segue reference="anj-zQ-JVc"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.down.heart" width="19.5" height="18.5"/>
@@ -2143,6 +2340,9 @@
         <image name="person.3" catalog="system" width="128" height="62"/>
         <image name="person.fill.checkmark" catalog="system" width="128" height="88"/>
         <image name="point.topleft.down.curvedto.point.bottomright.up.fill" catalog="system" width="121" height="128"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

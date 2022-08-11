@@ -10,13 +10,17 @@
 #import "FriendDetailsViewController.h"
 #import "FriendMatchesCell.h"
 #import "DetailsViewController.h"
+#import "Translate.h"
  
 @interface FriendDetailsViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *sendFriendRequestButton;
 @property (weak, nonatomic) IBOutlet UIButton *cancelFriendRequestButton;
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;
+@property (weak, nonatomic) IBOutlet UIButton *addFriendButton;
+@property (weak, nonatomic) IBOutlet UILabel *matchedCollegeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *friendsButton;
+@property (weak, nonatomic) IBOutlet UIButton *removeFriendButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
  
@@ -37,6 +41,19 @@
     [self requestStatusChecker:nil];
     [self getUserImage];
     [self getUsersMatches];
+    [self translateLabelsAndButtons];
+}
+
+- (void)translateLabelsAndButtons {
+    [Translate textToTranslate:@"Add" translatedTextBlock:^(NSString * _Nonnull text) {
+        [self.addFriendButton setTitle:text forState:UIControlStateNormal];
+    }];
+    [Translate textToTranslate:@"Remove" translatedTextBlock:^(NSString * _Nonnull text) {
+        [self.removeFriendButton setTitle:text forState:UIControlStateNormal];
+    }];
+    [Translate textToTranslate:@"User's Matched Colleges" translatedTextBlock:^(NSString * _Nonnull text) {
+        self.matchedCollegeLabel.text = text;
+    }];
 }
  
 - (void)getUserImage {

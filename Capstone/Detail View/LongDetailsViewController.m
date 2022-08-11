@@ -9,6 +9,7 @@
 #import "Translate.h"
 
 @interface LongDetailsViewController ()
+@property (weak, nonatomic) IBOutlet UINavigationItem *longDescriptionNav;
 @property (weak, nonatomic) IBOutlet UILabel *longDescription;
 @end
 
@@ -23,6 +24,9 @@
             self.longDescription.text = text;
         }];
     }
+    [Translate textToTranslate:@"Long Description" translatedTextBlock:^(NSString * _Nonnull text) {
+        self.longDescriptionNav.title = text;
+    }];
 }
 
 @end

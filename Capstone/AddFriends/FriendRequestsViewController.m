@@ -11,9 +11,11 @@
 #import "ParseCollege.h"
 #import <Parse/Parse.h>
 #import "APIManager.h"
+#import "Translate.h"
 
 @interface FriendRequestsViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (weak, nonatomic) IBOutlet UINavigationItem *sugestedFriendsNav;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
 
@@ -32,6 +34,12 @@
     self->loggedInUser = [PFUser currentUser];
     [self fetchAllUsers];
     [self.activityIndicator startAnimating];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [Translate textToTranslate:@"Suggested Friends" translatedTextBlock:^(NSString * _Nonnull text) {
+        self.sugestedFriendsNav.title = text;
+    }];
 }
 
 - (void)fetchAllUsers {
