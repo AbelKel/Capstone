@@ -16,6 +16,7 @@
             if (!error) {
                 UIImage *image = [UIImage imageWithData:imageData];
                 self.userImage.image = image;
+                [self setImageBoarderSize];
             }
         }];
     });
@@ -27,5 +28,12 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
+}
+
+- (void)setImageBoarderSize {
+    double radius = 1.788;
+    self.userImage.layer.cornerRadius = self.userImage.frame.size.height/radius;
+    self.userImage.layer.masksToBounds = YES;
+    self.userImage.layer.borderWidth = 0;
 }
 @end
