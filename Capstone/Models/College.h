@@ -31,7 +31,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)shared;
 + (NSMutableArray *)collegesWithArray:(NSArray *)dictionaries;
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
-- (BOOL)isEqualsToParseCollege:(College *)parseCollege;
 
 @end
 

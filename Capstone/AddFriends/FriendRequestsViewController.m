@@ -24,6 +24,7 @@
     NSMutableArray<ParseCollege *> *userLikedColleges;
     PFUser *loggedInUser;
     int allUsersFromParseIndex;
+    int numberOfUsersInParse;
 }
 
 - (void)viewDidLoad {
@@ -39,13 +40,15 @@
     PFQuery *query = [PFUser query];
     [query findObjectsInBackgroundWithBlock:^(NSArray<PFUser *> *users, NSError *error) {
         if (users != nil) {
-            self->usersFromParse = users;
-            [self.tableView reloadData];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self->usersFromParse = users;
+                [self.tableView reloadData];
+                [self getCurrentUserLikes];
+            });
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
     }];
-    [self getCurrentUserLikes];
 }
 
 - (void)getCurrentUserLikes {
@@ -53,14 +56,14 @@
     [[APIManager shared] getLikedColleges:currentUser forColleges:^(NSArray * _Nonnull colleges, NSError * _Nonnull error) {
         if (error == nil) {
             self->userLikedColleges = colleges;
+            [self suggestions];
         }
     }];
-    [self suggestions];
 }
 
 - (void)suggestions {
     allUsersFromParseIndex = 0;
-    double constantDelay = 0.3;
+    double constantDelay = 0.1;
     [NSTimer scheduledTimerWithTimeInterval:constantDelay target:self selector:@selector(getPreferredUsers:) userInfo:nil repeats:YES];
 }
 
@@ -70,13 +73,8 @@
         PFRelation *usersLikedRelation = [currentUser relationForKey:@"likes"];
         PFQuery *query = [usersLikedRelation query];
         [query findObjectsInBackgroundWithBlock:^(NSArray *colleges, NSError *error) {
-            NSMutableArray *myColleges = [[NSMutableArray alloc] init];
-            for (ParseCollege *college in colleges) {
-                [myColleges addObject:college.name];
-            }
             for (ParseCollege *college in self->userLikedColleges) {
-                NSLog(@"%@", [[College shared] isEqualsToParseCollege:college]);
-                if ([myColleges containsObject:college.name] && self->loggedInUser.username != currentUser.username) {
+                if ([ParseCollege arrayContainsCollege:colleges college:college] && ![self->loggedInUser.objectId isEqual:currentUser.objectId]) {
                     [self->suggestedUsers addObject:currentUser];
                 }
             }
