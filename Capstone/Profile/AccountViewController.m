@@ -104,8 +104,10 @@
     [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *colleges, NSError *error) {
         if (colleges != nil) {
-            self.takeSurveyButton.hidden = YES;
             self->collegesFromQuery = colleges;
+            if (self->collegesFromQuery.count >= 1) {
+                self.takeSurveyButton.hidden = YES;
+            }
             [self.refreshControl endRefreshing];
             [self.tableView reloadData];
         } else {

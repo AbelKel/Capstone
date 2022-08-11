@@ -44,7 +44,7 @@
     NSString *password = self.passwordLogin.text;
     [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
         if (error != nil) {
-            NSLog(@"User log in failed: %@", error.localizedDescription);
+            NSLog(@"%@", error.localizedDescription);
         } else {
             NSLog(@"User logged in successfully");
         }
@@ -58,7 +58,7 @@
 #pragma mark - FBSDKLoginButton
 - (void)loginButton:(FBSDKLoginButton * _Nonnull)loginButton didCompleteWithResult:(FBSDKLoginManagerLoginResult * _Nullable)result error:(NSError * _Nullable)error {
     if(error) {
-        NSLog(@"error, something went wrong");
+        NSLog(@"%@", error.localizedDescription);
     } else {
         [self performSegueWithIdentifier:@"homeSegue" sender:nil];
         [self.view addSubview:loginButton];
