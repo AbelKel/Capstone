@@ -10,6 +10,7 @@
 #import "AccountViewController.h"
 #import "ParseCollege.h"
 #import <Parse/Parse.h>
+#import "Translate.h"
 
 @interface MatchViewController ()
 
@@ -19,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *satLabel;
 @property (weak, nonatomic) IBOutlet UISlider *distanceFromCurrentLocation;
 @property (weak, nonatomic) IBOutlet UITextField *cityField;
+@property (weak, nonatomic) IBOutlet UINavigationItem *surveyNav;
 @property (weak, nonatomic) IBOutlet UILabel *distanceInMiles;
 
 @end
@@ -45,6 +47,9 @@
     self->collegesBasedOnFunding = [[NSArray alloc] init];
     self->currentUser = [PFUser currentUser];
     self->matchesRelation = [self->currentUser relationForKey:@"matches"];
+    [Translate textToTranslate:@"Detials" translatedTextBlock:^(NSString * _Nonnull text) {
+        self.surveyNav.title = text;
+    }];
 }
 
 - (void)fetchData {

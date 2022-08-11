@@ -12,8 +12,10 @@
 #import "DetailsViewController.h"
 #import "ParseCollege.h"
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
+#import "Translate.h"
 
 @interface LikeViewController () <UITableViewDelegate, UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+@property (weak, nonatomic) IBOutlet UINavigationItem *likesNav;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) NSMutableArray *collegesFromQuery;
@@ -52,6 +54,9 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [self getLikedColleges];
+    [Translate textToTranslate:@"Likes" translatedTextBlock:^(NSString * _Nonnull text) {
+        self.likesNav.title = text;
+    }];
 }
 
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {

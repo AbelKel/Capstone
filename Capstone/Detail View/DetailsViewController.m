@@ -26,6 +26,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *commentButton;
 @property (weak, nonatomic) IBOutlet UIButton *goToWebsiteButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIButton *moreCommentsButton;
+@property (weak, nonatomic) IBOutlet UINavigationItem *detailsNav;
 @property (weak, nonatomic) IBOutlet UIButton *loadMoreCommentsButton;
 @end
 
@@ -67,6 +69,12 @@
     }];
     [Translate textToTranslate:@"Go To Website" translatedTextBlock:^(NSString * _Nonnull text) {
         [self.goToWebsiteButton setTitle:text forState:UIControlStateNormal];
+    }];
+    [Translate textToTranslate:@"more" translatedTextBlock:^(NSString * _Nonnull text) {
+        [self.moreCommentsButton setTitle:text forState:UIControlStateNormal];
+    }];
+    [Translate textToTranslate:@"Details" translatedTextBlock:^(NSString * _Nonnull text) {
+        self.detailsNav.title = text;
     }];
     
     NSURL *url = [NSURL URLWithString:self.college.image];

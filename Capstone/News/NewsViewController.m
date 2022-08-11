@@ -10,8 +10,10 @@
 #import "APIManager.h"
 #import "ParseCollege.h"
 #import "NewsDetailsViewController.h"
+#import "Translate.h"
 
 @interface NewsViewController ()<UITableViewDelegate,UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UINavigationItem *newsNavigation;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
@@ -36,6 +38,9 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [self fetchUserLikes];
+    [Translate textToTranslate:@"News" translatedTextBlock:^(NSString * _Nonnull text) {
+        self.newsNavigation.title = text;
+    }];
 }
 
 - (void)fetchUserLikes {

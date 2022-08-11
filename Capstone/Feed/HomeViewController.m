@@ -16,6 +16,7 @@
 
 @interface HomeViewController ()<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UINavigationItem *homeNav;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UIButton *locationButton;
 @property (weak, nonatomic) IBOutlet UIButton *rigorButton;
@@ -50,6 +51,9 @@
     }];
     [Translate textToTranslate:@"Rigor" translatedTextBlock:^(NSString * _Nonnull text) {
         [self.rigorButton setTitle:text forState:UIControlStateNormal];
+    }];
+    [Translate textToTranslate:@"Home" translatedTextBlock:^(NSString * _Nonnull text) {
+        self.homeNav.title = text;
     }];
 }
 

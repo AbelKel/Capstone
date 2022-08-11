@@ -25,7 +25,14 @@
         ENGLISH = 0,
         GERMAN,
         SPANISH,
-        ARABIC
+        ARABIC,
+        AFRIKAANS,
+        HINDI,
+        RUSSIAN,
+        ITALIAN,
+        JAPANESE,
+        CHINESE,
+        FRENCH
     } LanguageEnum;
     
     LanguageEnum selectedLanguage = ENGLISH;
@@ -40,6 +47,20 @@
         selectedLanguage = ((LanguageEnum)2);
     } else if ([languageSelected isEqual:@"Arabic"]){
         selectedLanguage = ((LanguageEnum)3);
+    } else if ([languageSelected isEqual:@"Afrikaans"]) {
+        selectedLanguage = ((LanguageEnum)4);
+    } else if ([languageSelected isEqual:@"Hindi"]) {
+        selectedLanguage = ((LanguageEnum)5);
+    } else if ([languageSelected isEqual:@"Russian"]) {
+        selectedLanguage = ((LanguageEnum)6);
+    } else if ([languageSelected isEqual:@"Italian"]) {
+        selectedLanguage = ((LanguageEnum)7);
+    } else if ([languageSelected isEqual:@"Japanese"]) {
+        selectedLanguage = ((LanguageEnum)8);
+    } else if ([languageSelected isEqual:@"Chinese"]) {
+        selectedLanguage = ((LanguageEnum)9);
+    } else if ([languageSelected isEqual:@"French"]) {
+        selectedLanguage = ((LanguageEnum)10);
     }
     
     switch(selectedLanguage) {
@@ -54,6 +75,27 @@
             break;
         case ARABIC:
             changeLanguage = MLKTranslateLanguageArabic;
+            break;
+        case AFRIKAANS:
+            changeLanguage = MLKTranslateLanguageAfrikaans;
+            break;
+        case HINDI:
+            changeLanguage = MLKTranslateLanguageHindi;
+            break;
+        case RUSSIAN:
+            changeLanguage = MLKTranslateLanguageRussian;
+            break;
+        case ITALIAN:
+            changeLanguage = MLKTranslateLanguageItalian;
+            break;
+        case JAPANESE:
+            changeLanguage = MLKTranslateLanguageJapanese;
+            break;
+        case CHINESE:
+            changeLanguage = MLKTranslateLanguageChinese;
+            break;
+        case FRENCH:
+            changeLanguage = MLKTranslateLanguageFrench;
             break;
     }
 

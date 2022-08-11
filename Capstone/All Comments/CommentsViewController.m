@@ -6,8 +6,10 @@
 //
 #import "DetailCommentCell.h"
 #import "CommentsViewController.h"
+#import "Translate.h"
 
 @interface CommentsViewController ()<UITableViewDelegate, UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UINavigationItem *commentsNav;
 @property (strong, nonatomic) IBOutlet UITableView *commentTableView;
 @end
 
@@ -16,6 +18,9 @@
 - (void)viewDidLoad {
     self.commentTableView.dataSource = self;
     self.commentTableView.delegate = self;
+    [Translate textToTranslate:@"Comments" translatedTextBlock:^(NSString * _Nonnull text) {
+        self.commentsNav.title = text;
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

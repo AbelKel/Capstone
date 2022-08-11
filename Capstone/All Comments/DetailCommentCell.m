@@ -31,6 +31,7 @@
     [self.userProfileImageView loadInBackground];
     self->currentUser = [PFUser currentUser];
     self->commentObjectId = comment.objectId;
+    [self setImageBoarderSize];
     [self voteStatusChecker];
     [self getTheCommentFromParse];
 }
@@ -94,5 +95,12 @@
     } else if ([self->downvotes containsObject:self->currentUser.username]) {
         [self.downvoteHeartButton setImage:[UIImage imageNamed:@"arrow.down.heart.fill.png"] forState:UIControlStateNormal];
     }
+}
+
+- (void)setImageBoarderSize {
+    double radius = 1.995;
+    self.userProfileImageView.layer.cornerRadius = self.userProfileImageView.frame.size.height/radius;
+    self.userProfileImageView.layer.masksToBounds = YES;
+    self.userProfileImageView.layer.borderWidth = 0;
 }
 @end
