@@ -95,6 +95,10 @@ In the first week of the start of the project, I plan on implementing the sign u
 
 ![IMG_0022](https://user-images.githubusercontent.com/96321082/176711317-fd261023-f6e8-4144-a8ac-acce6737b299.jpg)
 
+##Home Screen with location button selected
+/Users/abelkelbessa/Downloads/Screenshots/IMG_0525.PNG
+
+
 <img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
 
 
