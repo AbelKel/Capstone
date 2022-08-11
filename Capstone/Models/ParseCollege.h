@@ -7,6 +7,7 @@
 
 #import <Parse/Parse.h>
 #import "College.h"
+#import "ParseCollege.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -23,7 +24,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSString *lat;
 @property (nonatomic, assign) double rigorScore;
 @property (nonatomic, assign) double distance;
-+ (ParseCollege *)postCollege: (College * _Nullable )college withCompletion: (PFBooleanResultBlock  _Nullable)completion;
++ (ParseCollege *)postCollege: (ParseCollege * _Nullable )college withCompletion: (PFBooleanResultBlock  _Nullable)completion;
++ (BOOL)arrayContainsCollege:(NSArray *)collegesArray college:(ParseCollege *)college;
++ (BOOL)isEqualsToParseCollege:(ParseCollege *)parseCollege college:(ParseCollege *)college;
 
 @end
 

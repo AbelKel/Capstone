@@ -9,6 +9,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
 #import "Parse/Parse.h"
+#import "ParseCollege.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -27,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) double rigorScore;
 @property (nonatomic, assign) double distance;
 @property (nonatomic) int likeCount;
++ (instancetype)shared;
 + (NSMutableArray *)collegesWithArray:(NSArray *)dictionaries;
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
