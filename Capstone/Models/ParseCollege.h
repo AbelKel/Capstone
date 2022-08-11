@@ -26,7 +26,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) double distance;
 + (ParseCollege *)postCollege: (ParseCollege * _Nullable )college withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 + (BOOL)arrayContainsCollege:(NSArray *)collegesArray college:(ParseCollege *)college;
-+ (BOOL)isEqualsToParseCollege:(ParseCollege *)parseCollege college:(ParseCollege *)college;
 
 @end
 
