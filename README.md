@@ -1,4 +1,4 @@
-Find My College Project - README Template
+Find My College Project - README
 ===
 
 # Find My College
