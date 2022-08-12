@@ -17,7 +17,7 @@ https://drive.google.com/drive/folders/11nW_6yqP6qwUC8jPuFeGK7R7hAiMmL2j?usp=sha
 
 One of the reasons I found this project appealing is that the college application process can often be complicated and finding a good fit college can be challenging. The app aims to help high school juniors and seniors easily find a good fit college. I aim to use CollegeAI API, Google Maps, and databases such as JSON files. One of the core features of the project is the student to college matching process. This feature aims to minimize the number of hours students spend looking for a college that fits their personality and academic needs or aspirations.
 
-Find My College is a college review and matching app for students applying to colleges. Users who sign up on the app have the ability to like, comment, match with colleges. Additionally, they will be able to get directions to a college, go to websites, read news about the colleges, and see other users that have similar likes to them.
+Find My College is a college review and matching app for students applying to colleges. Users who sign up on the app have the ability to like, comment, match with colleges. Additionally, users will be able to get directions to a college, go to websites, read news about the colleges, and see other users that have similar likes to them among many other features.
 
 In the first week of the start of the project, I plan on implementing the sign up page/ login with Facebook page, the opening survey, and integration of the APIs and databases.
 
@@ -51,10 +51,10 @@ In the first week of the start of the project, I plan on implementing the sign u
 
 * Find links to different colleges’ websites **[Completed]**
 * Users can add friends who have simlar liked colleges to their liked colleges **[Completed]**
-* Translation into 10 different languages. The app automatically refreshes the language as the user is chaning views. There is no need to restart the application after changing the language **[Completed]**
+* Translation into 10 different languages. The app automatically refreshes the language as the user is chaning views. There is no need to restart the application after changing the language. The fading in animation helps the translation take place during scrolling in home view **[Completed]**
 * User can upvote or downvote a comment from the comment section **[Completed]**
 * User can follow a specific college for news or any updates (News API)/Recommended News **[Completed]**
-* Get directions to a college **[Completed]**
+* Get directions to a college using google maps **[Completed]**
 
 
 ### 2. Screen Archetypes
@@ -170,6 +170,7 @@ In the first week of the start of the project, I plan on implementing the sign u
 * Upvoting and downvoting a comment made by users
 * Fixed logging out of facebook account within the app. Users can now login and view colleges with their facebook account.
 * Error handilng for when translation packages are not downloaded successfully
+* implemented issue fixes created in github
 * Code clean up
 ## Week 7: 
 * Presentations
