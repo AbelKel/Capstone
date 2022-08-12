@@ -19,7 +19,7 @@ Find My College is a college review and matching app for students applying to co
 In the first week of the start of the project, I plan on implementing the sign up page/ login with Facebook page, the opening survey, and integration of the APIs and databases.
 
 ### App Evaluation
-- **Category:** Socail/Communication
+- **Category:** Social/Communication
 - **Mobile:** It is a mobile app that students can use to find a good fit college. They can use it to search, view details, and read about colleges.
 - **Story:** The app is aimed at making the college search eaiser for students by narrowing down the list of colleges they have to look at. 
 - **Market:** Students applying to college 
