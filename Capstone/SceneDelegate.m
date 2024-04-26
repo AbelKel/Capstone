@@ -8,6 +8,7 @@
 #import "Parse/Parse.h"
 #import "SceneDelegate.h"
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <Foundation/Foundation.h>
 
 @interface SceneDelegate ()
 

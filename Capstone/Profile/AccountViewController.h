@@ -8,6 +8,7 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 #import <Parse/Parse.h>
+#import <Foundation/Foundation.h>
 #import "Parse/PFImageView.h"
 
 NS_ASSUME_NONNULL_BEGIN
